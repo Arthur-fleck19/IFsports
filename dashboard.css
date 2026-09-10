@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2F9E40;
+}
+
+.cabecalho {
+    height: 12%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    background-color: #FFFFFF;
+}
+
+.inputPesquisa {
+    height: 40%;
+    width: 40%;
+    padding: 1rem;
+    font-size: 1.10rem;
+    border: 2px solid #666666;
+    border-radius: 20px;
+}
+
+.icone {
+    height: 55px;
+    width: 55px;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.icone:hover {
+    background-color: #999999;
+    transition: 0.2s;
+}
