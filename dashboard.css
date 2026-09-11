@@ -94,18 +94,19 @@ html, body {
 }
 
 .vitrineProdutos {
-    border: 1px solid black;
-    height: 100%;
+    height: auto;
     width: 100%;
-    padding: 2rem;
+    padding: 4rem;
     display: flex;
     justify-content: center;
 }
 
 .cardsProdutos {
     display: flex;
+    align-items: start;
+    align-content: flex-start;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 50px 30px;
 }
 
 .cardProduto {
@@ -116,15 +117,17 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-basis: calc(25% - (3 * 15px) / 4); 
+    flex-basis: calc(25% - (3 * 30px) / 4);
     flex-grow: 0;
     flex-shrink: 0;
     cursor: pointer;
+    text-align: center;
+    box-shadow: 10px 10px #000000;
     background-color: #FFFFFF;
 }
 
 .cardProduto:hover {
     transition: 0.3s;
     transform: scale(1.03);
-    border: 3px solid #000000;
+    box-shadow: 10px 10px 10px #000000;
 }
