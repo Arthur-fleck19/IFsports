@@ -44,14 +44,14 @@ html, body {
     align-items: center;
     position: absolute;
     top: 4px;
-    left: 10px;
+    right: 10px;
     cursor: pointer;
 }
 
 .inputPesquisa {
     height: 40px;
     width: 100%;
-    padding: 1rem 1rem 1rem 45px;
+    padding: 1rem 45px 1rem 1rem;
     font-size: 1.10rem;
     border: 2px solid #666666;
     border-radius: 20px;
