@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2F9E40;
+}
+
+.cabecalho {
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    background-color: #FFFFFF;
+}
+
+.logoIFsportsImg, .imagemProduto {
+    object-fit: contain;
+    justify-self: flex-start;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+h1{
+color: black;
+}
+
+.coisa{
+color: black;
+}
+
+.formulario{
+  width: 400px;
+  background-color: #FFFFFF;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 35px;
+}
+
+.formulario h1{
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.caixa-formulario{
+ position: relative;
+ margin-bottom: 30px; 
+}
+
+.caixa-formulario input{
+ width: 100%;
+ height: 100%; 
+ border: 2px solid black;
+ border-radius: 10px;
+ 
+}
