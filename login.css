@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
+
 * {
     box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
 }
 
 html, body {
@@ -34,10 +37,13 @@ html, body {
   width: 100%;
   overflow: hidden;
   position: relative;
+  font-size: 17px;
+
 }
 
 h1{
 color: black;
+font-size: 50px;
 }
 
 .coisa{
@@ -45,13 +51,16 @@ color: black;
 }
 
 .formulario{
-  width: 400px;
+  width: 500px;
+  height: 520px;
   background-color: #FFFFFF;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
   color: #FFFFFF;
-  border-radius: 16px;
-  padding: 35px;
+  border-radius: 40px;
+  padding: 40px;
+  transform: translateY(-15px);
+  align-items: center;
 }
 
 .formulario h1{
@@ -68,8 +77,25 @@ color: black;
 
 .caixa-formulario input{
  width: 100%;
- height: 100%; 
+ height: 35px;
+ font-size: 16px; 
  border: 2px solid black;
- border-radius: 10px;
+ border-radius: 20px;
  
+}
+
+
+.container button{
+  font-size: 20px;
+  padding: 7px 15px;
+  border-radius: 30px;
+  background-color: rgb(199, 0, 0);
+  color: #FFFFFF;
+  width: 350px;
+  height: 52px;
+
+}
+
+.conta{
+  color:black;
 }
