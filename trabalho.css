@@ -1,0 +1,278 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2F9E40;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    max-height: 100%;
+}
+
+.cabecalho {
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    background-color: #FFFFFF;
+}
+
+.logoIFsportsImg, .imagemProduto {
+    object-fit: contain;
+}
+
+.containerInputLupa {
+    height: 45%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.lupaInput {
+    height: 32px;
+    width: 32px;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.inputPesquisa {
+    height: 40px;
+    width: 100%;
+    padding: 1rem 1rem 1rem 45px;
+    font-size: 1.10rem;
+    border: 2px solid #666666;
+    border-radius: 20px;
+}
+
+.inputPesquisa:focus {
+    border: 2px solid #000000;
+    outline: none;
+}
+
+.icones {
+    height: 55px;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5px;
+    list-style: none;
+}
+
+.icone {
+    height: 55px;
+    width: 55px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.icone:hover, .lupaInput:hover {
+    background-color: #CCCCCC;
+    transition: 0.2s;
+}
+
+.perfil{
+    border-radius: 20px;
+    background: linear-gradient(rgb(226, 29, 29) 50%,white 50%);
+    height: 155px;
+    width: 67%;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 50px;
+    padding: 10px;
+    gap: 30px;
+    
+}
+
+.imagem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 80px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.usuario{
+    align-self: center;
+    border-radius: 100%;
+    outline: 10px solid white;
+    width: 120px;
+    height: 120px;
+}
+
+.divUsuario{
+    height: 145px;
+    width: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.dados {
+    position: absolute;
+    width: 75%;
+    padding-left: 150px;
+}
+
+.dados p {
+     margin: 5px;
+}
+
+.infosUsuario {
+    display: flexbox;
+    height: 50%;
+    align-self: flex-end;
+}
+
+.infosUsuario p{
+    margin: 0px;
+}
+.botaoExcluir{
+    padding: 10px;
+    position: relative;
+    border: rgb(255, 255, 255) solid 2px;
+    border-radius: 999px;
+    background-color: rgb(226, 29, 29);
+    color:rgb(255, 255, 255);
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.botaoExcluir:hover, .lupaInput:hover {
+    background-color: #851414;
+    transition: 0.2s;
+}
+
+.botaoEditar{
+    padding: 10px;
+    position: relative;
+    border: rgb(21, 105, 35) solid;
+    border-radius: 999px;
+    background-color:#2F9E40;
+    color:rgb(255, 255, 255);
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.botaoEditar:hover, .lupaInput:hover {
+    background-color: #2f6e1c;
+    transition: 0.2s;
+}
+.bu{
+    height: 100%;
+    width: 15%;
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    flex-direction: column;
+    align-items: start;
+}
+
+.modal{
+    height: 100vh;
+    width: 100vw;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.651);
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    display: flex;  
+    
+}
+
+.modalConteudo{
+  height: 600px;
+  width: 500px;
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: #000000 12px 12px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+ 
+}
+
+.modalConteudo img{
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    margin-top: 37px;
+}
+
+.modalIMG{
+    border-bottom: #666666 solid 2px;
+    height: 55%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+span {
+    color: #2F9E40;
+}
+
+.modalInfos {
+    
+    width: 80%;
+    justify-content: center;
+    font-size: 2rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+.modalInfos p{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.modalInfos i {
+    margin-left: 120px;
+    color: #1db818b0;
+    vertical-align: middle;  
+    width: -15px; 
+}
