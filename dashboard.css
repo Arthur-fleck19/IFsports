@@ -7,7 +7,7 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #2F9E40;
+    background-color: #DDDDDD;
 }
 
 .cabecalho {
@@ -74,7 +74,11 @@ html, body {
     list-style: none;
 }
 
-.icone {
+.icones li {
+    position: relative;
+}
+
+.iconeSite {
     height: 55px;
     width: 55px;
     text-decoration: none;
@@ -88,42 +92,106 @@ html, body {
     cursor: pointer;
 }
 
-.icone:hover, .lupaInput:hover {
+.iconeSite:hover, .lupaInput:hover {
     background-color: #CCCCCC;
     transition: 0.2s;
+}
+
+.contadorCarrinho {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: #C1FF72;
 }
 
 .vitrineProdutos {
     height: auto;
     width: 100%;
-    padding: 4rem;
+    padding: 2rem 2rem 2rem 2rem;
     display: flex;
     justify-content: center;
+    gap: 1rem;
+}
+
+.botoesNav {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.botaoNav {
+    border: none;
+    border-radius: 30px;
+    padding: 0.75rem;
+    position: relative;
+    display: flex;
+    align-items: center;     
+    justify-content: center;  
+    gap: 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #ABAAAB;
+}
+.botaoNav:hover {
+    transition: 0.2s;
+    transform: scale(1.02);
+}
+
+.corFundoBotaoSelecionado {
+    background-color: #0BA84A;
+}
+
+.botaoNav i {
+    position: absolute;
+    left: 20px;
 }
 
 .cardsProdutos {
     display: flex;
-    align-items: start;
-    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 50px 30px;
 }
 
 .cardProduto {
-    border-radius: 20px;
+    border-radius: 40px;
     height: 300px;
-    width: 150px;
+    width: 275px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-basis: calc(25% - (3 * 30px) / 4);
     flex-grow: 0;
     flex-shrink: 0;
     cursor: pointer;
     text-align: center;
-    box-shadow: 10px 10px #000000;
     background-color: #FFFFFF;
+}
+
+.cardProduto > h3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.cardProduto > span {
+    font-size: 1.6rem;
+}
+
+.corRS {
+    color: #737373;
+}
+
+.corPreco {
+    color: #2fa140;
+    font-weight: bold;
 }
 
 .cardProduto:hover {
