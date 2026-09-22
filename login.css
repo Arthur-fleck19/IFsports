@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
 
+
 * {
     box-sizing: border-box;
     font-family: 'Jost', sans-serif;
 }
+
 
 html, body {
     height: 100%;
@@ -12,6 +14,7 @@ html, body {
     padding: 0;
     background-color: #2F9E40;
 }
+
 
 .cabecalho {
     height: 100px;
@@ -24,10 +27,12 @@ html, body {
     background-color: #FFFFFF;
 }
 
+
 .logoIFsportsImg, .imagemProduto {
     object-fit: contain;
     justify-self: flex-start;
 }
+
 
 .container{
   display: flex;
@@ -39,20 +44,25 @@ html, body {
   position: relative;
   font-size: 17px;
 
+
 }
 
+
 h1{
-color: black;
+color: #113a17;
 font-size: 50px;
 }
 
+
 .coisa{
 color: black;
+font-size: 15px;
 }
+
 
 .formulario{
   width: 500px;
-  height: 520px;
+  height: 630px;
   background-color: #FFFFFF;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
@@ -60,29 +70,36 @@ color: black;
   border-radius: 40px;
   padding: 40px;
   transform: translateY(-15px);
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
+
 
 .formulario h1{
   font-size: 28px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   font-weight: 600;
 }
 
+
 .caixa-formulario{
  position: relative;
- margin-bottom: 30px; 
+ margin-bottom: 30px;
 }
+
 
 .caixa-formulario input{
  width: 100%;
  height: 35px;
- font-size: 16px; 
+ font-size: 16px;
  border: 2px solid black;
  border-radius: 20px;
  
 }
+
+
 
 
 .container button{
@@ -93,9 +110,38 @@ color: black;
   color: #FFFFFF;
   width: 350px;
   height: 52px;
+  border: none;
+
 
 }
+
 
 .conta{
   color:black;
 }
+
+
+.coisa a{
+color: #329140;
+text-decoration: none;
+}
+
+
+.frase{
+  color: rgb(153, 153, 153);
+  justify-content: center;
+}
+
+
+.coisa{
+  text-align: center;
+}
+
+
+i{
+    color: #113a17;
+    height: 100px;
+    width: 90px;
+}
+
+
