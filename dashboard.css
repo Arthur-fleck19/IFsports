@@ -122,8 +122,11 @@ html, body {
 .botoesNav {
     min-width: 200px;
     display: flex;
+    align-self: flex-start;
     flex-direction: column;
     gap: 30px;
+    position: sticky;
+    top: 20px;
 }
 
 .botaoNav {
@@ -139,18 +142,35 @@ html, body {
     color: white;
     background-color: #ABAAAB;
 }
-.botaoNav:hover {
+
+.botaoAdicionarCarrinho {
+    min-width: 180px;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6rem;
+    position: relative;
+    display: flex;
+    align-items: center;     
+    justify-content: center;  
+    gap: 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #CD181D;
+}
+
+.botaoNav:hover, .botaoAdicionarCarrinho:hover {
     transition: 0.2s;
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 
 .corFundoBotaoSelecionado {
     background-color: #0BA84A;
 }
 
-.botaoNav i {
+.botaoNav i, .botaoAdicionarCarrinho i {
     position: absolute;
     left: 20px;
+    top: 19px;
 }
 
 .cardsProdutos {
@@ -163,7 +183,7 @@ html, body {
 
 .cardProduto {
     border-radius: 40px;
-    height: 300px;
+    height: 320px;
     width: 275px;
     display: flex;
     flex-direction: column;
@@ -171,6 +191,7 @@ html, body {
     align-items: center;
     flex-grow: 0;
     flex-shrink: 0;
+    gap: 5px;
     cursor: pointer;
     text-align: center;
     background-color: #FFFFFF;
@@ -179,6 +200,7 @@ html, body {
 .cardProduto > h3 {
     font-size: 1.2rem;
     font-weight: normal;
+    margin: 0;
 }
 
 .cardProduto > span {
