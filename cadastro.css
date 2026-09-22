@@ -61,8 +61,8 @@ font-size: 15px;
 
 
 .formulario{
-  width: 500px;
-  height: 630px;
+  width: 1100px;
+  height: 650px;
   background-color: #FFFFFF;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
@@ -73,12 +73,12 @@ font-size: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 }
 
 
 .formulario h1{
-  font-size: 28px;
-  text-align: center;
+  font-size: 46px;
   margin-bottom: 0px;
   font-weight: 600;
 }
@@ -96,8 +96,6 @@ font-size: 15px;
  font-size: 16px;
  border: 2px solid black;
  border-radius: 20px;
- padding: 12px 45px 12px 15px;
- box-sizing: border-box;
  
 }
 
@@ -140,11 +138,10 @@ text-decoration: none;
 }
 
 
-.caixa-formulario i{
+i{
     color: #113a17;
     height: 100px;
     width: 90px;
-    position: absolute;
-    
 }
+
 
