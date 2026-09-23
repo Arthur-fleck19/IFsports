@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="detalhesItem.css">
+    <link rel="icon" href="logoIF.png">
+    <title>Detalhes item</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <a href="dashboard.html"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
+        <form class="containerInputLupa">
+            <input type="text" name="pesquisa" id="inputPesquisa" class="inputPesquisa" placeholder="Digite sua pesquisa...">
+            <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+        </form>
+        <nav>
+            <ul class="icones">
+                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
+                <li><a href="" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="detalhesItem">
+        <a href="dashboard.html" class="iconeSite iconeVoltar"><i class="fa-solid fa-circle-arrow-left fa-2xl"></i></a>
+        <div class="imagemInfosItem">
+            <img src="tacoHoquei.png" alt="Imagem item" height="700px" width="700px" class="imagemProduto">
+            <div class="infosItem">
+                <h2>Taco de Hóquei Oficial Tamanho Adulto 92cm de Comprimento, para Treinos e Partidas</h2>
+                <span>R$ 675.00</span>
+                <p>Desenvolvido para oferecer o máximo desempenho em quadra ou no gelo, este taco de hóquei oficial une resistência, leveza e precisão. Com medidas oficiais de 92 cm de comprimento (tamanho adulto padrão), ele é ideal tanto para atletas em fase de treinamento quanto para competições oficiais.Sua estrutura de alta durabilidade garante total controle da condução do disco ou da bola, proporcionando passes mais precisos e finalizações potentes. O cabo conta com acabamento ergonômico que assegura uma pegada firme, reduzindo o deslizamento mesmo nos momentos de maior intensidade da partida.</p>
+                <form class="inputBotao">
+                    <div class="labelInputUni">
+                        <label for="inputQuantidadeItem">Quantidade:</label>
+                        <div>
+                            <button type="button">-</button>
+                            <input type="number" name="quantidade" id="inputQuantidadeItem" min="1">
+                            <button type="button">+</button>
+                        </div>
+                    </div>
+                    <button class="botaoNav" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> <span>Comprar</span></button>
+                </form>
+                <form action="" class="formBotaoAdCarrinho"><button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-heart fa-xl"></i> Adicionar ao carrinho</button></form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

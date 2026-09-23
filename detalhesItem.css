@@ -94,7 +94,7 @@ html, body {
 }
 
 .iconeSite:hover, .lupaInput:hover {
-    background-color: #CCCCCC;
+    background-color: #999999;
     transition: 0.2s;
 }
 
@@ -111,108 +111,43 @@ html, body {
     background-color: #C1FF72;
 }
 
-.vitrineProdutos {
-    height: auto;
+.detalhesItem {
+    height: 100%;
     width: 100%;
-    padding: 3rem 3rem 3rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 3rem;
-}
-
-.botoesNav {
-    min-width: 200px;
-    display: flex;
-    align-self: flex-start;
-    flex-direction: column;
-    gap: 30px;
-    position: sticky;
-    top: 20px;
-}
-
-.botaoNav {
-    border: none;
-    border-radius: 30px;
-    padding: 0.75rem;
     position: relative;
-    display: flex;
-    align-items: center;     
-    justify-content: center;  
-    gap: 12px;
-    cursor: pointer;
-    color: white;
-    background-color: #ABAAAB;
 }
 
-.botaoAdicionarCarrinho {
-    min-width: 180px;
-    border: none;
-    border-radius: 30px;
-    padding: 0.6rem;
-    position: relative;
-    display: flex;
-    align-items: center;     
-    justify-content: center;  
-    gap: 12px;
-    cursor: pointer;
-    color: white;
-    background-color: #CD181D;
-}
-
-.botaoNav:hover, .botaoAdicionarCarrinho:hover {
-    transition: 0.2s;
-    transform: scale(1.05);
-}
-
-.corFundoBotaoSelecionado {
-    background-color: #0BA84A;
-}
-
-.botaoNav i, .botaoAdicionarCarrinho i {
+.iconeVoltar {
+    color: #CD181D;
     position: absolute;
-    left: 20px;
-    top: 19px;
+    top: 5px;
+    left: 5px;
 }
 
-.cardsProdutos {
-    width: 100%;
+.imagemInfosItem {
+    height: 100%;
+    padding: 4rem;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 50px 30px;
-}
-
-.cardProduto {
-    border-radius: 40px;
-    height: 320px;
-    width: 275px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 0;
-    flex-shrink: 0;
-    gap: 5px;
-    cursor: pointer;
-    text-align: center;
-    background-color: #FFFFFF;
+    gap: 50px;
 }
 
-.cardProduto > h3 {
-    font-size: 1.2rem;
-    font-weight: normal;
-    margin: 0;
-    color: #000000;
+.infosItem {
+    height: 500px;
 }
 
-.cardProduto > span {
+.infosItem > h2 {
+    border-bottom: 4px solid #C8D1D9;
+}
+
+.infosItem > span {
     font-size: 1.6rem;
+    color: #166534;
 }
 
-.cardsProdutos > a {
-    text-decoration: none;
-    color: none;
+.infosItem > p {
+    font-size: 1.5rem;
 }
 
 .corRS {
@@ -224,8 +159,104 @@ html, body {
     font-weight: bold;
 }
 
-.cardProduto:hover {
-    transition: 0.3s;
+.botaoNav {
+    height: 75px;
+    width: 225px;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem;
+    position: relative;
+    display: flex;
+    align-items: center;     
+    justify-content: center;  
+    gap: 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #4CA626;
+}
+
+.botaoAdCarrinho {
+    border: 2px solid #CD181D;
+    border-radius: 30px;
+    height: 2rem;
+    width: 200px;
+    margin-top: 1rem;
+    position: relative;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    color: #CD181D;
+}
+
+.botaoAdCarrinho i {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+}
+
+.botaoNav i {
+    position: absolute;
+    left: 30px;
+    top: 39px;
+}
+
+.botaoNav span {
+    font-size: 1.2rem;
+}
+
+.botaoNav:hover {
+    transition: 0.2s;
+    transform: scale(1.05);
+}
+
+.botaoAdCarrinho:hover {
+    transition: 0.2s;
     transform: scale(1.03);
-    box-shadow: 10px 10px 10px #000000;
+}
+
+.labelInputUni {
+    height: 75px;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #C8D1D9;
+}
+
+.labelInputUni button {
+    height: 40px;
+    width: 40px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+
+.labelInputUni input {
+    height: 30px;
+    width: 125px;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.labelInputUni div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.inputBotao {
+    display: flex;
+    gap: 20px;
+}
+
+.formBotaoAdCarrinho {
+    display: flex;
+}
+
+.formBotaoAdCarrinho button {
+    width: 490px;
 }
