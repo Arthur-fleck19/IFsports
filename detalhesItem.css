@@ -108,6 +108,7 @@ html, body {
     justify-content: center;
     align-items: center;
     border-radius: 100%;
+    font-family: "Open Sans", sans-serif;
     background-color: #C1FF72;
 }
 
@@ -125,29 +126,35 @@ html, body {
 }
 
 .imagemInfosItem {
-    height: 100%;
+   height: 100%;
+    width: 100%;
     padding: 4rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
     gap: 50px;
 }
 
 .infosItem {
     height: 500px;
+    width: 500px;
 }
 
 .infosItem > h2 {
     border-bottom: 4px solid #C8D1D9;
+    font-family: "Poppins", sans-serif;
 }
 
 .infosItem > span {
     font-size: 1.6rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
     color: #166534;
 }
 
 .infosItem > p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-family: "Poppins", sans-serif;
 }
 
 .corRS {
@@ -181,16 +188,11 @@ html, body {
     height: 2rem;
     width: 200px;
     margin-top: 1rem;
+    margin-bottom: 4rem;
     position: relative;
     cursor: pointer;
     background-color: #FFFFFF;
     color: #CD181D;
-}
-
-.botaoAdCarrinho i {
-    position: absolute;
-    top: 15px;
-    left: 5px;
 }
 
 .botaoNav i {
@@ -214,12 +216,13 @@ html, body {
 }
 
 .labelInputUni {
-    height: 75px;
+    height: 90px;
     border-radius: 10px;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    font-family: "Poppins", sans-serif;
     background-color: #C8D1D9;
 }
 
@@ -250,11 +253,13 @@ html, body {
 
 .inputBotao {
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
 .formBotaoAdCarrinho {
     display: flex;
+    justify-content: center;
 }
 
 .formBotaoAdCarrinho button {
