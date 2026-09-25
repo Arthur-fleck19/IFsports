@@ -183,7 +183,7 @@ html, body {
     width: 100%;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 50px 30px;
 }
@@ -237,4 +237,56 @@ html, body {
     transition: 0.3s;
     transform: scale(1.03);
     box-shadow: 10px 10px 10px #000000;
+}
+
+@media(max-width: 570px) {
+    .cabecalho {
+        height: auto; /* Permite que a altura aumente para caber as duas linhas */
+        display: grid;
+        /* Define 2 linhas automáticas e 2 colunas principais nas pontas */
+        grid-template-columns: 1fr 1fr; 
+        row-gap: 15px; /* Espaço entre a linha de cima e a de baixo */
+        padding: 15px 10px 20px 10px;
+    }
+
+    /* O link da logo vai para o topo esquerdo */
+    .cabecalho > a {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center; /* Alinha a logo bem à esquerda */
+    }
+
+    /* O menu de ícones (<nav>) vai para o topo direito */
+    .cabecalho > nav {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end; /* Alinha os ícones bem à direita */
+    }
+
+    /* O formulário de pesquisa vai para a linha de baixo e expande totalmente */
+    .containerInputLupa {
+        grid-column: 1 / span 2; /* Ocupa as duas colunas */
+        grid-row: 2;
+        width: 100%; /* Força o formulário a ocupar toda a largura */
+    }
+}
+
+@media(max-width: 925px) {
+    .vitrineProdutos {
+        flex-direction: column;
+    }
+
+    .botoesNav {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: static;
+        inset: 0;
+    }
+
+    .botaoNav {
+        width: 200px;
+    }
 }
