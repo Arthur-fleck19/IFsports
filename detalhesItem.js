@@ -16,5 +16,6 @@ botaoMaisQuant.addEventListener("click", () => {
 inputQuant.addEventListener("blur", () => {
     if(inputQuant.validity.patternMismatch) {
         inputQuant.value = 1;
+        contadorQuant = 1;
     }
 });
