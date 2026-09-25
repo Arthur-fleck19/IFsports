@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSPORTS</title>
     <link rel="stylesheet" href="cadastro.css">
-    <link rel="stylesheet" href="logoIFsports.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
 </head>
 
 <body>
@@ -29,34 +30,40 @@
             <h1>Vamos  criar  sua  conta!</h1>
         </strong>
 
-            <p class="frase">Entre e aproveite o melhor do IF</p>
+            <p class="frase">Os campos abaixo sao essenciais para criarmos a sua conta</p>
         <form action="#">
 
 
             <div class="caixa-formulario">
                 <input type="text" placeholder="Nome completo" required>
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-user icone-esquerda"></i>           
+
+            </i>
             </div>
 
+            <div class="caixa-formulario">
+                <input type="text" placeholder="E-mail" required>
+            <i class="fa-solid fa-user icone-esquerda"></i>           
+            </div>
 
             <div class="caixa-formulario">
-                <input type="password" placeholder="Informe sua senha" required>
+                <i class="fa-solid fa-lock icone-esquerda"></i>
+
+                <input type="password" 
+                placeholder="Senha" 
+                id="senha" 
+                required>
+
+                <i class="fa-solid fa-eye-slash icone-direita" 
+                id="toggleSenha">
+            </i>
             </div>
 
 
             <div class="botao">
-                <button type="submit">Entrar</button>
+                <button type="submit"><a href="login.html">Criar conta</a></button>
             </div>
 
-
-            <div class="link-registro">
-            <p class="coisa">Não tem uma conta? <a href="#">Crie uma conta</a></p>
-            </div>
-
-
-            <div class="caixa-esqueci">
-                <p class="coisa">Esqueceu sua senha? <a href="#">Redefinir senha</a></p>
-          </div>
         </form>
 </div>
     </div>

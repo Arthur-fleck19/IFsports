@@ -43,14 +43,6 @@ html, body {
   overflow: hidden;
   position: relative;
   font-size: 17px;
-
-
-}
-
-
-h1{
-color: #113a17;
-font-size: 50px;
 }
 
 
@@ -62,7 +54,7 @@ font-size: 15px;
 
 .formulario{
   width: 500px;
-  height: 630px;
+  height: 550px;
   background-color: #FFFFFF;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
@@ -81,28 +73,25 @@ font-size: 15px;
   text-align: center;
   margin-bottom: 0px;
   font-weight: 600;
+  color: #113a17;
+  margin: 8px 0 4px 0;
 }
-
 
 .caixa-formulario{
  position: relative;
- margin-bottom: 30px;
+ margin-bottom: 20px;
 }
 
 
 .caixa-formulario input{
  width: 100%;
- height: 35px;
- font-size: 16px;
- border: 2px solid black;
- border-radius: 20px;
- padding: 12px 45px 12px 15px;
- box-sizing: border-box;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 12px 45px 12px 45px; 
+    box-sizing: border-box;
  
 }
-
-
-
 
 .container button{
   font-size: 20px;
@@ -113,10 +102,19 @@ font-size: 15px;
   width: 350px;
   height: 52px;
   border: none;
-
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
 
 }
 
+button a{
+text-decoration: none;
+color: #FFFFFF;
+}
 
 .conta{
   color:black;
@@ -131,20 +129,56 @@ text-decoration: none;
 
 .frase{
   color: rgb(153, 153, 153);
-  justify-content: center;
+    text-align: center;
+    margin: 0 0 18px 0; 
 }
 
 
 .coisa{
   text-align: center;
+  font-size: 13px;
 }
 
+.icone-esquerda{
+  position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0abd37;
+    font-size: 16px;
+}
 
-.caixa-formulario i{
-    color: #113a17;
-    height: 100px;
-    width: 90px;
+.icone-direita {
     position: absolute;
-    
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0abd37;
+    font-size: 16px;
+    cursor: pointer;
 }
 
+.icone-login i {
+    font-size: 70px;      
+    color: #007512;     
+}
+
+.separador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0;
+    width: 100%;
+}
+
+.separador span {
+    flex: 1;
+    height: 1px;
+    background-color: #cfcfcf; 
+}
+.separador p {
+    margin: 0 15px;
+    color: #777;
+    font-size: 10px;
+    font-weight: 500;
+}

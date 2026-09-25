@@ -61,32 +61,34 @@ font-size: 15px;
 
 
 .formulario{
-  width: 1100px;
-  height: 650px;
+  width: 900px;
+  height: 400px;
   background-color: #FFFFFF;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
   color: #FFFFFF;
   border-radius: 40px;
-  padding: 40px;
+  padding: 5px;
   transform: translateY(-15px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+padding-top: 25px;
 }
 
 
 .formulario h1{
-  font-size: 46px;
-  margin-bottom: 0px;
+  font-size: 42px;
+  color: #113a17;
   font-weight: 600;
+  margin: 0 0 2px 0;  
 }
 
 
 .caixa-formulario{
  position: relative;
- margin-bottom: 30px;
+ margin-bottom: 12px;
 }
 
 
@@ -111,10 +113,15 @@ font-size: 15px;
   width: 350px;
   height: 52px;
   border: none;
+  text-decoration: none;
 
 
 }
 
+button a{
+text-decoration: none;
+color: #FFFFFF;
+}
 
 .conta{
   color:black;
@@ -130,6 +137,7 @@ text-decoration: none;
 .frase{
   color: rgb(153, 153, 153);
   justify-content: center;
+  margin: 0 0 50px 0;
 }
 
 
@@ -142,6 +150,30 @@ i{
     color: #113a17;
     height: 100px;
     width: 90px;
+}
+
+.icone-esquerda{
+  position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0abd37;
+    font-size: 16px;
+}
+
+.icone-direita {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0abd37;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.icone-login i {
+    font-size: 70px;      
+    color: #007512;     
 }
 
 

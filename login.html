@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSPORTS</title>
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="logoIFsports.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
@@ -25,7 +24,10 @@
    
     <div class="formulario">
 
-        <i class="fa-solid fa-circle-user fa-2xl"></i>
+        <div class="icone-login ">
+    <i class="fa-regular fa-circle-user"></i>        
+        </div>
+
         <strong>
             <h1>Acesse sua conta</h1>
         </strong>
@@ -35,23 +37,40 @@
 
 
             <div class="caixa-formulario">
-                <input type="text" placeholder="Nome completo" required>
-                <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-user icone-esquerda"></i>           
+             <input type="text" placeholder="Nome completo" required>
             </div>
 
 
             <div class="caixa-formulario">
-                <input type="password" placeholder="Informe sua senha" required>
+                <i class="fa-solid fa-lock icone-esquerda"></i>
+
+                <input type="password" 
+                placeholder="Informe sua senha"
+                id="senha" 
+                required>
+
+                <i class="fa-solid fa-eye-slash icone-direita" 
+                id="toggleSenha">
+            </i>
             </div>
 
 
             <div class="botao">
-                <button type="submit">Entrar</button>
+                <button type="submit">
+                    <i class="fa-solid fa-door-open"></i>
+                    <a href="dashboard.html">Entrar</a>
+                </button>
             </div>
 
+            <div class="separador">
+            <span></span>
+            <p>OU</p>
+            <span></span>
+            </div>
 
             <div class="link-registro">
-            <p class="coisa">Não tem uma conta? <a href="#">Crie uma conta</a></p>
+            <p class="coisa">Não tem uma conta? <a href="cadastro.html">Crie uma conta</a></p>
             </div>
 
 
@@ -61,5 +80,22 @@
         </form>
 </div>
     </div>
+
+    <script>
+const senha = document.getElementById("senha");
+const olho = document.getElementById("toggleSenha");
+
+olho.addEventListener("click", () => {
+    if (senha.type === "password") {
+        senha.type = "text"; // mostra a senha
+        olho.classList.remove("fa-eye-slash");
+        olho.classList.add("fa-eye");
+    } else {
+        senha.type = "password"; // esconde a senha
+        olho.classList.remove("fa-eye");
+        olho.classList.add("fa-eye-slash");
+    }
+});
+</script>
 </body>
 </html>
