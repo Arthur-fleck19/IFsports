@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="icon" href="logoIF.png">
+    <link rel="stylesheet" href="trabalho.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <a href="dashboard.html"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
+                class="logoIFsportsImg"></a>
+        <form class="containerInputLupa">
+            <input type="text" name="" id="" class="inputPesquisa" placeholder="">
+            <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+        </form>
+        <nav>
+            <ul class="icones">
+                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
+                        class="contadorCarrinho">1</span></li>
+                <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Cards testes para ver como fica -->
+    <main class="vitrineProdutos">
+        <div class="botoesNav">
+            <button class="botaoNav"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
+            <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
+            <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
+            <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
+            <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
+            <h1 class="admin"> - ADM - </h1>
+            <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+            <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
+        </div>
+
+        <div class="container">
+
+            <div class="gerenciamento">
+                <h1>Produtos</h1>
+                <p>Gerenciamento dos produtos do IFsports</p>
+            </div>
+
+              <div class="perfis">
+                <div class="perfil">
+                    <div class="divUsuario"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Usuário" class="usuario"></div>
+
+                    <div class="infosUsuario">
+                        <p>ID: 67</p>
+                        <h3>Produto: Bola de Vôlei</h3>
+                        <p>Valor: R$ 59,90</p>
+                    </div>
+
+                    <div class="bu">
+                        <button class="botaoExcluir" id="BotaoExcluir">Excluir perfil</button>
+                        <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
+                        <div class="modal" id="modal">
+
+                    <div class="modalConteudo">
+                        <div class="modalIMG"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Usuário"></div>
+                    
+                    </div> 
+                    
+                    <script>
+
+                    const botaoAbrir = document.getElementById("BotaoEditar");
+                    const modal = document.getElementById("modal");
+
+                    botaoAbrir.addEventListener('click', () => {
+                        modal.style.display = 'flex'
+                    })
+
+                    modal.addEventListener('click', (local) => {
+                        if (local.target === modal) {
+                            modal.style.display = 'none'
+
+                        }
+                    })
+
+                </script>
+    </main>
+       
+</body>
+
+</html>
