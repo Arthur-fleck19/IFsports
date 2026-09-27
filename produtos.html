@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="dashboard.css">
     <link rel="icon" href="logoIF.png">
     <link rel="stylesheet" href="trabalho.css">
+    <link rel="stylesheet" href="produtos.css">
     <title>Dashboard</title>
 </head>
 
@@ -51,7 +52,7 @@
 
               <div class="perfis">
                 <div class="perfil">
-                    <div class="divUsuario"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Usuário" class="usuario"></div>
+                    <div class="divUsuario"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei" class="usuario"></div>
 
                     <div class="infosUsuario">
                         <p>ID: 67</p>
@@ -64,12 +65,34 @@
                         <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
                         <div class="modal" id="modal">
 
-                    <div class="modalConteudo">
-                        <div class="modalIMG"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Usuário"></div>
+                    <div class="modalconteudo-Produtos">
+
+                     <div class="modalIMG-Produtos"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei"></div>
+                        <div class="Lapis">
+                            <i class="fa-solid fa-pencil"></i></div> 
+                        <div>
+                     <div class="camposProdutos">   
+                        <h4>Nome do Produto</h4>
+                        <input type="text" name="" id="" class="inforProduto" placeholder="Bola de Vôlei">
+
+                        <h4>Preço</h4>
+                        <input type="text" name="" id="" class="inforProduto" placeholder="R$ 59,90">
+
+                        <h4>Descrição</h4>
+                        <input type="text" name="" id="" class="inforProduto" placeholder="Bola de vôlei com alta durabilidade e ótimo desempenho para treinos e partidas.">
+                        
+                        <h4>Estoque</h4>
+                        <input type="text" name="" id="" class="inforProduto" placeholder="28">
+                        </div> 
+                    </div>
+                    </div>                     
+                        
+
                     
-                    </div> 
                     
-                    <script>
+                   
+                </div>
+                <script>
 
                     const botaoAbrir = document.getElementById("BotaoEditar");
                     const modal = document.getElementById("modal");
@@ -85,7 +108,39 @@
                         }
                     })
 
-                </script>
+                    </script>
+                
+                
+            </div>   
+         </div>    
+
+            <div class="perfil">
+                    <div class="divUsuario"><img src="https://static.netshoes.com.br/produtos/joelheira-profissional-volei-n1-sport-spry-knit-3dprotecao/14/P3P-0062-014/P3P-0062-014_zoom1.jpg?ts=1727096697" alt="Foto Joelheira-branca-N1" class="usuario"></div>
+
+                    <div class="infosUsuario">
+                        <p>ID: 29</p>
+                        <h3>Produto: Joelheira Branca N1</h3>
+                        <p>Valor: R$ 80,00</p>
+                    </div>
+
+                    <div class="bu">
+                        <button class="botaoExcluir" id="BotaoExcluir">Excluir perfil</button>
+                        <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
+                        <div class="modal" id="modal">
+
+                    <div class="modalConteudo">
+                        <div class="modalIMG"><img src="https://static.netshoes.com.br/produtos/joelheira-profissional-volei-n1-sport-spry-knit-3dprotecao/14/P3P-0062-014/P3P-0062-014_zoom1.jpg?ts=1727096697" alt="Foto Joelheira-branca-N1"></div>
+                    
+                    </div> 
+                    
+                    
+                    
+                   
+                </div>
+            
+        </div>
+
+        
     </main>
        
 </body>
