@@ -1,0 +1,55 @@
+.modalconteudo-Produtos{
+    height: 500px;
+    width: 450px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: #000000 12px 12px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+.modalIMG-Produtos {
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
+    border-radius: 50%;
+    outline: 5px solid rgb(121, 117, 117);
+    position: relative;
+}
+
+.modalIMG-Produtos img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.Lapis{
+    position: absolute;
+    width: 105px;
+    left: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inforProduto {
+    height: 30px;
+    width: 250%;
+    margin-top: 10px;
+    border: solid  #666666;
+    border-radius: 20px;
+    font-family: 'helvetica';
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.modalconteudo-Produtos h4{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 0;
+    font-family: 'helvetica';
+    font-size: 12px;
+}
