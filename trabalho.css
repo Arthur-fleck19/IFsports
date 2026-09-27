@@ -201,8 +201,6 @@
     .modal{
         height: 100vh;
         width: 100vw;
-       
-       
         background-color: rgba(0, 0, 0, 0.651);
         justify-content: center;
         align-items: center;
@@ -214,9 +212,8 @@
     }
 
     .modalConteudo{
-    height: 600px;
-    width: 500px;
-
+    height: 500px;
+    width: 400px;
     background-color: white;
     border-radius: 25px;
     box-shadow: #000000 12px 12px 0px 0px;
@@ -226,13 +223,11 @@
     align-items: center;
     justify-content: flex-start;
 
-    position: relative;
-   
     }
 
     .modalConteudo img{
-        width: 250px;
-        height: 250px;
+        width: 170px;
+        height: 170px;
         border-radius: 100%;
         margin-top: 37px;
     }
@@ -242,7 +237,6 @@
         width: 80%;
         display: flex;
         justify-content: center;
-        border-bottom: #666666 solid 2px;
         padding-bottom: 15px;
     }
 
@@ -252,7 +246,7 @@
 
     .modalInfos {
         width: 80%;
-        text-align: center;
+        margin-top: 0;
     }
 
     
@@ -289,7 +283,7 @@
 .info-alterar div p:not(.EscritaMenor) {
     margin: 0;
     font-family: 'helvetica';
-    font-size: 25px;
+    font-size: 18px;
     
 }
     
@@ -304,6 +298,7 @@
     :root {
         --vermelho:  rgb(226, 29, 29) ;
         --texto: #111827;
+        
     }
     .botaoAdmin{
     color: white;
