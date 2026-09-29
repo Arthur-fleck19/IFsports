@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
         integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
     <link rel="icon" href="logoIF.png">
-    <link rel="stylesheet" href="trabalho.css">
-    <link rel="stylesheet" href="produtos.css">
+    <link rel="stylesheet" href="CSS/trabalho.css">
+    <link rel="stylesheet" href="CSS/produtos.css">
     <title>Dashboard</title>
 </head>
 
@@ -73,18 +73,25 @@
                         <div>
                      <div class="camposProdutos">   
                         <h4>Nome do Produto</h4>
-                        <input type="text" name="" id="" class="inforProduto" placeholder="Bola de Vôlei">
+                        <input type="text" name="" id="" class="inforProduto" value="Bola de Vôlei">
 
+                        
                         <h4>Preço</h4>
-                        <input type="text" name="" id="" class="inforProduto" placeholder="R$ 59,90">
+                        <div class="preco">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input type="number" step="0.01" min="0" placeholder="0.00" id="" class="inforProduto" >
+                        </div>
 
                         <h4>Descrição</h4>
-                        <input type="text" name="" id="" class="inforProduto" placeholder="Bola de vôlei com alta durabilidade e ótimo desempenho para treinos e partidas.">
-                        
+                        <textarea name="" id="" class="inforProduto">Bola de vôlei com alta durabilidade e ótimo desempenho para treinos e partidas.</textarea>
                         <h4>Estoque</h4>
-                        <input type="text" name="" id="" class="inforProduto" placeholder="28">
-                        </div> 
+                        <input type="number" name="" id="" class="inforProduto" value="28">
+                        </div>
+                        <div class="botoesProdutos">
+                        <button class="botaoProdutosCan">Cancelar</button> <button class="botaoProdutos">Salvar Alterações</button>
+                        </div>
                     </div>
+
                     </div>                     
                         
 
