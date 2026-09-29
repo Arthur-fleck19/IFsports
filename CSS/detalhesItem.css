@@ -51,7 +51,7 @@ html, body {
     height: 40px;
     width: 100%;
     padding: 1rem 45px 1rem 1rem;
-    font-size: 1.10rem;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
     font-family: "Open Sans", sans-serif;
     border: 2px solid #666666;
     border-radius: 20px;
@@ -92,6 +92,14 @@ html, body {
     cursor: pointer;
 }
 
+.iconeSite i {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+}
+
+.botaoNav i, .botaoAdCarrinho i {
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
+}
+
 .iconeSite:hover, .lupaInput:hover {
     background-color: #999999;
     transition: 0.2s;
@@ -107,6 +115,7 @@ html, body {
     justify-content: center;
     align-items: center;
     border-radius: 100%;
+    font-size: clamp(0.7rem, 0.8vw, 0.85rem);
     font-family: "Open Sans", sans-serif;
     background-color: #C1FF72;
 }
@@ -120,6 +129,7 @@ html, body {
 .iconeVoltar {
     position: sticky;
     top: 120px;
+    z-index: 1000;
     margin: 1rem;
     color: #CD181D;
 }
@@ -149,18 +159,21 @@ html, body {
 .infosItem > h2 {
     margin-top: 0;
     border-bottom: 4px solid #C8D1D9;
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    line-height: 1.2;
     font-family: "Poppins", sans-serif;
 }
 
 .infosItem > span {
-    font-size: 1.6rem;
+    font-size: clamp(1.3rem, 1.8vw, 1.6rem);
     font-family: "Poppins", sans-serif;
     font-weight: bold;
     color: #166534;
 }
 
 .infosItem > p {
-    font-size: 1.2rem;
+    font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+    line-height: 1.6;
     font-family: "Poppins", sans-serif;
 }
 
@@ -182,8 +195,8 @@ html, body {
     font-weight: bold;
     position: relative;
     display: flex;
-    align-items: center;     
-    justify-content: center;  
+    align-items: center;
+    justify-content: center;
     gap: 12px;
     cursor: pointer;
     color: white;
@@ -197,6 +210,7 @@ html, body {
     width: 200px;
     margin-top: 1rem;
     margin-bottom: 4rem;
+    font-size: clamp(0.8rem, 0.9vw, 1rem);
     font-weight: bold;
     position: relative;
     cursor: pointer;
@@ -205,13 +219,11 @@ html, body {
 }
 
 .botaoNav i {
-    position: absolute;
-    left: 30px;
-    top: 39px;
+    position: static;
 }
 
 .botaoNav span {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
 }
 
 .botaoNav:hover {
@@ -231,6 +243,7 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    font-size: clamp(0.8rem, 0.9vw, 0.95rem);
     font-family: "Poppins", sans-serif;
     background-color: #C8D1D9;
 }
@@ -238,7 +251,7 @@ html, body {
 .labelInputUni button {
     height: 40px;
     width: 40px;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
     border: none;
     border-radius: 20px;
     cursor: pointer;
@@ -248,7 +261,7 @@ html, body {
 .labelInputUni input {
     height: 40px;
     width: 125px;
-    font-size: 1.10rem;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
     padding: 0.5rem;
     border: none;
     border-radius: 20px;

@@ -56,7 +56,7 @@ html, body {
     height: 40px;
     width: 100%;
     padding: 1rem 45px 1rem 1rem;
-    font-size: 1.10rem;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
     font-family: "Open Sans", sans-serif;
     border: 2px solid #666666;
     border-radius: 20px;
@@ -97,6 +97,10 @@ html, body {
     cursor: pointer;
 }
 
+.iconeSite i {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+}
+
 .iconeSite:hover, .lupaInput:hover {
     background-color: #CCCCCC;
     transition: 0.2s;
@@ -112,6 +116,7 @@ html, body {
     justify-content: center;
     align-items: center;
     border-radius: 100%;
+    font-size: clamp(0.7rem, 0.8vw, 0.85rem);
     font-family: "Open Sans", sans-serif;
     background-color: #C1FF72;
 }
@@ -147,8 +152,12 @@ html, body {
     cursor: pointer;
     color: white;
     background-color: #ABAAAB;
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 0.9vw, 1rem);
     font-weight: bold;
+}
+
+.botaoNav i, .botaoAdicionarCarrinho i {
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
 }
 
 .botaoAdicionarCarrinho {
@@ -164,6 +173,7 @@ html, body {
     cursor: pointer;
     color: white;
     background-color: #CD181D;
+    font-size: clamp(0.85rem, 0.9vw, 1rem);
     font-weight: bold;
 }
 
@@ -209,7 +219,7 @@ html, body {
 }
 
 .cardProduto > h3 {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
     font-weight: normal;
     margin: 0;
     color: #000000;
@@ -217,7 +227,7 @@ html, body {
 }
 
 .cardProduto span {
-    font-size: 1.6rem;
+    font-size: clamp(1.3rem, 1.7vw, 1.6rem);
     font-weight: bold;
     font-family: "Poppins", sans-serif;
 }
