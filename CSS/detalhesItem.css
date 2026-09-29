@@ -3,7 +3,7 @@
 }
 
 html, body {
-    height: 100%;
+    height: auto;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -18,12 +18,10 @@ html, body {
     justify-content: space-around;
     align-items: center;
     gap: 5px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background-color: #FFFFFF;
-}
-
-.logoIFsportsImg, .imagemProduto {
-    border-radius: 50px;
-    object-fit: contain;
 }
 
 .containerInputLupa {
@@ -120,20 +118,27 @@ html, body {
 }
 
 .iconeVoltar {
+    position: sticky;
+    top: 120px;
+    margin: 1rem;
     color: #CD181D;
-    position: absolute;
-    top: 5px;
-    left: 5px;
 }
 
 .imagemInfosItem {
-   height: 100%;
+    height: 100%;
     width: 100%;
-    padding: 4rem;
+    margin-top: 1rem;
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
-    gap: 50px;
+    gap: 15px;
+}
+
+.imagemProduto {
+    border: 5px solid black;
+    border-radius: 50px;
+    position: sticky;
+    top: 190px;
 }
 
 .infosItem {
@@ -270,4 +275,64 @@ html, body {
 
 .formBotaoAdCarrinho button {
     width: 490px;
+}
+
+@media(max-width: 770px) {
+    .iconeVoltar {
+        position: static;
+    }
+}
+
+@media(max-width: 570px) {
+    .cabecalho {
+        height: auto; /* Permite que a altura aumente para caber as duas linhas */
+        display: grid;
+        /* Define 2 linhas automáticas e 2 colunas principais nas pontas */
+        grid-template-columns: 1fr 1fr; 
+        row-gap: 15px; /* Espaço entre a linha de cima e a de baixo */
+        padding: 15px 10px 20px 10px;
+    }
+
+    /* O link da logo vai para o topo esquerdo */
+    .cabecalho > a {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center; /* Alinha a logo bem à esquerda */
+    }
+
+    /* O menu de ícones (<nav>) vai para o topo direito */
+    .cabecalho > nav {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end; /* Alinha os ícones bem à direita */
+    }
+
+    /* O formulário de pesquisa vai para a linha de baixo e expande totalmente */
+    .containerInputLupa {
+        grid-column: 1 / span 2; /* Ocupa as duas colunas */
+        grid-row: 2;
+        width: 100%; /* Força o formulário a ocupar toda a largura */
+    }
+}
+
+@media(max-width: 1130px) {
+    .imagemInfosItem {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imagemInfosItem > img {
+        position: static;
+        inset: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media(max-width: 620px) {
+    .imagemInfosItem > img {
+        width: 90%;
+        aspect-ratio: 1 / 1;
+        object-position: center;
+    }
 }
