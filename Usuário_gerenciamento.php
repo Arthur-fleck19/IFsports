@@ -13,7 +13,11 @@ class Usuário_gerenciamento
 
         $stmt->bind_param("sss", $nome, $email, $senha);
 
-        $stmt->execute();
+        if($stmt->execute()){
+            return("Cadastro efetuado com sucesso");
+        }else{
+            throw new Exception("Erro ao cadastrar informações");
+        }
     }
 
     public static function get_usuarios(){
