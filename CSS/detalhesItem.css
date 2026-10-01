@@ -266,6 +266,7 @@ html, body {
     border: none;
     border-radius: 20px;
     outline: none;
+    text-align: center;
 }
 
 .labelInputUni div {
