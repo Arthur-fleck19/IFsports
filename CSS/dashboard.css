@@ -158,7 +158,7 @@ html, body {
 .botaoNav i, .botaoAdicionarCarrinho i {
     position: absolute;
     left: 20px;
-    top: 19px;
+    top: 20px;
 }
 
 .vitrineProdutos {
@@ -235,7 +235,7 @@ html, body {
     box-shadow: 10px 10px 10px #000000;
 }
 
-.botaoAdicionarCarrinho {
+.botaoAdCarrinho {
     min-width: 180px;
     border: none;
     border-radius: 30px;

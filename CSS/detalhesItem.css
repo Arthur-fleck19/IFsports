@@ -32,21 +32,6 @@ html, body {
     position: relative;
 }
 
-.lupaInput {
-    height: 32px;
-    width: 32px;
-    background: none;
-    border: none;
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 4px;
-    right: 10px;
-    cursor: pointer;
-}
-
 .inputPesquisa {
     height: 40px;
     width: 100%;
@@ -60,6 +45,21 @@ html, body {
 .inputPesquisa:focus {
     border: 2px solid #000000;
     outline: none;
+}
+
+.lupaInput {
+    height: 32px;
+    width: 32px;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    cursor: pointer;
 }
 
 .icones {
@@ -96,12 +96,8 @@ html, body {
     font-size: clamp(1.3rem, 2vw, 1.6rem);
 }
 
-.botaoNav i, .botaoAdCarrinho i {
-    font-size: clamp(1rem, 1.3vw, 1.25rem);
-}
-
 .iconeSite:hover, .lupaInput:hover {
-    background-color: #999999;
+    background-color: #CCCCCC;
     transition: 0.2s;
 }
 
@@ -186,56 +182,6 @@ html, body {
     font-weight: bold;
 }
 
-.botaoNav {
-    height: 75px;
-    width: 225px;
-    border: none;
-    border-radius: 50px;
-    padding: 0.75rem;
-    font-weight: bold;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    cursor: pointer;
-    color: white;
-    background-color: #4CA626;
-}
-
-.botaoAdCarrinho {
-    border: 2px solid #CD181D;
-    border-radius: 30px;
-    height: 50px;
-    width: 200px;
-    margin-top: 1rem;
-    margin-bottom: 4rem;
-    font-size: clamp(0.8rem, 0.9vw, 1rem);
-    font-weight: bold;
-    position: relative;
-    cursor: pointer;
-    background-color: #FFFFFF;
-    color: #CD181D;
-}
-
-.botaoNav i {
-    position: static;
-}
-
-.botaoNav span {
-    font-size: clamp(1rem, 1.2vw, 1.2rem);
-}
-
-.botaoNav:hover {
-    transition: 0.2s;
-    transform: scale(1.05);
-}
-
-.botaoAdCarrinho:hover {
-    transition: 0.2s;
-    transform: scale(1.03);
-}
-
 .labelInputUni {
     height: 90px;
     border-radius: 10px;
@@ -282,6 +228,56 @@ html, body {
     gap: 20px;
 }
 
+.botaoComprar {
+    height: 75px;
+    width: 225px;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem;
+    font-weight: bold;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #4CA626;
+}
+
+.botaoComprar i {
+    position: static;
+}
+
+.botaoComprar span {
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+}
+
+.botaoComprar:hover {
+    transition: 0.2s;
+    transform: scale(1.05);
+}
+
+.botaoAdCarrinho {
+    border: 2px solid #CD181D;
+    border-radius: 30px;
+    height: 50px;
+    width: 200px;
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+    font-size: clamp(0.8rem, 0.9vw, 1rem);
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    color: #CD181D;
+}
+
+.botaoAdCarrinho:hover {
+    transition: 0.2s;
+    transform: scale(1.03);
+}
+
 .formBotaoAdCarrinho {
     display: flex;
     justify-content: center;
@@ -291,9 +287,31 @@ html, body {
     width: 490px;
 }
 
+@media(max-width: 1130px) {
+    .imagemInfosItem {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imagemInfosItem > img {
+        position: static;
+        inset: 0;
+        margin-bottom: 1rem;
+    }
+}
+
 @media(max-width: 770px) {
     .iconeVoltar {
         position: static;
+    }
+}
+
+
+@media(max-width: 620px) {
+    .imagemInfosItem > img {
+        width: 90%;
+        aspect-ratio: 1 / 1;
+        object-position: center;
     }
 }
 
@@ -327,26 +345,5 @@ html, body {
         grid-column: 1 / span 2; /* Ocupa as duas colunas */
         grid-row: 2;
         width: 100%; /* Força o formulário a ocupar toda a largura */
-    }
-}
-
-@media(max-width: 1130px) {
-    .imagemInfosItem {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .imagemInfosItem > img {
-        position: static;
-        inset: 0;
-        margin-bottom: 1rem;
-    }
-}
-
-@media(max-width: 620px) {
-    .imagemInfosItem > img {
-        width: 90%;
-        aspect-ratio: 1 / 1;
-        object-position: center;
     }
 }
