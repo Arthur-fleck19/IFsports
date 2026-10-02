@@ -20,6 +20,20 @@ class Usuário_gerenciamento
         }
     }
 
+    public static function excluir($idUsuario) {
+        global $conexao;
+        $sql = "DELETE FROM Usuarios WHERE id_usuarios = ?";
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param("i", $idUsuario);
+
+        if($stmt->execute()) {
+            return "Usuário deletado com sucesso.";
+        } else {
+            throw new Exception("Erro ao deletar o usuário.");
+        }
+    }
+
     public static function get_usuarios(){
         global $conexao;
 

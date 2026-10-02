@@ -24,6 +24,10 @@ html, body {
     background-color: #FFFFFF;
 }
 
+.logoIFsportsImg, .imagemProduto {
+    object-fit: contain;
+}
+
 .containerInputLupa {
     height: 45%;
     width: 45%;

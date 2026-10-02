@@ -24,6 +24,10 @@ html, body {
     background-color: #FFFFFF;
 }
 
+.logoIFsportsImg, .imagemProduto {
+    object-fit: contain;
+}
+
 .containerInputLupa {
     height: 45%;
     width: 45%;
@@ -146,7 +150,7 @@ html, body {
     font-size: clamp(1rem, 1.3vw, 1.25rem);
 }
 
-.botaoNav:hover, .botaoAdicionarCarrinho:hover {
+.botaoNav:hover, .botaoAdCarrinho:hover {
     transition: 0.2s;
     transform: scale(1.05);
 }
