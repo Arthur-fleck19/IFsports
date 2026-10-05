@@ -37,7 +37,7 @@ class Usuário_gerenciamento
     public static function get_usuarios(){
         global $conexao;
 
-        $sql = "SELECT id_usuarios, nome, email FROM usuarios";
+        $sql = "SELECT id_usuarios, nome, email FROM Usuarios";
 
         $resultado = $conexao->query($sql);
 
