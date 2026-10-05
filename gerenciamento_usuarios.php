@@ -20,8 +20,8 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
 
 <body>
 <header class="cabecalho">
-    <a href="dashboard.html"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
-                                  class="logoIFsportsImg"></a>
+    <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
+                                 class="logoIFsportsImg"></a>
     <form class="containerInputLupa">
         <input type="text" name="" id="" class="inputPesquisa" placeholder="">
         <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
@@ -81,34 +81,39 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
                     </div>
                     <div class="bu">
 
-                        <button class="botaoExcluir" id="BotaoExcluir">Excluir perfil</button>
-                        <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
-                        <div class="modal" id="modal">
+                        <button class="botaoExcluir">Excluir perfil</button>
+                        <button class="botaoEditar">Editar perfil</button>
+                        <div class="modal">
                             <div class="modalConteudo">
                                 <div class="modalIMG"><img
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63lctB9SWfz7PyfuaXZW4aGwfOlZNC5_72EK_BoRBKA&s=10"
                                             alt="Foto Usuário"></div>
 
-                                <div class="modalInfos">
+                                <form class="modalInfos" action="editar_usuario.php" method="post">
+
+                                    <input type="hidden" name="id" value="<?= htmlspecialchars($usuario['id_usuarios']) ?>">
+
                                     <div class="info-alterar"><i class="fa-solid fa-circle-user"></i>
                                         <div>
                                             <p class="EscritaMenor">Nome:</p>
-                                            <h4><?= htmlspecialchars($usuario['nome']) ?></h4>
+                                            <input type="text" name="nome" value="<?= htmlspecialchars($usuario['nome']) ?>">
                                         </div><i class="fa-solid fa-pencil"></i>
                                     </div>
                                     <div class="info-alterar"><i class="fa-solid fa-envelope"></i>
                                         <div>
                                             <p class="EscritaMenor">E-mail:</p>
-                                            <p><?= htmlspecialchars($usuario['email']) ?></p>
+                                            <input type="email" name="email" value="<?= htmlspecialchars($usuario['email']) ?>">
                                         </div><i class="fa-solid fa-pencil"></i>
                                     </div>
                                     <div class="info-alterar"><i class="fa-solid fa-lock"></i>
                                         <div>
                                             <p class="EscritaMenor">Senha:</p>
-                                            <p>*</p>
+                                            <input type="password" name="senha" placeholder="(deixe em branco para manter)*****">
                                         </div><i class="fa-solid fa-pencil"></i>
                                     </div>
-                                </div>
+
+                                    <input type="submit" value="Alterar">
+                                </form>
                             </div>
                         </div>
 
@@ -121,23 +126,30 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
         </div>
         <script>
 
-            const botaoAbrir = document.getElementById("BotaoEditar");
-            const modal = document.getElementById("modal");
+            const botoesEditar = document.querySelectorAll(".botaoEditar");
 
-            botaoAbrir.addEventListener('click', () => {
-                modal.style.display = 'flex'
+            botoesEditar.forEach(function (botao) {
+                botao.addEventListener('click', () => {
+                    const modal = botao.closest('.bu').querySelector('.modal');
+
+                    modal.style.display = 'flex';
+                })
             })
 
-            modal.addEventListener('click', (local) => {
-                if (local.target === modal) {
-                    modal.style.display = 'none'
+            const modais = document.querySelectorAll('.modal');
 
-                }
+            modais.forEach(function (modal){
+                modal.addEventListener('click', (local) => {
+                    if (local.target === modal) {
+                        modal.style.display = 'none'
+
+                    }
+                })
             })
+
 
         </script>
-
-
+    </div>
 </main>
 </body>
 

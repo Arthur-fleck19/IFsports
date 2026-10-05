@@ -43,4 +43,27 @@ class Usuário_gerenciamento
 
         return $resultado;
     }
+
+    public static function editar_usuario($idUsuario, $nome, $email, $senha){
+        global $conexao;
+
+        if(empty($senha)){
+            $sql = "UPDATE Usuarios SET nome = ?, email = ? WHERE id_usuarios = ?";
+
+            $stmt = $conexao->prepare($sql);
+
+            $stmt->bind_param("ssi", $nome, $email, $idUsuario);
+        }else{
+            $sql = "UPDATE Usuarios SET nome = ?, email = ?, senha = ? WHERE id_usuarios = ?";
+
+            $senha = password_hash($senha, PASSWORD_DEFAULT);
+
+            $stmt = $conexao->prepare($sql);
+
+            $stmt->bind_param("sssi", $nome, $email, $senha, $idUsuario);
+        }
+
+        $stmt->execute();
+
+    }
 }
