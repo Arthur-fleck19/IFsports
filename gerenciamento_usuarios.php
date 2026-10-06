@@ -81,7 +81,11 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
                     </div>
                     <div class="bu">
 
-                        <button class="botaoExcluir">Excluir perfil</button>
+                        <form action="excluir_usuario.php" method="post" style="width: 100%;display: inline-flex">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($usuario['id_usuarios']) ?>">
+                            <input type="submit" class="botaoExcluir" value="Excluir perfil">
+                        </form>
+
                         <button class="botaoEditar">Editar perfil</button>
                         <div class="modal">
                             <div class="modalConteudo">
