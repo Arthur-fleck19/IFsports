@@ -305,6 +305,12 @@
     background-color: var(--vermelho);
 
     }
+
+    .aAdmin{
+        text-decoration: none;
+        color: white;
+    }
+
     .gerenciamento{
     width: 87%;
 

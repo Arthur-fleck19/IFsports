@@ -8,12 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="CSS/trabalho.css">
     <link rel="icon" href="logoIF.png">
     <title>Dashboard</title>
 </head>
 <body>
     <header class="cabecalho">
-        <a href="dashboard.html"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
+        <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
         <form class="containerInputLupa">
             <input type="text" name="pesquisa" id="inputPesquisa" class="inputPesquisa" placeholder="Digite sua pesquisa...">
             <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
@@ -24,6 +25,8 @@
                 <li><a href="" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
             </ul>
         </nav>
+
+
     </header>
     <!-- Cards testes para ver como fica -->
     <main class="vitrineProdutos">
@@ -33,6 +36,17 @@
             <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
             <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
             <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
+            <?php
+            session_start();
+
+            if($_SESSION['tipo'] == 'admin'){
+                echo '
+                    <h1 class="admin"> - ADM - </h1>
+                    <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i><a href="gerenciamento_usuarios.php">Usuários</a></button>
+                    <button class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>  
+                ';
+            }
+            ?>
         </div>
         <section class="cardsProdutos">
             <a href="detalhesItem.html">

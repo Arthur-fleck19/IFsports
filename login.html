@@ -16,16 +16,16 @@
             <img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg">
         </a>
     </header>
-   
+
 <div  class="container">
 
 
-   
-   
+
+
     <div class="formulario">
 
         <div class="icone-login ">
-    <i class="fa-regular fa-circle-user"></i>        
+    <i class="fa-regular fa-circle-user"></i>
         </div>
 
         <strong>
@@ -33,24 +33,21 @@
         </strong>
 
             <p class="frase">Entre e aproveite o melhor do IF</p>
-        <form action="#">
+        <form action="login.php" method="post">
 
 
             <div class="caixa-formulario">
-            <i class="fa-solid fa-user icone-esquerda"></i>           
-             <input type="text" placeholder="Nome completo" required>
+            <i class="fa-solid fa-user icone-esquerda"></i>
+             <input type="text" placeholder="Nome completo" name="nome" required>
             </div>
 
 
             <div class="caixa-formulario">
                 <i class="fa-solid fa-lock icone-esquerda"></i>
 
-                <input type="password" 
-                placeholder="Informe sua senha"
-                id="senha" 
-                required>
+                <input type="password" name="senha" placeholder="Informe sua senha" id="senha" required>
 
-                <i class="fa-solid fa-eye-slash icone-direita" 
+                <i class="fa-solid fa-eye-slash icone-direita"
                 id="toggleSenha">
             </i>
             </div>
@@ -59,7 +56,7 @@
             <div class="botao">
                 <button type="submit">
                     <i class="fa-solid fa-door-open"></i>
-                    <a href="dashboard.html">Entrar</a>
+                    Entrar
                 </button>
             </div>
 

@@ -14,7 +14,12 @@ class Usuário_gerenciamento
         $stmt->bind_param("sss", $nome, $email, $senha);
 
         if($stmt->execute()){
-            return("Cadastro efetuado com sucesso");
+            if(session_status() === PHP_SESSION_NONE){
+                session_start();
+            }
+            session_regenerate_id(true);
+            $_SESSION['nome'] = $nome;
+            $_SESSION['tipo'] = 'comum';
         }else{
             throw new Exception("Erro ao cadastrar informações");
         }
@@ -65,5 +70,30 @@ class Usuário_gerenciamento
 
         $stmt->execute();
 
+    }
+
+    public static function login($nome, $senha){
+        global $conexao;
+
+        $sql = "SELECT * FROM Usuarios WHERE nome = ? LIMIT 1";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("s", $nome);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows == 1){
+            $row = $result->fetch_assoc();
+
+            if(password_verify($senha, $row['senha'])){
+                if(session_status() === PHP_SESSION_NONE){
+                    session_start();
+                }
+                session_regenerate_id(true);
+                $_SESSION['nome'] = $row['nome'];
+                $_SESSION['tipo'] = $row['tipo'];
+                return true;
+            }
+        }
+        return false;
     }
 }
