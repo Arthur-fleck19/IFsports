@@ -25,10 +25,13 @@
    
     <div class="formulario">
 
-        <i class="fa-solid fa-circle-user"></i>
+        <div class="titulo-login">
+        <i class="fa-solid fa-circle-user icone-login"></i>
         <strong>
             <h1>Vamos  criar  sua  conta!</h1>
         </strong>
+
+        </div>
 
             <p class="frase">Os campos abaixo sao essenciais para criarmos a sua conta</p>
         <form action="cadastro_processo.php" method="post">
@@ -65,7 +68,26 @@
             </div>
 
         </form>
+
+        
 </div>
     </div>
+
+   <script>
+const senha = document.getElementById("senha");
+const olho = document.getElementById("toggleSenha");
+
+olho.addEventListener("click", () => {
+    if (senha.type === "password") {
+        senha.type = "text"; // mostra a senha
+        olho.classList.remove("fa-eye-slash");
+        olho.classList.add("fa-eye");
+    } else {
+        senha.type = "password"; // esconde a senha
+        olho.classList.remove("fa-eye");
+        olho.classList.add("fa-eye-slash");
+    }
+});
+</script>  
 </body>
 </html>

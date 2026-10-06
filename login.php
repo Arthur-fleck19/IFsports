@@ -22,10 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute();
 
     $resultado = $stmt->get_result();
-
-    echo "Usuários encontrados: " . $resultado->num_rows;
-exit;
-
+    
     if ($resultado->num_rows === 1) {
 
         $usuario = $resultado->fetch_assoc();
@@ -37,19 +34,24 @@ exit;
             $_SESSION["nome"] = $usuario["nome"];
             $_SESSION["tipo"] = $usuario["tipo"];
 
-
-          header("Location: dashboard.html");
+            if($_SESSION["tipo"]== "admin"){
+                header("Location:gerenciamento_usuarios.php");
+            } 
+            
+        else{
+          header("Location: dashboard.php");
+            }
           exit;
 
         } else {
+        header("Location: login.html?erro=senha");
 
-            $mensagem = "Senha incorreta!";
 
-        }
+        } 
+        
+        } else {
 
-    } else {
-
-        $mensagem = "Usuário não encontrado!";
+        header("Location: login.html?erro=usuario");
     }
 
     $stmt->close();

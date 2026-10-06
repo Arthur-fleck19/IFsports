@@ -7,6 +7,42 @@
     <link rel="stylesheet" href="CSS/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
+<div id="notificacao" class="notificacao"></div>
+<script>
+    // Pega os parâmetros que estão na URL
+    const parametros = new URLSearchParams(window.location.search);
+
+    // Pega o valor de "erro"
+    const erro = parametros.get("erro");
+
+    // Pega a div da notificação
+    const notificacao = document.getElementById("notificacao");
+
+    // Verifica qual erro aconteceu
+    if (erro === "usuario") {
+
+        notificacao.textContent = "Usuário não encontrado!";
+        notificacao.classList.add("erro");
+        notificacao.classList.add("mostrar");
+
+    } else if (erro === "senha") {
+
+        notificacao.textContent = "Senha incorreta!";
+        notificacao.classList.add("erro");
+        notificacao.classList.add("mostrar");
+
+    }
+
+    // Faz a notificação desaparecer depois de 3 segundos
+    if (erro) {
+
+        setTimeout(function() {
+
+            notificacao.classList.remove("mostrar");
+
+        }, 3000);
+    }
+</script>
 
 <body>
     <header class="cabecalho">
@@ -62,7 +98,7 @@
             <div class="botao">
                 <button type="submit">
                     <i class="fa-solid fa-door-open"></i>
-                    <a href="dashboard.html">Entrar</a>
+                    <a href="dashboard.php">Entrar</a>
                 </button>
             </div>
 
