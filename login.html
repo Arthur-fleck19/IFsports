@@ -33,12 +33,14 @@
         </strong>
 
             <p class="frase">Entre e aproveite o melhor do IF</p>
-        <form action="#">
+        <form action="login.php" method="post">
 
 
             <div class="caixa-formulario">
             <i class="fa-solid fa-user icone-esquerda"></i>           
-             <input type="text" placeholder="Nome completo" required>
+             <input type="text" 
+             name="Nome"
+             placeholder="Nome completo" required>
             </div>
 
 
@@ -47,7 +49,8 @@
 
                 <input type="password" 
                 placeholder="Informe sua senha"
-                id="senha" 
+                id="senha"
+                name="Senha" 
                 required>
 
                 <i class="fa-solid fa-eye-slash icone-direita" 
@@ -97,5 +100,8 @@ olho.addEventListener("click", () => {
     }
 });
 </script>
+
+
 </body>
 </html>
+
