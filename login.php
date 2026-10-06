@@ -38,7 +38,7 @@ exit;
             $_SESSION["tipo"] = $usuario["tipo"];
 
 
-          header("Location: dashboard.html");
+          header("Location: dashboard.php");
           exit;
 
         } else {
