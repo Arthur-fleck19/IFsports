@@ -42,7 +42,13 @@ $usuario = Usuário_gerenciamento::perfil();
         <ul class="icones">
             <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
                     class="contadorCarrinho">1</span></li>
-            <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+            <?php
+            if($_SESSION['tipo'] != 'admin'){
+                echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+            }else{
+                echo '<li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+            }
+            ?>
         </ul>
     </nav>
 </header>
