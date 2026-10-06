@@ -37,7 +37,7 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
         <ul class="icones">
             <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
                         class="contadorCarrinho">1</span></li>
-            <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+            <li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
         </ul>
     </nav>
 </header>
@@ -123,7 +123,7 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
                                         </div><i class="fa-solid fa-pencil"></i>
                                     </div>
 
-                                    <input type="submit" value="Alterar">
+                                    <input class="alterarBotao" type="submit" value="Alterar">
                                 </form>
                             </div>
                         </div>

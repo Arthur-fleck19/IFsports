@@ -18,6 +18,14 @@ class Usuário_gerenciamento
                 session_start();
             }
             session_regenerate_id(true);
+            $sql = "SELECT id_usuarios FROM Usuarios WHERE nome = ? LIMIT 1";
+
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param("s", $nome);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $_SESSION['id'] = $result->fetch_assoc()["id_usuarios"];
             $_SESSION['nome'] = $nome;
             $_SESSION['tipo'] = 'comum';
         }else{
@@ -27,7 +35,7 @@ class Usuário_gerenciamento
 
     public static function excluir($idUsuario) {
         global $conexao;
-        $sql = "DELETE FROM Usuarios WHERE id_usuarios = ?";
+        $sql = "DELETE FROM Usuarios WHERE id_usuarios = ? AND nome <> 'Admin'";
         $stmt = $conexao->prepare($sql);
 
         $stmt->bind_param("i", $idUsuario);
@@ -89,11 +97,35 @@ class Usuário_gerenciamento
                     session_start();
                 }
                 session_regenerate_id(true);
+                $_SESSION['id'] = $row['id_usuarios'];
                 $_SESSION['nome'] = $row['nome'];
                 $_SESSION['tipo'] = $row['tipo'];
                 return true;
             }
         }
         return false;
+    }
+
+    public static function logout(){
+        session_unset();
+        session_destroy();
+        header("Location: login.html");
+        exit;
+    }
+
+    public static function perfil(){
+        global $conexao;
+
+        $sql = "SELECT * FROM Usuarios WHERE id_usuarios = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $_SESSION['id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows == 1){
+            $row = $result->fetch_assoc();
+        }
+
+        return $row;
     }
 }

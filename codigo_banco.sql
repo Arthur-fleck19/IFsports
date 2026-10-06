@@ -61,3 +61,10 @@ CREATE TABLE item_carrinho(
     FOREIGN KEY(id_carrinho) REFERENCES Carrinho(id_carrinho),
     FOREIGN KEY(id_produtos) REFERENCES Produtos(id_produtos)
 );
+
+INSERT INTO Usuarios (email, nome, tipo, senha) VALUES
+('admin@ifsports.com',  'admin', 'admin', '$2y$10$IP2az.9evcpM3vBTs2KBjuEthL5jVot0/xCceQuqOHWH5QYk0VsKK'),
+('maria@ifsports.com',  'Maria Silva',   'comum',  '$2y$10$wDRAmVbWoOd1E5icNbS8XO6TA7ZUemGuE4KC7X7VkHxecoypACJn2'),
+('joao@ifsports.com',   'João Santos',   'comum',  '$2y$10$FFkrOcPrT4kv3kBqmWfRtuWEcGa3e7ddF7kTTAL4nqrl/6hc1a3jO'),
+('ana@ifsports.com',    'Ana Oliveira',  'comum',  '$2y$10$vYBCW8OTgdKLPF71fkDuH.T1a1D9qng3TvJ1YuzBVGkIItqSAKV6G'),
+('carlos@ifsports.com', 'Carlos Souza',  'comum',  '$2y$10$G2xdx6vglZ94jy5iFjq.tOIaSV3fPNkkQciYN0qr7Z250ykHqgYba');

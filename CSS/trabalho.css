@@ -335,4 +335,28 @@
         gap: 35px;
     }
 
-   
+   .alterarBotao {
+       justify-self: center;
+       padding: 5px;
+       margin-top: 10px;
+       border: rgb(21, 105, 35) solid;
+       border-radius: 999px;
+       background-color:#2F9E40;
+       color:rgb(255, 255, 255);
+       display: inline-flex;
+       width: 100%;
+       justify-content: center;
+   }
+
+   .logoutBotao{
+       justify-self: center;
+       padding: 5px;
+       margin-top: 10px;
+       border: rgb(165, 61, 61) solid;
+       border-radius: 999px;
+       background-color: rgb(226, 29, 29);
+       color:rgb(255, 255, 255);
+       display: inline-flex;
+       width: 100%;
+       justify-content: center;
+   }
