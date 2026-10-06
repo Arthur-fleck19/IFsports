@@ -1,6 +1,11 @@
 * {
     box-sizing: border-box;
 }
+:root {
+    --vermelho:  rgb(226, 29, 29) ;
+    --texto: #111827;
+
+}
 
 html, body {
     height: auto;
@@ -306,4 +311,29 @@ html, body {
         grid-row: 2;
         width: 100%; /* Força o formulário a ocupar toda a largura */
     }
+}
+
+.botaoAdmin{
+    color: white;
+    background-color: var(--vermelho);
+
+}
+
+.Usuario {
+    color:  rgb(226, 29, 29);
+}
+.admin{
+    color: var(--vermelho);
+    text-align: center;
+}
+
+.botaoAdmin{
+    color: white;
+    background-color: var(--vermelho);
+
+}
+
+.aAdmin{
+    text-decoration: none;
+    color: white;
 }
