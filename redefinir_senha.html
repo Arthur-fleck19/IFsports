@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+    <link rel="stylesheet" href="CSS/redefinir_senha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</head>
+<body>
+
+       <header class="cabecalho">
+
+
+        <a href="#">
+            <img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg">
+        </a>
+    </header>
+
+    <div class="container">
+    <div class="formulario">
+        <form action="redefinir_senha.php" method="post">
+
+            <i class="fa-solid fa-lock icone-cadeado"></i>
+            <h1>Vamos procurar sua conta</h1>
+
+            <p class="frase">Informe o email vinculado a sua conta</p>
+
+            <div class="caixa-email">
+            <input type="email" 
+            name="Email"
+            placeholder="Insira seu email" required>
+            <i class="fa-solid fa-envelope icone-esquerda"></i>
+            </div>
+
+            <button type="submit">Procurar</button>
+
+            <div class="separador">
+            <span></span>
+            <p>OU</p>
+            <span></span>
+            </div>
+
+            <div class="link-voltar">
+                <p>Voltar a página de login? <a href="login.html">Voltar a página</a></p>
+            </div>
+
+        </form>
+    </div>
+    </div>
+</body>
+</html>
