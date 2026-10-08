@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Verifica a senha digitada contra o hash do banco
         if (password_verify($senha, $usuario["senha"])) {
 
-            $_SESSION["id_usuarios"] = $usuario["id_usuarios"];
+            $_SESSION["id"] = $usuario["id_usuarios"];
             $_SESSION["nome"] = $usuario["nome"];
             $_SESSION["tipo"] = $usuario["tipo"];
 
