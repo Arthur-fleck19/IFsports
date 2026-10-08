@@ -35,7 +35,7 @@ class Usuário_gerenciamento
 
     public static function excluir($idUsuario) {
         global $conexao;
-        $sql = "DELETE FROM Usuarios WHERE id_usuarios = ? AND nome <> 'Admin'";
+        $sql = "DELETE FROM Usuarios WHERE id_usuarios = ? AND tipo = 'comum'";
         $stmt = $conexao->prepare($sql);
 
         $stmt->bind_param("i", $idUsuario);
@@ -83,28 +83,61 @@ class Usuário_gerenciamento
     public static function login($nome, $senha){
         global $conexao;
 
-        $sql = "SELECT * FROM Usuarios WHERE nome = ? LIMIT 1";
-        $stmt = $conexao->prepare($sql);
-        $stmt->bind_param("s", $nome);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
 
-        if($result->num_rows == 1){
-            $row = $result->fetch_assoc();
+        session_start();
 
-            if(password_verify($senha, $row['senha'])){
-                if(session_status() === PHP_SESSION_NONE){
-                    session_start();
-                }
-                session_regenerate_id(true);
-                $_SESSION['id'] = $row['id_usuarios'];
-                $_SESSION['nome'] = $row['nome'];
-                $_SESSION['tipo'] = $row['tipo'];
-                return true;
+        $mensagem = "";
+
+        
+            
+            // Procura o usuário pelo nome
+            $sql = "SELECT id_usuarios, nome, senha, tipo FROM Usuarios WHERE nome = ? LIMIT 1";
+
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param("s", $nome);
+            $stmt->execute();
+
+            $resultado = $stmt->get_result();
+            
+            if ($resultado->num_rows === 1) {
+
+                $usuario = $resultado->fetch_assoc();
+
+                // Verifica a senha digitada contra o hash do banco
+                if (password_verify($senha, $usuario["senha"])) {
+
+                    $_SESSION["id"] = $usuario["id_usuarios"];
+                    $_SESSION["nome"] = $usuario["nome"];
+                    $_SESSION["tipo"] = $usuario["tipo"];
+
+                    if($_SESSION["tipo"]== "admin"){
+                        header("Location:gerenciamento_usuarios.php");
+                        exit;
+                    } 
+                    
+                else{
+                header("Location: dashboard.php");
+                    }
+                exit;
+
+                } else {
+                header("Location: login.html?erro=senha");
+                exit;
+
+                } 
+                
+                } else {
+
+                header("Location: login.html?erro=usuario");
+                exit;
             }
+
+            $stmt->close();
+            $conexao->close();
         }
-        return false;
-    }
+    
 
     public static function logout(){
         session_unset();
