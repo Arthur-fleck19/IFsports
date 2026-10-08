@@ -223,7 +223,7 @@ text-decoration: none;
 
     /*MODO NOTURNO AUTOMÁTICO*/
 
-@media (prefers-color-scheme: dark) {
+/*@media (prefers-color-scheme: dark) {
 
     html,
     body {
@@ -303,7 +303,7 @@ text-decoration: none;
     .logoIFsportsImg {
         filter: brightness(0.9);
     }
-}
+}*/
 
 /* =========================================
    RESPONSIVIDADE
