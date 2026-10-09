@@ -7,7 +7,8 @@
 }
 
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -28,119 +29,120 @@ html, body {
 }
 
 
-.logoIFsportsImg, .imagemProduto {
+.logoIFsportsImg,
+.imagemProduto {
     object-fit: contain;
     justify-self: flex-start;
 }
 
 
-.container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  font-size: 17px;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    font-size: 17px;
 }
 
 
-.coisa{
-color: black;
-font-size: 15px;
+.coisa {
+    color: black;
+    font-size: 15px;
 }
 
 
-.formulario{
-  width: 500px;
-  height: 550px;
-  background-color: #FFFFFF;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-  color: #FFFFFF;
-  border-radius: 40px;
-  padding: 40px;
-  transform: translateY(-15px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.formulario {
+    width: 500px;
+    height: 550px;
+    background-color: #FFFFFF;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
+    border-radius: 40px;
+    padding: 40px;
+    transform: translateY(-15px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
-.formulario h1{
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: 0px;
-  font-weight: 600;
-  color: #113a17;
-  margin: 8px 0 4px 0;
+.formulario h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 0px;
+    font-weight: 600;
+    color: #113a17;
+    margin: 8px 0 4px 0;
 }
 
-.caixa-formulario{
- position: relative;
- margin-bottom: 20px;
+.caixa-formulario {
+    position: relative;
+    margin-bottom: 20px;
 }
 
 
-.caixa-formulario input{
- width: 100%;
+.caixa-formulario input {
+    width: 100%;
     height: 45px;
     border: 2px solid black;
     border-radius: 20px;
-    padding: 12px 45px 12px 45px; 
+    padding: 12px 45px 12px 45px;
     box-sizing: border-box;
- 
+
 }
 
-.container button{
-  font-size: 20px;
-  padding: 7px 15px;
-  border-radius: 30px;
-  background-color: rgb(199, 0, 0);
-  color: #FFFFFF;
-  width: 350px;
-  height: 52px;
-  border: none;
-  font-size: 20px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px; 
-  cursor: pointer;
+.container button {
+    font-size: 20px;
+    padding: 7px 15px;
+    border-radius: 30px;
+    background-color: rgb(199, 0, 0);
+    color: #FFFFFF;
+    width: 350px;
+    height: 52px;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
 }
 
-button a{
-text-decoration: none;
-color: #FFFFFF;
+button a {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
-.conta{
-  color:black;
-}
-
-
-.coisa a{
-color: #329140;
-text-decoration: none;
+.conta {
+    color: black;
 }
 
 
-.frase{
-  color: rgb(153, 153, 153);
+.coisa a {
+    color: #329140;
+    text-decoration: none;
+}
+
+
+.frase {
+    color: rgb(153, 153, 153);
     text-align: center;
-    margin: 0 0 18px 0; 
+    margin: 0 0 18px 0;
 }
 
 
-.coisa{
-  text-align: center;
-  font-size: 13px;
+.coisa {
+    text-align: center;
+    font-size: 13px;
 }
 
-.icone-esquerda{
-  position: absolute;
+.icone-esquerda {
+    position: absolute;
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
@@ -159,8 +161,8 @@ text-decoration: none;
 }
 
 .icone-login i {
-    font-size: 70px;      
-    color: #007512;     
+    font-size: 70px;
+    color: #007512;
 }
 
 .separador {
@@ -174,8 +176,9 @@ text-decoration: none;
 .separador span {
     flex: 1;
     height: 1px;
-    background-color: #cfcfcf; 
+    background-color: #cfcfcf;
 }
+
 .separador p {
     margin: 0 15px;
     color: #777;
@@ -184,48 +187,48 @@ text-decoration: none;
 }
 
 .notificacao {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        
-        padding: 15px 25px;
-        border-radius: 8px;
-        
-        color: white;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        font-weight: bold;
-        
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-        
-        opacity: 0;
-        visibility: hidden;
-        
-        transition: opacity 0.4s ease, top 0.4s ease;
-        
-        z-index: 9999;
-    }
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 
-    .notificacao.mostrar {
-        opacity: 1;
-        visibility: visible;
-        top: 30px;
-    }
+    padding: 15px 25px;
+    border-radius: 8px;
 
-    .notificacao.erro {
-        background-color: #e74c3c;
-    }
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
 
-    .notificacao.sucesso {
-        background-color: #2ecc71;
-    }
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 
-    .botao {
-        cursor: pointer;
-    }
+    opacity: 0;
+    visibility: hidden;
 
-    /*MODO NOTURNO AUTOMÁTICO*/
+    transition: opacity 0.4s ease, top 0.4s ease;
+
+    z-index: 9999;
+}
+
+.notificacao.mostrar {
+    opacity: 1;
+    visibility: visible;
+    top: 30px;
+}
+
+.notificacao.erro {
+    background-color: #e74c3c;
+}
+
+.notificacao.sucesso {
+    background-color: #2ecc71;
+}
+
+.botao {
+    cursor: pointer;
+}
+
+/*MODO NOTURNO AUTOMÁTICO*/
 
 /*@media (prefers-color-scheme: dark) {
 

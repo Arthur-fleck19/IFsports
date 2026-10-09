@@ -8,136 +8,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 <div id="notificacao" class="notificacao"></div>
-<script>
-    // Pega os parâmetros que estão na URL
-    const parametros = new URLSearchParams(window.location.search);
-
-    // Pega o valor de "erro"
-    const erro = parametros.get("erro");
-
-    // Pega a div da notificação
-    const notificacao = document.getElementById("notificacao");
-
-    // Verifica qual erro aconteceu
-    if (erro === "usuario") {
-
-        notificacao.textContent = "Usuário não encontrado!";
-        notificacao.classList.add("erro");
-        notificacao.classList.add("mostrar");
-
-    } else if (erro === "senha") {
-
-        notificacao.textContent = "Senha incorreta!";
-        notificacao.classList.add("erro");
-        notificacao.classList.add("mostrar");
-
-    }
-
-    // Faz a notificação desaparecer depois de 3 segundos
-    if (erro) {
-
-        setTimeout(function() {
-
-            notificacao.classList.remove("mostrar");
-
-        }, 3000);
-    }
-</script>
-
 <body>
     <header class="cabecalho">
-
-
-        <a href="#">
-            <img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg">
-        </a>
+        <a href="#"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
     </header>
-   
-<div  class="container">
-
-
-   
-   
-    <div class="formulario">
-
-        <div class="icone-login ">
-    <i class="fa-regular fa-circle-user"></i>        
-        </div>
-
-        <strong>
-            <h1>Acesse sua conta</h1>
-        </strong>
-
+    <div class="container">
+        <div class="formulario">
+            <div class="icone-login ">
+                <i class="fa-regular fa-circle-user"></i>        
+            </div>
+            <strong>
+                <h1>Acesse sua conta</h1>
+            </strong>
             <p class="frase">Entre e aproveite o melhor do IF</p>
-        <form action="login.php" method="post">
-
-
-            <div class="caixa-formulario">
-            <i class="fa-solid fa-user icone-esquerda"></i>           
-             <input type="text" 
-             name="Nome"
-             placeholder="Nome completo" required>
-            </div>
-
-
-            <div class="caixa-formulario">
-                <i class="fa-solid fa-lock icone-esquerda"></i>
-
-                <input type="password" 
-                placeholder="Informe sua senha"
-                id="senha"
-                name="Senha" 
-                required>
-
-                <i class="fa-solid fa-eye-slash icone-direita" 
-                id="toggleSenha">
-            </i>
-            </div>
-
-
-            <div class="botao">
-                <button type="submit">
-                    <i class="fa-solid fa-door-open"></i>
-                     Entrar
-                </button>
-            </div>
-
-            <div class="separador">
-            <span></span>
-            <p>OU</p>
-            <span></span>
-            </div>
-
-            <div class="link-registro">
-            <p class="coisa">Não tem uma conta? <a href="cadastro.html">Crie uma conta</a></p>
-            </div>
-
-
-            <div class="caixa-esqueci">
-                <p class="coisa">Esqueceu sua senha? <a href="redefinir_senha.html">Redefinir senha</a></p>
-          </div>
-        </form>
-</div>
+            <form action="login.php" method="post">
+                <div class="caixa-formulario">
+                    <i class="fa-solid fa-user icone-esquerda"></i>           
+                    <input type="text" name="Nome" placeholder="Nome completo" required>
+                </div>
+                <div class="caixa-formulario">
+                    <i class="fa-solid fa-lock icone-esquerda"></i>
+                    <input type="password" placeholder="Informe sua senha" id="senha" name="Senha" required>
+                    <i class="fa-solid fa-eye-slash icone-direita" id="toggleSenha"></i>
+                </div>
+                <div class="botao">
+                    <button type="submit"><i class="fa-solid fa-door-open"></i>Entrar</button>
+                </div>
+                <div class="separador">
+                    <span></span>
+                    <p>OU</p>
+                    <span></span>
+                </div>
+                <div class="link-registro">
+                    <p class="coisa">Não tem uma conta? <a href="cadastro.html">Crie uma conta</a></p>
+                </div>
+                <div class="caixa-esqueci">
+                    <p class="coisa">Esqueceu sua senha? <a href="redefinir_senha.html">Redefinir senha</a></p>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <script>
-const senha = document.getElementById("senha");
-const olho = document.getElementById("toggleSenha");
-
-olho.addEventListener("click", () => {
-    if (senha.type === "password") {
-        senha.type = "text"; // mostra a senha
-        olho.classList.remove("fa-eye-slash");
-        olho.classList.add("fa-eye");
-    } else {
-        senha.type = "password"; // esconde a senha
-        olho.classList.remove("fa-eye");
-        olho.classList.add("fa-eye-slash");
-    }
-});
-</script>
-
-
+    <script src="JS/login.js"></script>
 </body>
 </html>
-
