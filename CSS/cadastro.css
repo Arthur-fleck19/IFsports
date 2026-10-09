@@ -35,85 +35,87 @@ html, body {
 
 
 .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  font-size: 17px;
 
 
 }
 
 
 h1{
-    color: #113a17;
-    font-size: 50px;
+color: #113a17;
+font-size: 50px;
 }
 
 
 .coisa{
-    color: black;
-    font-size: 15px;
+color: black;
+font-size: 15px;
 }
 
 
 .formulario{
-    width: 900px;
-    height: 450px;
-    background-color: #FFFFFF;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    color: #FFFFFF;
-    border-radius: 40px;
-    padding: 5px;
-    transform: translateY(-15px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 25px;
+  width: 900px;
+  height: 450px;
+  background-color: #FFFFFF;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  color: #FFFFFF;
+  border-radius: 40px;
+  padding: 5px;
+  transform: translateY(-15px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+padding-top: 25px;
 }
 
 
 .formulario h1{
-    font-size: 42px;
-    color: #113a17;
-    font-weight: 600;
-    margin: 0 0 2px 0;
+  font-size: 42px;
+  color: #113a17;
+  font-weight: 600;
+  margin: 0 0 2px 0;  
 }
 
 
 .caixa-formulario{
-    position: relative;
-    margin-bottom: 12px;
+ position: relative;
+ width: 100%;
+ margin-bottom: 12px;
 }
 
 
 .caixa-formulario input{
-    width: 800px;
-    height: 45px;
-    font-size: 16px;
-    border: 2px solid black;
-    border-radius: 20px;
+ width: 800px;
+ height: 45px;
+ font-size: 16px;
+ border: 2px solid black;
+ border-radius: 20px;
 
-    padding-left: 45px;
+ padding-left: 45px;
     padding-right: 45px;
-
+ 
 }
 
 .botao {
-    justify-self: center;
-    align-self: center;
-    display: flex;
-    justify-content: center;
+  justify-self: center;
+  align-self: center;
+
+  display: flex;
+  justify-content: center;
 }
 
 
-button{
-    font-size: 20px;
+ button{
+  font-size: 20px;
     padding: 7px 15px;
     border-radius: 30px;
     background-color: rgb(199, 0, 0);
@@ -132,59 +134,38 @@ button{
 }
 
 button a{
-    text-decoration: none;
-    color: #FFFFFF;
-    justify-content: center;
+text-decoration: none;
+color: #FFFFFF;
+justify-content: center;
 }
 
 .conta{
-    color:black;
+  color:black;
 }
 
 
 .coisa a{
-    color: #329140;
-    text-decoration: none;
+color: #329140;
+text-decoration: none;
 }
 
 
 .frase{
-    color: rgb(153, 153, 153);
-    justify-content: center;
-    margin: 0 0 50px 0;
+  color: rgb(153, 153, 153);
+  justify-content: center;
+  margin: 0 0 50px 0;
 }
 
 
 .coisa{
-    text-align: center;
+  text-align: center;
 }
 
 
 i{
     color: #113a17;
-    height: 100px;
-    width: 90px;
 }
 
-.icone-esquerda{
-    position: absolute;
-    left: 15px;
-    top: 68px;
-    transform: translateY(-50%);
-    color: #0abd37;
-    font-size: 16px;
-}
-
-.icone-direita {
-    position: absolute;
-    right: 15px;
-    top: 68px;
-    transform: translateY(-50%);
-    color: #0abd37;
-    font-size: 16px;
-    cursor: pointer;
-
-}
 
 .titulo-login {
     display: flex;
@@ -203,43 +184,159 @@ i{
 }
 
 
+.icone-esquerda {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #0abd37;
+    font-size: 16px;
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+.icone-direita {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #0abd37;
+    font-size: 16px;
+
+    z-index: 2;
+    cursor: pointer;
+}
+
+
 /* =========================================
    RESPONSIVIDADE
    ========================================= */
 
-/* Tablets */
+/* =========================
+   TABLETS
+   ========================= */
+
 @media (max-width: 900px) {
 
     .container {
-        padding: 30px 20px;
+        width: 100%;
         min-height: calc(100vh - 100px);
+        padding: 30px 20px;
     }
 
     .formulario {
         width: 100%;
         max-width: 700px;
         height: auto;
-        min-height: 400px;
+        min-height: 450px;
+
         padding: 30px;
+
         transform: none;
     }
 
-    .formulario h1 {
-        font-size: 36px;
+    /* Título */
+
+    .titulo-login {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 12px;
     }
+
+    .icone-login {
+        font-size: 55px;
+        flex-shrink: 0;
+    }
+
+    .titulo-login h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    /* Frase */
 
     .frase {
-        margin-bottom: 35px;
+        width: 100%;
+        text-align: center;
+
+        font-size: 15px;
+
+        margin: 10px 0 35px 0;
     }
 
-    .container button {
-        width: 80%;
-        max-width: 350px;
+    /* Formulário */
+
+    .formulario form {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Campos */
+
+    .caixa-formulario {
+        position: relative;
+
+        width: 100%;
+        max-width: 600px;
+
+        margin-bottom: 15px;
+    }
+
+    .caixa-formulario input {
+        width: 100%;
+        height: 45px;
+
+        padding-left: 45px;
+        padding-right: 45px;
+
+        font-size: 16px;
+    }
+
+    /* Ícones */
+
+    .icone-esquerda {
+        left: 15px;
+        top: 50%;
+    }
+
+    .icone-direita {
+        right: 15px;
+        top: 50%;
+    }
+
+    /* Botão */
+
+    .botao {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        margin-top: 5px;
+    }
+
+    .botao button {
+        width: 350px;
+        max-width: 100%;
+        height: 50px;
     }
 }
 
 
-/* Celulares */
+/* =========================
+   CELULARES
+   ========================= */
+
 @media (max-width: 600px) {
 
     html,
@@ -249,9 +346,13 @@ i{
         overflow-x: hidden;
     }
 
+    /* Cabeçalho */
+
     .cabecalho {
+        width: 100%;
         height: 80px;
-        padding: 10px 15px;
+
+        padding: 8px 15px;
     }
 
     .logoIFsportsImg {
@@ -259,83 +360,147 @@ i{
         height: auto;
     }
 
+    /* Container */
+
     .container {
         width: 100%;
         min-height: calc(100vh - 80px);
+
         padding: 20px 15px;
+
         align-items: center;
     }
+
+    /* Formulário */
 
     .formulario {
         width: 100%;
         max-width: 430px;
+
         height: auto;
-        min-height: 400px;
+        min-height: 0;
+
         padding: 25px 20px;
+
         border-radius: 25px;
+
         transform: none;
     }
 
-    .formulario h1 {
-        font-size: 28px;
+    /* Título */
+
+    .titulo-login {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+    }
+
+    .icone-login {
+        font-size: 45px;
+        flex-shrink: 0;
+    }
+
+    .titulo-login h1 {
+        font-size: 27px;
+        line-height: 1.15;
+
         text-align: center;
     }
 
+    /* Frase */
+
     .frase {
+        width: 100%;
+
         font-size: 14px;
+        line-height: 1.4;
+
         text-align: center;
-        margin-bottom: 30px;
+
+        margin: 10px 0 25px 0;
     }
+
+    /* Form */
+
+    .formulario form {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Campos */
 
     .caixa-formulario {
         width: 100%;
         max-width: 350px;
+
         margin-bottom: 15px;
     }
 
     .caixa-formulario input {
         width: 100%;
-        height: 42px;
+        height: 43px;
+
         font-size: 15px;
-        padding-left: 40px;
-        padding-right: 40px;
+
+        padding-left: 42px;
+        padding-right: 42px;
     }
 
-    .container button {
+    /* Ícones */
+
+    .icone-esquerda {
+        left: 14px;
+        top: 50%;
+
+        font-size: 15px;
+    }
+
+    .icone-direita {
+        right: 14px;
+        top: 50%;
+
+        font-size: 15px;
+    }
+
+    /* Botão */
+
+    .botao {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        margin-top: 5px;
+    }
+
+    .botao button {
         width: 100%;
         max-width: 350px;
+
         height: 48px;
+
         font-size: 17px;
     }
-
-    .coisa {
-        font-size: 13px;
-    }
-
-    .icone-login i {
-        font-size: 60px;
-    }
-
-    .titulo-login {
-        gap: 10px;
-    }
-
-    .icone-login {
-        font-size: 45px;
-    }
-
-    .titulo-login h1 {
-        font-size: 27px;
-    }
-
 }
 
 
-/* Celulares pequenos */
+/* =========================
+   CELULARES PEQUENOS
+   ========================= */
+
 @media (max-width: 400px) {
 
     .cabecalho {
         height: 70px;
+
+        padding: 8px 12px;
     }
 
     .logoIFsportsImg {
@@ -344,43 +509,22 @@ i{
 
     .container {
         min-height: calc(100vh - 70px);
+
         padding: 15px 10px;
     }
 
     .formulario {
+        width: 100%;
+
         padding: 22px 15px;
+
         border-radius: 22px;
     }
 
-    .formulario h1 {
-        font-size: 24px;
-    }
-
-    .frase {
-        font-size: 13px;
-        margin-bottom: 25px;
-    }
-
-    .caixa-formulario {
-        max-width: 100%;
-    }
-
-    .caixa-formulario input {
-        height: 40px;
-        font-size: 14px;
-    }
-
-    .container button {
-        height: 45px;
-        font-size: 16px;
-    }
-
-    .coisa {
-        font-size: 12px;
-    }
+    /* Título */
 
     .titulo-login {
-        gap: 8px;
+        gap: 6px;
     }
 
     .icone-login {
@@ -389,6 +533,106 @@ i{
 
     .titulo-login h1 {
         font-size: 22px;
+        line-height: 1.15;
     }
 
+    /* Frase */
+
+    .frase {
+        font-size: 13px;
+
+        margin: 8px 0 22px 0;
+    }
+
+    /* Campos */
+
+    .caixa-formulario {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .caixa-formulario input {
+        width: 100%;
+        height: 40px;
+
+        font-size: 14px;
+
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    /* Ícones */
+
+    .icone-esquerda {
+        left: 13px;
+        top: 50%;
+
+        font-size: 14px;
+    }
+
+    .icone-direita {
+        right: 13px;
+        top: 50%;
+
+        font-size: 14px;
+    }
+
+    /* Botão */
+
+    .botao button {
+        width: 100%;
+        height: 45px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* =========================
+   CELULARES MUITO PEQUENOS
+   ========================= */
+
+@media (max-width: 350px) {
+
+    .formulario {
+        padding: 20px 12px;
+    }
+
+    .titulo-login {
+        gap: 5px;
+    }
+
+    .icone-login {
+        font-size: 34px;
+    }
+
+    .titulo-login h1 {
+        font-size: 20px;
+    }
+
+    .frase {
+        font-size: 12px;
+    }
+
+    .caixa-formulario input {
+        height: 38px;
+
+        font-size: 13px;
+
+        padding-left: 38px;
+        padding-right: 38px;
+    }
+
+    .icone-esquerda {
+        left: 12px;
+    }
+
+    .icone-direita {
+        right: 12px;
+    }
+
+    .botao button {
+        height: 43px;
+        font-size: 15px;
+    }
 }
