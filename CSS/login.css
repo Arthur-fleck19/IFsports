@@ -221,6 +221,10 @@ text-decoration: none;
         background-color: #2ecc71;
     }
 
+    .botao {
+        cursor: pointer;
+    }
+
     /*MODO NOTURNO AUTOMÁTICO*/
 
 /*@media (prefers-color-scheme: dark) {
