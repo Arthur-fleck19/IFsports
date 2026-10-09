@@ -209,6 +209,13 @@ i{
     z-index: 2;
     cursor: pointer;
 }
+.icone-voltar{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 /* =========================================
