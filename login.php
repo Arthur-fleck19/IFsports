@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = $_POST["Nome"];
     $senha = $_POST["Senha"];
 
-    Usuário_gerenciamento::login($nome, $senha);
+    $mensagem = Usuário_gerenciamento::login($nome, $senha);
 }
 ?>
 

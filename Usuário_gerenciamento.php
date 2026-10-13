@@ -124,6 +124,7 @@ class Usuário_gerenciamento
 
         $stmt->close();
         $conexao->close();
+        return $mensagem;
     }
 
 
