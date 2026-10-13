@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+
+if($_SESSION['tipo'] == 'comum'){
+    header("location: dashboard.php");
+}
+
 require_once "Usuário_gerenciamento.php";
 
 $usuarios = Usuário_gerenciamento::get_usuarios();
@@ -30,7 +37,7 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
         <ul class="icones">
             <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
                         class="contadorCarrinho">1</span></li>
-            <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+            <li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
         </ul>
     </nav>
 </header>
@@ -43,7 +50,7 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
         <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
         <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
         <h1 class="admin"> - ADM - </h1>
-        <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+        <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i><a class="aAdmin" href="gerenciamento_usuarios.php">Usuários</a></button>
         <button class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
     </div>
 
@@ -116,7 +123,7 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
                                         </div><i class="fa-solid fa-pencil"></i>
                                     </div>
 
-                                    <input type="submit" value="Alterar">
+                                    <input class="alterarBotao" type="submit" value="Alterar">
                                 </form>
                             </div>
                         </div>

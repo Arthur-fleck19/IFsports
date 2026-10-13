@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION["tipo"])){
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,7 +21,7 @@
 </head>
 <body>
     <header class="cabecalho">
-        <a href="dashboard.html"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
+        <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
         <form class="containerInputLupa">
             <input type="text" name="pesquisa" id="inputPesquisa" class="inputPesquisa" placeholder="Digite sua pesquisa...">
             <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
@@ -21,9 +29,18 @@
         <nav>
             <ul class="icones">
                 <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
-                <li><a href="" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+                <?php
+                    if($_SESSION['tipo'] != 'admin'){
+                        echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+                    }else{
+                        echo '<li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+                    }
+                ?>
+
             </ul>
         </nav>
+
+
     </header>
     <!-- Cards testes para ver como fica -->
     <main class="vitrineProdutos">
@@ -33,6 +50,17 @@
             <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
             <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
             <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
+            <?php
+
+
+            if($_SESSION['tipo'] == 'admin'){
+                echo '
+                    <h1 class="admin"> - ADM - </h1>
+                    <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i><a class="aAdmin" href="gerenciamento_usuarios.php">Usuários</a></button>
+                    <button class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>  
+                ';
+            }
+            ?>
         </div>
         <section class="cardsProdutos">
             <a href="detalhesItem.html">
