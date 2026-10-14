@@ -105,7 +105,7 @@
                     <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
                     <div class="modal" id="modal">
 
-                        <div class="modalconteudo-Produtos">
+                        <div class="modalconteudo-Produtos" id="modal-editar-produto">
 
                             <div class="modalIMG-Produtos"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei"></div>
                             <div class="Lapis">
@@ -171,19 +171,33 @@
 </body>
 
 <script>
-    const botaoAbrir = document.getElementById("add_produto");
-    const modal = document.getElementById("criar-produto");
+    const botaoAddProduto = document.getElementById("add_produto");
+    const modalAddProduto = document.getElementById("criar-produto");
+    const botaoEditarProduto = document.getElementById("BotaoEditar");
+    const modalEditarProduto = document.getElementById("modal-editar-produto");
 
-    botaoAbrir.addEventListener('click', () => {
-        modal.style.display = 'flex'
-    })
+    botaoAddProduto.addEventListener('click', () => {
+        modalAddProduto.style.display = 'flex';
+    });
 
-    modal.addEventListener('click', (local) => {
-        if (local.target === modal) {
-            modal.style.display = 'none'
-
+    modalAddProduto.addEventListener('click', (local) => {
+        if (local.target === modalAddProduto) {
+            modalAddProduto.style.display = 'none';
         }
-    })
+    });
+
+    botaoEditarProduto.addEventListener('click', () => {
+       modalEditarProduto.style.display = 'flex';
+    });
+
+    modalEditarProduto.addEventListener('click', (local) => {
+       if(local.target === modalEditarProduto) {
+           modalEditarProduto.style.display = 'none';
+       }
+    });
+
+    console.log(modalEditarProduto);
+    console.log(botaoEditarProduto);
 </script>
 
 </html>
