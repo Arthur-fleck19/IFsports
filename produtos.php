@@ -49,28 +49,34 @@
 
             <div class="modal" id="criar-produto">
 
-                <form action="criar_produto.php" method="post" class="modalconteudo-Produtos">
-
-                    <div class="modalIMG-Produtos"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei"></div>
+                <form action="criar_produto.php" method="post" class="modalconteudo-Produtos"  enctype="multipart/form-data">
+                    
+                    <div class="modalIMG-Produtos">
+                        <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*" required>
+                    </div>
                     <div class="Lapis">
                         <i class="fa-solid fa-pencil"></i>
                     </div>
                     <div>
                         <div class="camposProdutos">
                             <h4>Nome do Produto</h4>
-                            <input type="text" name="nome-produto" id="" class="inforProduto">
+                            <input type="text" name="nome-produto" id="" class="inforProduto" required>
 
 
                             <h4>Preço</h4>
                             <div class="preco">
                                 <i class="fa-solid fa-dollar-sign"></i>
-                                <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id="" class="inforProduto">
+                                <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id="" class="inforProduto" required>
                             </div>
 
                             <h4>Descrição</h4>
-                            <textarea name="desc-produto" id="" class="inforProduto"></textarea>
+                            <textarea name="desc-produto" id="" class="inforProduto" required></textarea>
+
+                            <h4>Categoria</h4>
+                            <input type="text" name="tipo-produto" id="tipo-produto" class="inforProduto" required>
+
                             <h4>Estoque</h4>
-                            <input type="number" name="estoque-produto" id="" class="inforProduto" value="1">
+                            <input type="number" name="estoque-produto" id="" class="inforProduto" value="1" required>
                         </div>
                         <div class="botoesProdutos">
                             <button class="botaoProdutosCan">Cancelar</button> <input type="submit" class="botaoProdutos" value="Criar">

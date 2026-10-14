@@ -1,6 +1,7 @@
 .modalconteudo-Produtos{
-    height: 500px;
+    height: auto;
     width: 450px;
+    padding: 10px 20px;
     background-color: white;
     border-radius: 25px;
     box-shadow: #000000 12px 12px 0px 0px;
@@ -8,7 +9,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding-left: 20px;
 }
 
 .modalIMG-Produtos {
@@ -26,13 +26,11 @@
     border-radius: 50%;
 }
 
-.modalconteudo-Produtos {
-    position: relative;
-    height: 500px;
-    width: 450px;
-    background-color: white;
-    border-radius: 25px;
-    box-shadow: #000000 12px 12px 0px 0px;
+.inputImg {
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    border-radius: 100%;
 }
 
 .Lapis {

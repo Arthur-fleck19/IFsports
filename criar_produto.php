@@ -1,10 +1,18 @@
 <?php
-    require_once("Usuário_gerenciamento.php");
+    require_once("Produtos_gerenciamento.php");
 
-    $nome = $_SESSION['nome-produto'];
-    $preco = $_SESSION['preco-produto'];
-    $descricao = $_SESSION['desc-produto'];
-    $estoque = $_SESSION['estoque-produto'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $arquivo = $_FILES['imagem'];
+        $nome = $_POST['nome-produto'];
+        $preco = $_POST['preco-produto'];
+        $descricao = $_POST['desc-produto'];
+        $estoque = $_POST['estoque-produto'];
+        $tipo = $_POST['tipo-produto'];
 
-    Usuário_gerenciamento::add_produto($nome, $preco, $descricao, $estoque);
+        $img = Produtos_gerenciamento::salvar_imagem($arquivo);
+        Produtos_gerenciamento::add_produto($nome, $preco, $descricao, $estoque, $img, $tipo);
+
+        header('Location: produtos.php');
+        exit;
+    }
 ?>

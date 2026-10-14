@@ -153,13 +153,5 @@ class Usuário_gerenciamento
         return $row;
     }
 
-    public static function add_produto($nome, $preco, $descricao, $estoque, $img, $tipo){
-        global $conexao;
 
-        $sql = "INSERT INTO produtos (nome, preco, descricao, estoque, imagem, tipo) VALUES (?, ?, ?, ?, ?, ?)";
-
-        $stmt = $conexao->prepare($sql);
-
-        $stmt->bind_param();
-    }
 }
