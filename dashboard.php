@@ -2,9 +2,13 @@
 session_start();
 
 if(!isset($_SESSION["tipo"])){
-    header("Location: login.php");
+    header("Location: login.html");
     exit;
 }
+
+require_once("Produtos_gerenciamento.php");
+
+$produtos = Produtos_gerenciamento::get_produtos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -63,78 +67,21 @@ if(!isset($_SESSION["tipo"])){
             ?>
         </div>
         <section class="cardsProdutos">
-            <a href="detalhesItem.html">
+            <?php
+            while ($produto = $produtos->fetch_assoc()):
+            ?>
+            <a href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
+                    <img src="uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
+                    <h3><?= $produto['nome'] ?></h3>
+                    <span><span class="corRS">R$</span> <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span></span>
                     <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
                 </article>
             </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
-            <a href="detalhesItem.html">
-                <article class="cardProduto">
-                    <img src="tacoHoquei.png" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3>Taco de hóquei</h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco">675.00</span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
-                </article>
-            </a>
+            <?php
+            endwhile;
+            ?>
+
         </section>
     </main>
 </body>

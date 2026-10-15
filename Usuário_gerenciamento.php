@@ -162,4 +162,6 @@ class Usuário_gerenciamento
 
         return $row;
     }
+
+
 }

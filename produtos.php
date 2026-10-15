@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    require_once("Produtos_gerenciamento.php");
+
+    if($_SESSION['tipo'] != 'admin'){
+        header('Location: dashboard.php');
+        exit;
+    }
+
+    $produtos = Produtos_gerenciamento::get_produtos();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,8 +16,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
-          integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer">
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="CSS/dashboard.css">
     <link rel="icon" href="logoIF.png">
     <link rel="stylesheet" href="CSS/trabalho.css">
@@ -15,189 +26,178 @@
 </head>
 
 <body>
-<header class="cabecalho">
-    <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
-                                 class="logoIFsportsImg"></a>
-    <form class="containerInputLupa">
-        <input type="text" name="" id="" class="inputPesquisa" placeholder="">
-        <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
-    </form>
-    <nav>
-        <ul class="icones">
-            <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
-                    class="contadorCarrinho">1</span></li>
-            <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
-        </ul>
-    </nav>
-</header>
-<!-- Cards testes para ver como fica -->
-<main class="vitrineProdutos">
-    <div class="botoesNav">
-        <button class="botaoNav"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
-        <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
-        <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
-        <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
-        <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
-        <h1 class="admin"> - ADM - </h1>
-        <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
-        <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
-    </div>
-
-    <div class="container">
-
-        <!-- Tela de adicionar produto -->
-
-        <div class="modal" id="criar-produto">
-
-            <form action="criar_produto.php" method="post" class="modalconteudo-Produtos">
-
-                <div class="modalIMG-Produtos"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei"></div>
-                <div class="Lapis">
-                    <i class="fa-solid fa-pencil"></i>
-                </div>
-                <div>
-                    <div class="camposProdutos">
-                        <h4>Nome do Produto</h4>
-                        <input type="text" name="nome-produto" id="" class="inforProduto">
 
 
-                        <h4>Preço</h4>
-                        <div class="preco">
-                            <i class="fa-solid fa-dollar-sign"></i>
-                            <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id="" class="inforProduto">
-                        </div>
 
-                        <h4>Descrição</h4>
-                        <textarea name="desc-produto" id="" class="inforProduto"></textarea>
-                        <h4>Estoque</h4>
-                        <input type="number" name="estoque-produto" id="" class="inforProduto" value="1">
-                    </div>
-                    <div class="botoesProdutos">
-                        <button class="botaoProdutosCan">Cancelar</button> <input type="submit" class="botaoProdutos" value="Criar">
-                    </div>
-                </div>
-
-            </form>
-
+    <header class="cabecalho">
+        <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
+                class="logoIFsportsImg"></a>
+        <form class="containerInputLupa">
+            <input type="text" name="" id="" class="inputPesquisa" placeholder="">
+            <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+        </form>
+        <nav>
+            <ul class="icones">
+                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
+                        class="contadorCarrinho">1</span></li>
+                <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Cards testes para ver como fica -->
+    <main class="vitrineProdutos">
+        <div class="botoesNav">
+            <button class="botaoNav"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
+            <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
+            <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
+            <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
+            <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
+            <h1 class="admin"> - ADM - </h1>
+            <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+            <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
         </div>
 
-        <!-- Fim da tela de adicionar produto -->
+        <div class="container">
 
-        <div class="gerenciamento">
-            <h1>Produtos</h1>
-            <p>Gerenciamento dos produtos do IFsports</p>
+            <!-- Tela de adicionar produto -->
 
-            <button id="add_produto">Adicionar produto</button>
-        </div>
+            <div class="modal" id="criar-produto">
 
-        <div class="perfis">
-            <div class="perfil">
-                <div class="divUsuario"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei" class="usuario"></div>
+                <form action="criar_produto.php" method="post" class="modalconteudo-Produtos"  enctype="multipart/form-data">
 
-                <div class="infosUsuario">
-                    <p>ID: 67</p>
-                    <h3>Produto: Bola de Vôlei</h3>
-                    <p>Valor: R$ 59,90</p>
-                </div>
+                    <div class="modalIMG-Produtos">
+                        <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*" required>
+                    </div>
+                    <div class="Lapis">
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>
+                    <div>
+                        <div class="camposProdutos">
+                            <h4>Nome do Produto</h4>
+                            <input type="text" name="nome-produto" id="" class="inforProduto" required>
 
-                <div class="bu">
-                    <button class="botaoExcluir" id="BotaoExcluir">Excluir perfil</button>
-                    <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
-                    <div class="modal" id="modal">
 
-                        <div class="modalconteudo-Produtos" id="modal-editar-produto">
-
-                            <div class="modalIMG-Produtos"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei"></div>
-                            <div class="Lapis">
-                                <i class="fa-solid fa-pencil"></i>
+                            <h4>Preço</h4>
+                            <div class="preco">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                                <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id="" class="inforProduto" required>
                             </div>
-                            <form action="editar_produto.php" method="post">
-                                <input type="hidden" name="id" value=""> <!-- Aqui, quando modals forem gerados com códigos PHP para cada produto que tem no banco, tem que se ter o id dele para identificação com comando SQL. -->
-                                <div class="camposProdutos">
-                                    <h4>Nome do Produto</h4>
-                                    <input type="text" name="nome" id="" class="inforProduto" value="Bola de Vôlei">
 
+                            <h4>Descrição</h4>
+                            <textarea name="desc-produto" id="" class="inforProduto" required></textarea>
 
-                                    <h4>Preço</h4>
-                                    <div class="preco">
-                                        <i class="fa-solid fa-dollar-sign"></i>
-                                        <input type="number" step="0.01" min="0" placeholder="0.00" name="preco" id="" class="inforProduto">
-                                    </div>
+                            <h4>Categoria</h4>
+                            <input type="text" name="tipo-produto" id="tipo-produto" class="inforProduto" required>
 
-                                    <h4>Descrição</h4>
-                                    <textarea name="descricao" id="" class="inforProduto">Bola de vôlei com alta durabilidade e ótimo desempenho para treinos e partidas.</textarea>
-                                    <h4>Estoque</h4>
-                                    <input type="number" name="estoque" id="" class="inforProduto" value="28">
-                                </div>
-                                <div class="botoesProdutos">
-                                    <button class="botaoProdutosCan">Cancelar</button> <button type="submit" class="botaoProdutos">Salvar Alterações</button>
-                                </div>
-                            </form>
-
+                            <h4>Estoque</h4>
+                            <input type="number" name="estoque-produto" id="" class="inforProduto" value="1" required>
+                        </div>
+                        <div class="botoesProdutos">
+                            <button class="botaoProdutosCan">Cancelar</button> <input type="submit" class="botaoProdutos" value="Criar">
                         </div>
                     </div>
-                </div>
+
+                </form>
+
             </div>
 
-            <div class="perfil">
-                <div class="divUsuario"><img src="https://static.netshoes.com.br/produtos/joelheira-profissional-volei-n1-sport-spry-knit-3dprotecao/14/P3P-0062-014/P3P-0062-014_zoom1.jpg?ts=1727096697" alt="Foto Joelheira-branca-N1" class="usuario"></div>
+            <!-- Fim da tela de adicionar produto -->
 
-                <div class="infosUsuario">
-                    <p>ID: 29</p>
-                    <h3>Produto: Joelheira Branca N1</h3>
-                    <p>Valor: R$ 80,00</p>
-                </div>
+            <div class="gerenciamento">
+                <h1>Produtos</h1>
+                <p>Gerenciamento dos produtos do IFsports</p>
 
-                <div class="bu">
-                    <button class="botaoExcluir" id="BotaoExcluir">Excluir perfil</button>
-                    <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
-                    <div class="modal" id="modal">
+                <button id="add_produto">Adicionar produto</button>
+            </div>
 
-                        <div class="modalConteudo">
-                            <div class="modalIMG"><img src="https://static.netshoes.com.br/produtos/joelheira-profissional-volei-n1-sport-spry-knit-3dprotecao/14/P3P-0062-014/P3P-0062-014_zoom1.jpg?ts=1727096697" alt="Foto Joelheira-branca-N1"></div>
+            <!--Alguém vai ter que ajeitar os nomes dessas classes-->
 
+            <div class="perfis">
+                <?php
+                while($produto = $produtos->fetch_assoc()):
+                ?>
+                    <div class="perfil">
+                        <div class="divUsuario"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto" class="usuario"></div>
+
+                        <div class="infosUsuario">
+                            <p>ID: <?= $produto['id_produtos'] ?></p>
+                            <h3>Produto: <?= $produto['nome'] ?></h3>
+                            <p>Valor: R$ <?= $produto['preco'] ?></p>
                         </div>
 
+                        <div class="bu">
+                            <button class="botaoExcluir" id="BotaoExcluir">Excluir produto</button>
+                            <button class="botaoEditar" id="BotaoEditar">Editar produto</button>
+                            <div class="modal" id="modal">
+
+                                <div class="modalconteudo-Produtos">
+
+                                    <div class="modalIMG-Produtos"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
+                                    <div class="Lapis">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </div>
+                                    <div>
+                                        <div class="camposProdutos">
+                                            <h4>Nome do Produto</h4>
+                                            <input type="text" name="" id="" class="inforProduto" value="<?= htmlspecialchars($produto['nome']) ?>">
 
 
+                                            <h4>Preço</h4>
+                                            <div class="preco">
+                                                <i class="fa-solid fa-dollar-sign"></i>
+                                                <input type="number" step="0.01" min="0" value="<?= htmlspecialchars($produto['preco']) ?>" id="" class="inforProduto">
+                                            </div>
 
+                                            <h4>Descrição</h4>
+                                            <textarea name="" id="" class="inforProduto"><?= $produto['descricao'] ?></textarea>
+                                            <h4>Estoque</h4>
+                                            <input type="number" name="" id="" class="inforProduto" value="<?= htmlspecialchars($produto['estoque']) ?>">
+                                        </div>
+                                        <div class="botoesProdutos">
+                                            <button class="botaoProdutosCan">Cancelar</button> <button class="botaoProdutos">Salvar Alterações</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
-
-</main>
+                <?php
+                endwhile;
+                ?>
+            </div>
+    </main>
 
 </body>
 
 <script>
-    const botaoAddProduto = document.getElementById("add_produto");
-    const modalAddProduto = document.getElementById("criar-produto");
-    const botaoEditarProduto = document.getElementById("BotaoEditar");
-    const modalEditarProduto = document.getElementById("modal-editar-produto");
+    const botoesEditar = document.querySelectorAll(".botaoEditar");
 
-    botaoAddProduto.addEventListener('click', () => {
-        modalAddProduto.style.display = 'flex';
-    });
+    botoesEditar.forEach(function (botao) {
+        botao.addEventListener('click', () => {
+            const modal = botao.closest('.bu').querySelector('.modal');
 
-    modalAddProduto.addEventListener('click', (local) => {
-        if (local.target === modalAddProduto) {
-            modalAddProduto.style.display = 'none';
-        }
-    });
+            modal.style.display = 'flex';
+        })
+    })
 
-    botaoEditarProduto.addEventListener('click', () => {
-       modalEditarProduto.style.display = 'flex';
-    });
+    const modais = document.querySelectorAll('.modal');
 
-    modalEditarProduto.addEventListener('click', (local) => {
-       if(local.target === modalEditarProduto) {
-           modalEditarProduto.style.display = 'none';
-       }
-    });
+    modais.forEach(function (modal){
+        modal.addEventListener('click', (local) => {
+            if (local.target === modal) {
+                modal.style.display = 'none'
 
-    console.log(modalEditarProduto);
-    console.log(botaoEditarProduto);
+            }
+        })
+    })
+
+    const modal_novo_produto = document.getElementById('criar-produto');
+    const botao_novo_produto = document.getElementById('add_produto')
+
+    botao_novo_produto.addEventListener('click', () => {
+        modal_novo_produto.style.display = 'flex';
+    })
 </script>
 
 </html>
