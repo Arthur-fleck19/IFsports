@@ -4,6 +4,7 @@ session_start();
 
 if($_SESSION['tipo'] == 'comum'){
     header("location: dashboard.php");
+    exit;
 }
 
 require_once "Usuário_gerenciamento.php";

@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    require_once("Produtos_gerenciamento.php");
+
+    if($_SESSION['tipo'] != 'admin'){
+        header('Location: dashboard.php');
+        exit;
+    }
+
+    $produtos = Produtos_gerenciamento::get_produtos();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -15,6 +26,9 @@
 </head>
 
 <body>
+
+
+
     <header class="cabecalho">
         <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
                 class="logoIFsportsImg"></a>
@@ -96,98 +110,86 @@
                 <button id="add_produto">Adicionar produto</button>
             </div>
 
+            <!--Alguém vai ter que ajeitar os nomes dessas classes-->
+
             <div class="perfis">
-                <div class="perfil">
-                    <div class="divUsuario"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei" class="usuario"></div>
+                <?php
+                while($produto = $produtos->fetch_assoc()):
+                ?>
+                    <div class="perfil">
+                        <div class="divUsuario"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto" class="usuario"></div>
 
-                    <div class="infosUsuario">
-                        <p>ID: 67</p>
-                        <h3>Produto: Bola de Vôlei</h3>
-                        <p>Valor: R$ 59,90</p>
-                    </div>
+                        <div class="infosUsuario">
+                            <p>ID: <?= $produto['id_produtos'] ?></p>
+                            <h3>Produto: <?= $produto['nome'] ?></h3>
+                            <p>Valor: R$ <?= $produto['preco'] ?></p>
+                        </div>
 
-                    <div class="bu">
-                        <button class="botaoExcluir" id="BotaoExcluir">Excluir perfil</button>
-                        <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
-                        <div class="modal" id="modal">
+                        <div class="bu">
+                            <button class="botaoExcluir" id="BotaoExcluir">Excluir produto</button>
+                            <button class="botaoEditar" id="BotaoEditar">Editar produto</button>
+                            <div class="modal" id="modal">
 
-                            <div class="modalconteudo-Produtos">
+                                <div class="modalconteudo-Produtos">
 
-                                <div class="modalIMG-Produtos"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7qvfl-lf159ahijjue73" alt="Foto Bola-de-Vôlei"></div>
-                                <div class="Lapis">
-                                    <i class="fa-solid fa-pencil"></i>
-                                </div>
-                                <div>
-                                    <div class="camposProdutos">
-                                        <h4>Nome do Produto</h4>
-                                        <input type="text" name="" id="" class="inforProduto" value="Bola de Vôlei">
+                                    <div class="modalIMG-Produtos"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
+                                    <div class="Lapis">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </div>
+                                    <div>
+                                        <div class="camposProdutos">
+                                            <h4>Nome do Produto</h4>
+                                            <input type="text" name="" id="" class="inforProduto" value="<?= htmlspecialchars($produto['nome']) ?>">
 
 
-                                        <h4>Preço</h4>
-                                        <div class="preco">
-                                            <i class="fa-solid fa-dollar-sign"></i>
-                                            <input type="number" step="0.01" min="0" placeholder="0.00" id="" class="inforProduto">
+                                            <h4>Preço</h4>
+                                            <div class="preco">
+                                                <i class="fa-solid fa-dollar-sign"></i>
+                                                <input type="number" step="0.01" min="0" value="<?= htmlspecialchars($produto['preco']) ?>" id="" class="inforProduto">
+                                            </div>
+
+                                            <h4>Descrição</h4>
+                                            <textarea name="" id="" class="inforProduto"><?= $produto['descricao'] ?></textarea>
+                                            <h4>Estoque</h4>
+                                            <input type="number" name="" id="" class="inforProduto" value="<?= htmlspecialchars($produto['estoque']) ?>">
                                         </div>
+                                        <div class="botoesProdutos">
+                                            <button class="botaoProdutosCan">Cancelar</button> <button class="botaoProdutos">Salvar Alterações</button>
+                                        </div>
+                                    </div>
 
-                                        <h4>Descrição</h4>
-                                        <textarea name="" id="" class="inforProduto">Bola de vôlei com alta durabilidade e ótimo desempenho para treinos e partidas.</textarea>
-                                        <h4>Estoque</h4>
-                                        <input type="number" name="" id="" class="inforProduto" value="28">
-                                    </div>
-                                    <div class="botoesProdutos">
-                                        <button class="botaoProdutosCan">Cancelar</button> <button class="botaoProdutos">Salvar Alterações</button>
-                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="perfil">
-                    <div class="divUsuario"><img src="https://static.netshoes.com.br/produtos/joelheira-profissional-volei-n1-sport-spry-knit-3dprotecao/14/P3P-0062-014/P3P-0062-014_zoom1.jpg?ts=1727096697" alt="Foto Joelheira-branca-N1" class="usuario"></div>
-
-                    <div class="infosUsuario">
-                        <p>ID: 29</p>
-                        <h3>Produto: Joelheira Branca N1</h3>
-                        <p>Valor: R$ 80,00</p>
-                    </div>
-
-                    <div class="bu">
-                        <button class="botaoExcluir" id="BotaoExcluir">Excluir perfil</button>
-                        <button class="botaoEditar" id="BotaoEditar">Editar perfil</button>
-                        <div class="modal" id="modal">
-
-                            <div class="modalConteudo">
-                                <div class="modalIMG"><img src="https://static.netshoes.com.br/produtos/joelheira-profissional-volei-n1-sport-spry-knit-3dprotecao/14/P3P-0062-014/P3P-0062-014_zoom1.jpg?ts=1727096697" alt="Foto Joelheira-branca-N1"></div>
-
-                            </div>
-
-
-
-
-                        </div>
-
-                    </div>
-
-
+                <?php
+                endwhile;
+                ?>
+            </div>
     </main>
 
 </body>
 
 <script>
-    const botaoAbrir = document.getElementById("add_produto");
-    const modal = document.getElementById("criar-produto");
+    const botoesEditar = document.querySelectorAll(".botaoEditar");
 
-    botaoAbrir.addEventListener('click', () => {
-        modal.style.display = 'flex'
+    botoesEditar.forEach(function (botao) {
+        botao.addEventListener('click', () => {
+            const modal = botao.closest('.bu').querySelector('.modal');
+
+            modal.style.display = 'flex';
+        })
     })
 
-    modal.addEventListener('click', (local) => {
-        if (local.target === modal) {
-            modal.style.display = 'none'
+    const modais = document.querySelectorAll('.modal');
 
-        }
+    modais.forEach(function (modal){
+        modal.addEventListener('click', (local) => {
+            if (local.target === modal) {
+                modal.style.display = 'none'
+
+            }
+        })
     })
 </script>
 
