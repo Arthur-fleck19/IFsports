@@ -136,27 +136,28 @@
                                     <div class="Lapis">
                                         <i class="fa-solid fa-pencil"></i>
                                     </div>
-                                    <div>
+                                    <form action="editar_produto.php" method="post">
                                         <div class="camposProdutos">
                                             <h4>Nome do Produto</h4>
-                                            <input type="text" name="" id="" class="inforProduto" value="<?= htmlspecialchars($produto['nome']) ?>">
+                                            <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id_produtos']) ?>">
+                                            <input type="text" name="nome" id="" class="inforProduto" value="<?= htmlspecialchars($produto['nome']) ?>">
 
 
                                             <h4>Preço</h4>
                                             <div class="preco">
                                                 <i class="fa-solid fa-dollar-sign"></i>
-                                                <input type="number" step="0.01" min="0" value="<?= htmlspecialchars($produto['preco']) ?>" id="" class="inforProduto">
+                                                <input type="number" step="0.01" min="0" value="<?= htmlspecialchars($produto['preco']) ?>" id="" name="preco" class="inforProduto">
                                             </div>
 
                                             <h4>Descrição</h4>
-                                            <textarea name="" id="" class="inforProduto"><?= $produto['descricao'] ?></textarea>
+                                            <textarea name="descricao" id="" class="inforProduto"><?= $produto['descricao'] ?></textarea>
                                             <h4>Estoque</h4>
-                                            <input type="number" name="" id="" class="inforProduto" value="<?= htmlspecialchars($produto['estoque']) ?>">
+                                            <input type="number" name="estoque" id="" class="inforProduto" value="<?= htmlspecialchars($produto['estoque']) ?>">
                                         </div>
                                         <div class="botoesProdutos">
                                             <button class="botaoProdutosCan">Cancelar</button> <button class="botaoProdutos">Salvar Alterações</button>
                                         </div>
-                                    </div>
+                                    </form>
 
                                 </div>
                             </div>

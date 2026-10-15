@@ -9,4 +9,5 @@
 
     Produtos_gerenciamento::editar_produto($id, $nome, $preco, $descricao, $estoque);
 
-    header("Location: gerenciamento_produtos.php");
+    header("Location: produtos.php");
+    exit();
