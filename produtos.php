@@ -191,6 +191,13 @@
             }
         })
     })
+
+    const modal_novo_produto = document.getElementById('criar-produto');
+    const botao_novo_produto = document.getElementById('add_produto')
+
+    botao_novo_produto.addEventListener('click', () => {
+        modal_novo_produto.style.display = 'flex';
+    })
 </script>
 
 </html>
