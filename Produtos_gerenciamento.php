@@ -65,4 +65,13 @@ class Produtos_gerenciamento
 
         return $resultado->fetch_assoc();
     }
+
+    public static function editar_produto($idProduto, $nome, $preco, $descricao, $estoque) {
+        global $conexao;
+        $sql = "UPDATE Produtos SET nome = ?, preco = ?, descricao = ?, estoque = ? WHERE id_produtos = ?";
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param("sdsii", $nome, $preco, $descricao, $estoque, $idProduto);
+        $stmt->execute();
+    }
 }
