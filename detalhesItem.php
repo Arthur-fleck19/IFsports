@@ -1,3 +1,9 @@
+<?php
+    require_once "Produtos_gerenciamento.php";
+    $id= $_GET['id'];
+
+    $produto = Produtos_gerenciamento::get_detalhes_produto($id);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -28,23 +34,24 @@
     <main class="detalhesItem">
         <a href="dashboard.php" class="iconeSite iconeVoltar"><i class="fa-solid fa-circle-arrow-left fa-2xl"></i></a>
         <div class="imagemInfosItem">
-            <img src="tacoHoquei.png" alt="Imagem item" height="600px" width="600px" class="imagemProduto">
+            <img src="uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem item" height="600px" width="600px" class="imagemProduto">
             <div class="infosItem">
-                <h2>Taco de Hóquei Oficial Tamanho Adulto 92cm de Comprimento, para Treinos e Partidas</h2>
-                <span>R$ 675.00</span>
-                <p>Desenvolvido para oferecer o máximo desempenho em quadra ou no gelo, este taco de hóquei oficial une resistência, leveza e precisão. Com medidas oficiais de 92 cm de comprimento (tamanho adulto padrão), ele é ideal tanto para atletas em fase de treinamento quanto para competições oficiais. Sua estrutura de alta durabilidade garante total controle da condução do disco ou da bola, proporcionando passes mais precisos e finalizações potentes. O cabo conta com acabamento ergonômico que assegura uma pegada firme, reduzindo o deslizamento mesmo nos momentos de maior intensidade da partida.</p>
-                <form class="inputBotao">
+                <h2><?= $produto['nome'] ?></h2>
+                <span>R$ <?= $produto['preco'] ?></span>
+                <p><?= $produto['descricao'] ?></p>
+                <!--Action provisório (quando implementarmos o carrinho provavelmente vai ser alterado)-->
+                <form action="" method="post" class="inputBotao">
                     <div class="labelInputUni">
-                        <label for="inputQuantidadeItem">Quantidade:</label>
+                        <label for="inputQuantItem">Quantidade:</label>
                         <div>
                             <button type="button" id="botaoMenosQuant">-</button>
-                            <input type="text" name="quantidade" id="inputQuantItem" min="1" value="1" pattern="^[1-9]\d*$">
+                            <input type="number" name="quantidade" id="inputQuantItem" min="1" max="<?= htmlspecialchars($produto['estoque']) ?>" value="1" step="1">
                             <button type="button" id="botaoMaisQuant">+</button>
                         </div>
                     </div>
                     <button class="botaoComprar" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> <span>Comprar</span></button>
                 </form>
-                <form action="" class="formBotaoAdCarrinho"><button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> Adicionar ao carrinho</button></form>
+                <form action="" method="post" class="formBotaoAdCarrinho"><button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> Adicionar ao carrinho</button></form>
             </div>
         </div>
     </main>

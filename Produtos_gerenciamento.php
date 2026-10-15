@@ -53,4 +53,16 @@ class Produtos_gerenciamento
 
         return $resultado;
     }
+
+    public static function get_detalhes_produto($id){
+        global $conexao;
+        $sql = "SELECT * FROM Produtos WHERE id_produtos = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+
+        return $resultado->fetch_assoc();
+    }
 }

@@ -70,7 +70,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
             <?php
             while ($produto = $produtos->fetch_assoc()):
             ?>
-            <a href="detalhesItem.html?nome=<?= htmlspecialchars($produto['nome']); ?>">
+            <a href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
                     <img src="uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
                     <h3><?= $produto['nome'] ?></h3>
