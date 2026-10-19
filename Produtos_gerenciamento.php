@@ -74,4 +74,26 @@ class Produtos_gerenciamento
         $stmt->bind_param("sdsii", $nome, $preco, $descricao, $estoque, $idProduto);
         $stmt->execute();
     }
+
+    public static function excluir($id){
+        global $conexao;
+
+        $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+
+        if ($id && $id > 0) {
+            $sql = "DELETE FROM Produtos WHERE id_produtos = ?";
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+
+            $removido = $stmt->affected_rows > 0;
+            $stmt->close();
+
+            header(
+                "Location: produtos.php?resultado="
+                . ($removido ? "sucesso" : "erro")
+            );
+            exit;
+        }
+    }
 }

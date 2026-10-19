@@ -7,6 +7,13 @@
         exit;
     }
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_POST['id'])){
+            $id = $_POST['id'];
+            Produtos_gerenciamento::excluir($id);
+        }
+    }
+
     $produtos = Produtos_gerenciamento::get_produtos();
 ?>
 <!DOCTYPE html>
@@ -107,7 +114,7 @@
                 <h1>Produtos</h1>
                 <p>Gerenciamento dos produtos do IFsports</p>
 
-                <button id="add_produto">Adicionar produto</button>
+                <button id="add_produto" class="botaoEditar">Adicionar produto</button>
             </div>
 
             <!--Alguém vai ter que ajeitar os nomes dessas classes-->
@@ -126,7 +133,14 @@
                         </div>
 
                         <div class="bu">
-                            <button class="botaoExcluir" id="BotaoExcluir">Excluir produto</button>
+                            <form style="width: 100%;display: inline-flex" method="POST" action=""
+                                  onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');">
+
+                                <input type="hidden" name="id"
+                                       value="<?= (int)$produto["id_produtos"] ?>">
+
+                                <button type="submit" class="botaoExcluir">Remover produto</button>
+                            </form>
                             <button class="botaoEditar" id="BotaoEditar">Editar produto</button>
                             <div class="modal" id="modal">
 
