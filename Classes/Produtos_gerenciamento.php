@@ -37,7 +37,7 @@ class Produtos_gerenciamento
         }
 
         $nome = bin2hex(random_bytes(16)) . '.' . $permitidos[$mime];
-        $destino = __DIR__ . '/uploads/'.$nome;
+        $destino = '../uploads/'.$nome;
 
         if (!move_uploaded_file($arquivo['tmp_name'], $destino)) {
             die ('Erro ao enviar imagem');

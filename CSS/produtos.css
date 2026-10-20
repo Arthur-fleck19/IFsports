@@ -1,4 +1,96 @@
-.modalconteudo-Produtos{
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-height: 100%;
+    color: var(--texto);
+}
+
+.produto{
+    border-radius: 15px;
+    background: white;
+    height: 175px;
+    width: 87%;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+    gap: 30px;
+
+}
+.produtos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+    margin-top: 0px;
+    gap: 35px;
+}
+
+.modal{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.651);
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    display: none;
+}
+
+.imagem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 80px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.usuario{
+    align-self: center;
+    border-radius: 100%;
+    outline: 8px solid rgb(121, 117, 117);
+    border: 2px solid white;
+    width: 120px;
+    height: 120px;
+}
+.gerenciamento{
+    width: 87%;
+
+}
+.gerenciamento h1{
+    font-family: sans-serif;
+    margin-bottom: 0px;
+}
+
+.gerenciamento p {
+    margin-top: 5px;
+    font-family: 'helvetica';
+}
+.divProduto{
+    height: 155px;
+    width: 165px;
+    display: flex;
+    justify-content: start;
+    border-right: rgb(121, 117, 117) solid 2px;
+    align-items: center;
+    margin-left: 15px ;
+
+}
+.infosProduto {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'helvetica';
+}.modalconteudo-Produtos{
     height: auto;
     width: 450px;
     padding: 10px 20px;
@@ -125,4 +217,48 @@ textarea.inforProduto {
     border-radius: 999px;
     background-color:#dde7df;
     color:rgb(2, 2, 2);
+}
+.botaoExcluir{
+    padding: 10px;
+    position: relative;
+    border: rgb(165, 61, 61) solid;
+    border-radius: 999px;
+    background-color: rgb(226, 29, 29);
+    color:rgb(255, 255, 255);
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.botaoExcluir:hover, .lupaInput:hover {
+    background-color: #851414;
+    transition: 0.2s;
+}
+
+.botaoEditar{
+    padding: 10px;
+    position: relative;
+    border: rgb(21, 105, 35) solid;
+    border-radius: 999px;
+    background-color:#2F9E40;
+    color:rgb(255, 255, 255);
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.botaoEditar:hover, .lupaInput:hover {
+    background-color: #2f6e1c;
+    transition: 0.2s;
+}
+.bu{
+    height: 100%;
+    width: 15%;
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    flex-direction: column;
+    align-items: start;
 }
