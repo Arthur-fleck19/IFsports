@@ -34,7 +34,7 @@
     <main class="detalhesItem">
         <a href="dashboard.php" class="iconeSite iconeVoltar"><i class="fa-solid fa-circle-arrow-left fa-2xl"></i></a>
         <div class="imagemInfosItem">
-            <img src="uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem item" height="600px" width="600px" class="imagemProduto">
+            <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem item" height="600px" width="600px" class="imagemProduto">
             <div class="infosItem">
                 <h2><?= $produto['nome'] ?></h2>
                 <span>R$ <?= $produto['preco'] ?></span>
