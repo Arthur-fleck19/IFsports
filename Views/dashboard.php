@@ -72,10 +72,17 @@ $produtos = Produtos_gerenciamento::get_produtos();
             ?>
             <a href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
+
                     <img src="uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
+
                     <h3><?= $produto['nome'] ?></h3>
+
                     <span><span class="corRS">R$</span> <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span></span>
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
+
+                    <form action="../Rotas/add_carrinho">
+                        <button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button>
+                    </form>
+
                 </article>
             </a>
             <?php

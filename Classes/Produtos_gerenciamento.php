@@ -36,8 +36,14 @@ class Produtos_gerenciamento
             die('Tipo de arquivo não permitido.');
         }
 
+        $diretorio = __DIR__ . '/uploads/';
+
+        if(!is_dir($diretorio)) {
+            mkdir($diretorio, 0777, true);
+        }
+
         $nome = bin2hex(random_bytes(16)) . '.' . $permitidos[$mime];
-        $destino = __DIR__ . '/uploads/'.$nome;
+        $destino = $diretorio.$nome;
 
         if (!move_uploaded_file($arquivo['tmp_name'], $destino)) {
             die ('Erro ao enviar imagem');
