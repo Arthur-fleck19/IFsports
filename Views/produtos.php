@@ -25,10 +25,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
         integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="CSS/dashboard.css">
-    <link rel="icon" href="logoIF.png">
-    <link rel="stylesheet" href="CSS/trabalho.css">
-    <link rel="stylesheet" href="CSS/produtos.css">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link rel="icon" href="Imagens/logoIF.png">
+    <link rel="stylesheet" href="../CSS/trabalho.css">
+    <link rel="stylesheet" href="../CSS/produtos.css">
     <title>Dashboard</title>
 </head>
 
@@ -37,8 +37,8 @@
 
 
     <header class="cabecalho">
-        <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
-                class="logoIFsportsImg"></a>
+        <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
+                                     class="logoIFsportsImg"></a>
         <form class="containerInputLupa">
             <input type="text" name="" id="" class="inputPesquisa" placeholder="">
             <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
@@ -70,7 +70,7 @@
 
             <div class="modal" id="criar-produto">
 
-                <form action="criar_produto.php" method="post" class="modalconteudo-Produtos"  enctype="multipart/form-data">
+                <form action="../Rotas/criar_produto.php" method="post" class="modalconteudo-Produtos" enctype="multipart/form-data">
 
                     <div class="modalIMG-Produtos">
                         <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*" required>
@@ -150,7 +150,7 @@
                                     <div class="Lapis">
                                         <i class="fa-solid fa-pencil"></i>
                                     </div>
-                                    <form action="editar_produto.php" method="post">
+                                    <form action="../Rotas/editar_produto.php" method="post">
                                         <div class="camposProdutos">
                                             <h4>Nome do Produto</h4>
                                             <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id_produtos']) ?>">

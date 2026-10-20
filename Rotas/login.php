@@ -1,11 +1,11 @@
 <?php
-require "Usuário_gerenciamento.php";
+require "Usuario_gerenciamento.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = $_POST["Nome"];
     $senha = $_POST["Senha"];
 
-    $mensagem = Usuário_gerenciamento::login($nome, $senha);
+    $mensagem = Usuario_gerenciamento::login($nome, $senha);
 }
 ?>
 

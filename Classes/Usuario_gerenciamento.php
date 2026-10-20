@@ -1,7 +1,7 @@
 <?php
-require_once 'conexão.php';
+require_once 'conexao.php';
 
-class Usuário_gerenciamento
+class Usuario_gerenciamento
 {
     public static function cadastrar($nome, $email, $senha)
     {

@@ -7,9 +7,9 @@ if($_SESSION['tipo'] == 'comum'){
     exit;
 }
 
-require_once "Usuário_gerenciamento.php";
+require_once "Usuario_gerenciamento.php";
 
-$usuarios = Usuário_gerenciamento::get_usuarios();
+$usuarios = Usuario_gerenciamento::get_usuarios();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -20,15 +20,15 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
           integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
           crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="CSS/dashboard.css">
-    <link rel="icon" href="logoIF.png">
-    <link rel="stylesheet" href="CSS/trabalho.css">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link rel="icon" href="Imagens/logoIF.png">
+    <link rel="stylesheet" href="../CSS/trabalho.css">
     <title>Dashboard</title>
 </head>
 
 <body>
 <header class="cabecalho">
-    <a href="dashboard.php"><img src="logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
+    <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
                                  class="logoIFsportsImg"></a>
     <form class="containerInputLupa">
         <input type="text" name="" id="" class="inputPesquisa" placeholder="">
@@ -89,7 +89,7 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
                     </div>
                     <div class="bu">
 
-                        <form action="excluir_usuario.php" method="post" style="width: 100%;display: inline-flex">
+                        <form action="../Rotas/excluir_usuario.php" method="post" style="width: 100%;display: inline-flex">
                             <input type="hidden" name="id" value="<?= htmlspecialchars($usuario['id_usuarios']) ?>">
                             <input type="submit" class="botaoExcluir" value="Excluir perfil">
                         </form>
@@ -101,7 +101,7 @@ $usuarios = Usuário_gerenciamento::get_usuarios();
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63lctB9SWfz7PyfuaXZW4aGwfOlZNC5_72EK_BoRBKA&s=10"
                                             alt="Foto Usuário"></div>
 
-                                <form class="modalInfos" action="editar_usuario.php" method="post">
+                                <form class="modalInfos" action="../Rotas/editar_usuario.php" method="post">
 
                                     <input type="hidden" name="id" value="<?= htmlspecialchars($usuario['id_usuarios']) ?>">
 

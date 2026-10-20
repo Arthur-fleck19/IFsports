@@ -1,5 +1,5 @@
 <?php
-require_once "conexão.php";
+require_once "conexao.php";
 
 class Produtos_gerenciamento
 {
