@@ -79,7 +79,8 @@ $produtos = Produtos_gerenciamento::get_produtos();
 
                     <span><span class="corRS">R$</span> <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span></span>
 
-                    <form action="../Rotas/add_carrinho">
+                    <form action="../Rotas/add_carrinho.php" method="post">
+                        <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
                         <button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button>
                     </form>
 
