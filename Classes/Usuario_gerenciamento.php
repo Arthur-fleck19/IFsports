@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+require_once __DIR__ . "/../Conexao/conexao.php";
 
 class Usuario_gerenciamento
 {
@@ -106,19 +106,19 @@ class Usuario_gerenciamento
                 $_SESSION["tipo"] = $usuario["tipo"];
 
                 if ($_SESSION["tipo"] == "admin") {
-                    header("Location:gerenciamento_usuarios.php");
+                    header("Location: ../Views/gerenciamento_usuarios.php");
                     exit;
                 } else {
-                    header("Location: dashboard.php");
+                    header("Location: ../Views/dashboard.php");
                 }
 
                 exit;
             } else {
-                header("Location: login.html?erro=senha");
+                header("Location: ../Views/login.html?erro=senha");
                 exit;
             }
         } else {
-            header("Location: login.html?erro=usuario");
+            header("Location: ../Views/login.html?erro=usuario");
             exit;
         }
 
@@ -132,7 +132,7 @@ class Usuario_gerenciamento
     {
         session_unset();
         session_destroy();
-        header("Location: login.html");
+        header("Location: ../Views/login.html");
         exit;
     }
 

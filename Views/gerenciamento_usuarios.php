@@ -7,7 +7,7 @@ if($_SESSION['tipo'] == 'comum'){
     exit;
 }
 
-require_once "Usuario_gerenciamento.php";
+require_once "../Classes/Usuario_gerenciamento.php";
 
 $usuarios = Usuario_gerenciamento::get_usuarios();
 ?>

@@ -1,5 +1,5 @@
 <?php
-require "Usuario_gerenciamento.php";
+require __DIR__ . "/../Classes/Usuario_gerenciamento.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = $_POST["Nome"];
