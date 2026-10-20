@@ -1,5 +1,5 @@
 <?php
-    require_once "Produtos_gerenciamento.php";
+    require_once "../Classes/Produtos_gerenciamento.php";
     $id= $_GET['id'];
 
     $produto = Produtos_gerenciamento::get_detalhes_produto($id);

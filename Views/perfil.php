@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "Usuario_gerenciamento.php";
+require_once "../Classes/Usuario_gerenciamento.php";
 
 if(!isset($_SESSION["id"])){
     header("Location: login.html");

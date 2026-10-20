@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once("Produtos_gerenciamento.php");
+    require_once("../Classes/Produtos_gerenciamento.php");
 
     if($_SESSION['tipo'] != 'admin'){
         header('Location: dashboard.php');

@@ -1,5 +1,5 @@
 <?php
-    require_once "Produtos_gerenciamento.php";
+    require_once "../Classes/Produtos_gerenciamento.php";
 
     $id = $_POST['id'];
     $nome = $_POST['nome'];
@@ -17,7 +17,7 @@
 
     Produtos_gerenciamento::editar_produto($id, $nome, $preco, $descricao, $estoque);
 
-    header("Location: produtos.php");
+    header("Location: ../Views/produtos.php");
     exit();
 
     function validarNome($nome) {

@@ -1,5 +1,5 @@
 <?php
-require_once "conexao.php";
+require_once "../Conexao/conexao.php";
 
 class Produtos_gerenciamento
 {
@@ -90,7 +90,7 @@ class Produtos_gerenciamento
             $stmt->close();
 
             header(
-                "Location: produtos.php?resultado="
+                "Location: ../Views/produtos.php?resultado="
                 . ($removido ? "sucesso" : "erro")
             );
             exit;

@@ -1,5 +1,5 @@
 <?php
-    require_once("Produtos_gerenciamento.php");
+    require_once("../Classes/Produtos_gerenciamento.php");
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $arquivo = $_FILES['imagem'];
@@ -12,7 +12,7 @@
         $img = Produtos_gerenciamento::salvar_imagem($arquivo);
         Produtos_gerenciamento::add_produto($nome, $preco, $descricao, $estoque, $img, $tipo);
 
-        header('Location: produtos.php');
+        header('Location: ../Views/produtos.php');
         exit;
     }
 ?>

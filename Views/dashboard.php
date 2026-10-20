@@ -6,7 +6,7 @@ if(!isset($_SESSION["tipo"])){
     exit;
 }
 
-require_once("Produtos_gerenciamento.php");
+require_once("../Classes/Produtos_gerenciamento.php");
 
 $produtos = Produtos_gerenciamento::get_produtos();
 ?>
