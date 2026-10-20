@@ -124,7 +124,7 @@
                 while($produto = $produtos->fetch_assoc()):
                 ?>
                     <div class="perfil">
-                        <div class="divUsuario"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto" class="usuario"></div>
+                        <div class="divUsuario"><img src="../uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto" class="usuario"></div>
 
                         <div class="infosUsuario">
                             <p>ID: <?= $produto['id_produtos'] ?></p>
