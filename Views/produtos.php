@@ -146,7 +146,7 @@
 
                                 <div class="modalconteudo-Produtos">
 
-                                    <div class="modalIMG-Produtos"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
+                                    <div class="modalIMG-Produtos"><img src="../uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
                                     <div class="Lapis">
                                         <i class="fa-solid fa-pencil"></i>
                                     </div>
