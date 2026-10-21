@@ -36,7 +36,7 @@ class Produtos_gerenciamento
             die('Tipo de arquivo não permitido.');
         }
 
-        $diretorio = __DIR__ . '/uploads/';
+        $diretorio = __DIR__ . '/../uploads/';
 
         if(!is_dir($diretorio)) {
             mkdir($diretorio, 0777, true);
