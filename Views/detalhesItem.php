@@ -51,7 +51,11 @@
                     </div>
                     <button class="botaoComprar" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> <span>Comprar</span></button>
                 </form>
-                <form action="" method="post" class="formBotaoAdCarrinho"><button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> Adicionar ao carrinho</button></form>
+                <form action="../Rotas/add_carrinho.php" method="post" class="formBotaoAdCarrinho">
+                    <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
+                    <input type="hidden" name="quantidade" value="">
+                    <button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> Adicionar ao carrinho</button>
+                </form>
             </div>
         </div>
     </main>

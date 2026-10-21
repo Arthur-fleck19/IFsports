@@ -73,7 +73,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
             <a href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
 
-                    <img src="uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
+                    <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
 
                     <h3><?= $produto['nome'] ?></h3>
 
@@ -81,6 +81,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
 
                     <form action="../Rotas/add_carrinho.php" method="post">
                         <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
+                        <input type="hidden" name="quantidade" value="1">
                         <button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button>
                     </form>
 
