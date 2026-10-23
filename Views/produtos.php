@@ -48,7 +48,7 @@
             <ul class="icones">
                 <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
                         class="contadorCarrinho">1</span></li>
-                <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+                <li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -61,7 +61,7 @@
             <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
             <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
             <h1 class="admin"> - ADM - </h1>
-            <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+            <button class="botaoNav botaoAdmin "><a class="aAdmin" href="gerenciamento_usuarios.php"><i class="fa-solid fa-user fa-xl"></i>Usuários</a></button>
             <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
         </div>
 
@@ -131,7 +131,7 @@
                             <p>ID: <?= $produto['id_produtos'] ?></p>
                             <h3>Produto: <?= $produto['nome'] ?></h3>
                             <p>Valor: R$ <?= $produto['preco'] ?></p>
-                            <p>Valor: R$ <?= $produto['preco'] ?></p>
+                    
                         </div>
 
                         <div class="bu">
