@@ -27,8 +27,9 @@ $produtos = Produtos_gerenciamento::get_produtos();
           crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="icon" href="Imagens/logoIF.png">
-    <link rel="stylesheet" href="../CSS/trabalho.css">
     <link rel="stylesheet" href="../CSS/produtos.css">
+   
+    
     <title>Dashboard</title>
 </head>
 
@@ -121,17 +122,18 @@ $produtos = Produtos_gerenciamento::get_produtos();
 
         <!--Alguém vai ter que ajeitar os nomes dessas classes-->
 
-        <div class="perfis">
+        <div class="produtos">
             <?php
             while ($produto = $produtos->fetch_assoc()):
                 ?>
-                <div class="perfil">
-                    <div class="divUsuario"><img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
+                <div class="produto">
+                    <div class="divProduto"><img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
                                                  alt="Foto produto" class="usuario"></div>
 
-                    <div class="infosUsuario">
+                    <div class="infosProduto">
                         <p>ID: <?= $produto['id_produtos'] ?></p>
                         <h3>Produto: <?= $produto['nome'] ?></h3>
+                            <p>Valor: R$ <?= $produto['preco'] ?></p>
                         <p>Valor: R$ <?= $produto['preco'] ?></p>
                     </div>
 
@@ -150,7 +152,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
                             <div class="modalconteudo-Produtos">
 
                                 <div class="modalIMG-Produtos"><img
-                                            src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
+                                            src="uploads/<?= htmlspecialchars($produto['imagem']) ?>"
                                             alt="Foto produto"></div>
                                 <div class="Lapis">
                                     <i class="fa-solid fa-pencil"></i>
