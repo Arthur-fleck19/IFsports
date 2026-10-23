@@ -40,20 +40,17 @@
                 <span>R$ <?= $produto['preco'] ?></span>
                 <p><?= $produto['descricao'] ?></p>
                 <!--Action provisório (quando implementarmos o carrinho provavelmente vai ser alterado)-->
-                <form action="" method="post" class="inputBotao">
+                <form action="../Rotas/add_carrinho.php" method="post" class="inputBotao">
                     <div class="labelInputUni">
                         <label for="inputQuantItem">Quantidade:</label>
                         <div>
                             <button type="button" id="botaoMenosQuant">-</button>
                             <input type="number" name="quantidade" id="inputQuantItem" min="1" max="<?= htmlspecialchars($produto['estoque']) ?>" value="1" step="1">
                             <button type="button" id="botaoMaisQuant">+</button>
+                            <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
                         </div>
                     </div>
-                    <button class="botaoComprar" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> <span>Comprar</span></button>
-                </form>
-                <form action="../Rotas/add_carrinho.php" method="post" class="formBotaoAdCarrinho">
-                    <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
-                    <input type="hidden" name="quantidade" value="">
+                    <button class="botaoComprar" formaction="comprar.php" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> <span>Comprar</span></button>
                     <button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> Adicionar ao carrinho</button>
                 </form>
             </div>
