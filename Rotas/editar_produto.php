@@ -4,12 +4,13 @@
     $id = $_POST['id'];
     $nome = trim($_POST['nome']);
     $tipo = trim($_POST['tipo']);
+    $tiposPermitidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
     $preco = str_replace(",", ".", trim($_POST['preco']));
     $preco = (double) trim($preco);
     $descricao = trim($_POST['descricao']);
     $estoque = (int) trim($_POST['estoque']);
     $nomeValido = validarNome($nome);
-    $tipoValido = validarTipo($tipo);
+    $tipoValido = validarTipo($tipo, $tiposPermitidos);
     $precoValido = validarPreco($preco);
     $descricaoValida = validarDescricao($descricao);
     $estoqueValido = validarEstoque($estoque);
@@ -33,8 +34,8 @@
         return true;
     }
 
-    function validarTipo($tipo):bool {
-        if(empty($tipo) || strlen($tipo) > 15) {
+    function validarTipo($tipo, $tiposPermitidos):bool {
+        if(empty($tipo) || !in_array($tipo, $tiposPermitidos)) {
             return false;
         }
 
