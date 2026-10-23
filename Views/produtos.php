@@ -22,7 +22,9 @@ $produtos = Produtos_gerenciamento::get_produtos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+          integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="icon" href="Imagens/logoIF.png">
     <link rel="stylesheet" href="../CSS/produtos.css">
@@ -45,22 +47,22 @@ $produtos = Produtos_gerenciamento::get_produtos();
         <ul class="icones">
             <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
                         class="contadorCarrinho">1</span></li>
-            <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
-        </ul>
-    </nav>
-</header>
-<!-- Cards testes para ver como fica -->
-<main class="vitrineProdutos">
-    <div class="botoesNav">
-        <button class="botaoNav"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
-        <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
-        <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
-        <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
-        <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
-        <h1 class="admin"> - ADM - </h1>
-        <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
-        <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
-    </div>
+                <li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Cards testes para ver como fica -->
+    <main class="vitrineProdutos">
+        <div class="botoesNav">
+            <button class="botaoNav"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
+            <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
+            <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
+            <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
+            <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
+            <h1 class="admin"> - ADM - </h1>
+            <button class="botaoNav botaoAdmin "><a class="aAdmin" href="gerenciamento_usuarios.php"><i class="fa-solid fa-user fa-xl"></i>Usuários</a></button>
+            <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
+        </div>
 
     <div class="container">
 
@@ -149,53 +151,44 @@ $produtos = Produtos_gerenciamento::get_produtos();
                         <button class="botaoEditar" id="BotaoEditar">Editar produto</button>
                         <div class="modal" id="modal">
 
-                            <div class="modalconteudo-Produtos">
+                                <div class="modalconteudo-Produtos">
 
-                                <div class="modalIMG-Produtos"><img
-                                            src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
-                                            alt="Foto produto"></div>
-                                <div class="Lapis">
-                                    <i class="fa-solid fa-pencil"></i>
-                                </div>
-                                <form action="../Rotas/editar_produto.php" method="post">
-                                    <div class="camposProdutos">
-                                        <h4>Nome do Produto</h4>
-                                        <input type="hidden" name="id"
-                                               value="<?= htmlspecialchars($produto['id_produtos']) ?>">
-                                        <input type="text" name="nome" id="" class="inforProduto"
-                                               value="<?= htmlspecialchars($produto['nome']) ?>">
+                                    <div class="modalIMG-Produtos"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
+                                    <div class="Lapis">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </div>
+                                    <form action="../Rotas/editar_produto.php" method="post">
+                                        <div class="camposProdutos">
+                                            <h4>Nome do Produto</h4>
+                                            <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id_produtos']) ?>">
+                                            <input type="text" name="nome" id="" class="inforProduto" value="<?= htmlspecialchars($produto['nome']) ?>">
 
 
-                                        <h4>Preço</h4>
-                                        <div class="preco">
-                                            <i class="fa-solid fa-dollar-sign"></i>
-                                            <input type="number" step="0.01" min="0"
-                                                   value="<?= htmlspecialchars($produto['preco']) ?>" id="" name="preco"
-                                                   class="inforProduto">
+                                            <h4>Preço</h4>
+                                            <div class="preco">
+                                                <i class="fa-solid fa-dollar-sign"></i>
+                                                <input type="number" step="0.01" min="0" value="<?= htmlspecialchars($produto['preco']) ?>" id="" name="preco" class="inforProduto">
+                                            </div>
+
+                                            <h4>Descrição</h4>
+                                            <textarea name="descricao" id="" class="inforProduto"><?= $produto['descricao'] ?></textarea>
+                                            <h4>Estoque</h4>
+                                            <input type="number" name="estoque" id="" class="inforProduto" value="<?= htmlspecialchars($produto['estoque']) ?>">
                                         </div>
+                                        <div class="botoesProdutos">
+                                            <button class="botaoProdutosCan">Cancelar</button> <button class="botaoProdutos">Salvar Alterações</button>
+                                        </div>
+                                    </form>
 
-                                        <h4>Descrição</h4>
-                                        <textarea name="descricao" id=""
-                                                  class="inforProduto"><?= $produto['descricao'] ?></textarea>
-                                        <h4>Estoque</h4>
-                                        <input type="number" name="estoque" id="" class="inforProduto"
-                                               value="<?= htmlspecialchars($produto['estoque']) ?>">
-                                    </div>
-                                    <div class="botoesProdutos">
-                                        <button class="botaoProdutosCan">Cancelar</button>
-                                        <button class="botaoProdutos">Salvar Alterações</button>
-                                    </div>
-                                </form>
-
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <?php
-            endwhile;
-            ?>
-        </div>
-</main>
+                <?php
+                endwhile;
+                ?>
+            </div>
+    </main>
 
 </body>
 
