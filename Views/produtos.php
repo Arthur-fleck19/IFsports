@@ -22,9 +22,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
-          integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="icon" href="Imagens/logoIF.png">
     <link rel="stylesheet" href="../CSS/produtos.css">
@@ -73,12 +71,15 @@ $produtos = Produtos_gerenciamento::get_produtos();
             <form action="../Rotas/criar_produto.php" method="post" class="modalconteudo-Produtos"
                   enctype="multipart/form-data">
 
-                <div class="modalIMG-Produtos">
-                    <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*" required>
-                </div>
-                <div class="Lapis">
-                    <i class="fa-solid fa-pencil"></i>
-                </div>
+                <header>
+                    <div class="modalIMG-Produtos">
+                        <img src="https://img.icons8.com/color/1200/plus--v3.jpg" alt="Imagem input adicionar imagem">
+                        <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*"  required>
+                    </div>
+                    <div>
+                        <h2>Adicionar produto</h2>
+                    </div>
+                </header>
                 <div>
                     <div class="camposProdutos">
                         <h4>Nome do Produto</h4>
@@ -133,7 +134,6 @@ $produtos = Produtos_gerenciamento::get_produtos();
                     <div class="infosProduto">
                         <p>ID: <?= $produto['id_produtos'] ?></p>
                         <h3>Produto: <?= $produto['nome'] ?></h3>
-                            <p>Valor: R$ <?= $produto['preco'] ?></p>
                         <p>Valor: R$ <?= $produto['preco'] ?></p>
                     </div>
 
@@ -152,7 +152,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
                             <div class="modalconteudo-Produtos">
 
                                 <div class="modalIMG-Produtos"><img
-                                            src="uploads/<?= htmlspecialchars($produto['imagem']) ?>"
+                                            src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
                                             alt="Foto produto"></div>
                                 <div class="Lapis">
                                     <i class="fa-solid fa-pencil"></i>
@@ -201,6 +201,12 @@ $produtos = Produtos_gerenciamento::get_produtos();
 
 <script>
     const botoesEditar = document.querySelectorAll(".botaoEditar");
+    const imgInputFile = document.querySelector(".modalIMG-Produtos img");
+    const inputFile = document.querySelector(".modalIMG-Produtos input");
+
+    imgInputFile.addEventListener("click", () => {
+        inputFile.click();
+    });
 
     botoesEditar.forEach(function (botao) {
         botao.addEventListener('click', () => {

@@ -89,11 +89,13 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    font-family: 'helvetica';
-}.modalconteudo-Produtos{
-    height: auto;
-    width: 450px;
-    padding: 10px 20px;
+    font-family: Helvetic, Arial;
+}
+
+.modalconteudo-Produtos{
+    height: 75%;
+    width: 50%;
+    padding: 1rem;
     background-color: white;
     border-radius: 25px;
     box-shadow: #000000 12px 12px 0px 0px;
@@ -106,9 +108,7 @@
 .modalIMG-Produtos {
     width: 100px;
     height: 100px;
-    margin-top: 15px;
     border-radius: 50%;
-    outline: 5px solid rgb(121, 117, 117);
     position: relative;
 }
 
@@ -116,14 +116,20 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    cursor: pointer;
 }
 
-.inputImg {
+.modalIMG-Produtos input {
+    display: none;
+}
+
+/*.inputImg {
     height: 100px;
     width: 100px;
     background-color: green;
     border-radius: 100%;
-}
+    cursor: pointer;
+}*/
 
 .Lapis {
     position: absolute;

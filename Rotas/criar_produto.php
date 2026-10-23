@@ -1,46 +1,6 @@
 <?php
     require_once "../Classes/Produtos_gerenciamento.php";
 
-    function validarNome($nome):bool {
-            if(empty($nome) || strlen($nome) > 150) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarTipo($tipo):bool {
-            if(empty($tipo) || strlen($tipo) > 15) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarPreco($preco):bool {
-            if(empty($preco) || $preco <= 0.0 || $preco > 99999999.99) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarDescricao($descricao):bool {
-            if(empty($descricao) || strlen($descricao) > 500) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarEstoque($estoque):bool {
-            if(empty($estoque) || $estoque <= 0) {
-                return false;
-            }
-
-            return true;
-        }
-
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $arquivo = $_FILES['imagem'];
         $nome = trim($_POST['nome-produto']);
