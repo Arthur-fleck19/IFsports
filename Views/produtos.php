@@ -65,57 +65,41 @@ $produtos = Produtos_gerenciamento::get_produtos();
         </div>
 
     <div class="container">
-
         <!-- Tela de adicionar produto -->
-
         <div class="modal" id="criar-produto">
-
-            <form action="../Rotas/criar_produto.php" method="post" class="modalconteudo-Produtos"
-                  enctype="multipart/form-data">
-
+            <form action="../Rotas/criar_produto.php" method="post" class="modalconteudo-Produtos" enctype="multipart/form-data">
                 <header>
                     <div class="modalIMG-Produtos">
-                        <img src="https://img.icons8.com/color/1200/plus--v3.jpg" alt="Imagem input adicionar imagem">
+                        <img src="https://img.icons8.com/color/1200/plus--v3.jpg" alt="Imagem input adicionar imagem" height="100px">
                         <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*"  required>
                     </div>
-                    <div>
+                    <div class="tituloParagrafoAddProduto">
                         <h2>Adicionar produto</h2>
+                        <p>Preencha as informações do produto para adicioná-lo ao seu catálogo.</p>
                     </div>
                 </header>
-                <div>
-                    <div class="camposProdutos">
-                        <h4>Nome do Produto</h4>
-                        <input type="text" name="nome-produto" id="" class="inforProduto" required>
-
-
-                        <h4>Preço</h4>
-                        <div class="preco">
-                            <i class="fa-solid fa-dollar-sign"></i>
-                            <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id=""
-                                   class="inforProduto" required>
-                        </div>
-
-                        <h4>Descrição</h4>
-                        <textarea name="desc-produto" id="" class="inforProduto" required></textarea>
-
-                        <h4>Categoria</h4>
-                        <input type="text" name="tipo-produto" id="tipo-produto" class="inforProduto" required>
-
-                        <h4>Estoque</h4>
-                        <input type="number" name="estoque-produto" id="" class="inforProduto" value="1" required>
+                <div class="camposProdutos">
+                    <label>Nome do Produto</label>
+                    <input type="text" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="" class="inforProduto" required>
+                    <label>Preço</label>
+                    <div class="preco">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id="" class="inforProduto" required>
                     </div>
-                    <div class="botoesProdutos">
-                        <button class="botaoProdutosCan">Cancelar</button>
-                        <input type="submit" class="botaoProdutos" value="Criar">
-                    </div>
+                    <label>Descrição</label>
+                    <textarea name="desc-produto" id="" class="inforProduto" required></textarea>
+                    <label>Categoria</label>
+                    <input type="text" name="tipo-produto" id="tipo-produto" class="inforProduto" required>
+                    <label>Estoque</label>
+                    <input type="number" name="estoque-produto" id="" class="inforProduto" value="1" required>
                 </div>
-
+                <div class="botoesProdutos">
+                    <button class="botaoProdutosCan">Cancelar</button>
+                    <input type="submit" class="botaoProdutos" value="Criar">
+                </div>
             </form>
-
         </div>
-
         <!-- Fim da tela de adicionar produto -->
-
         <div class="gerenciamento">
             <h1>Produtos</h1>
             <p>Gerenciamento dos produtos do IFsports</p>
@@ -191,41 +175,5 @@ $produtos = Produtos_gerenciamento::get_produtos();
     </main>
 
 </body>
-
-<script>
-    const botoesEditar = document.querySelectorAll(".botaoEditar");
-    const imgInputFile = document.querySelector(".modalIMG-Produtos img");
-    const inputFile = document.querySelector(".modalIMG-Produtos input");
-
-    imgInputFile.addEventListener("click", () => {
-        inputFile.click();
-    });
-
-    botoesEditar.forEach(function (botao) {
-        botao.addEventListener('click', () => {
-            const modal = botao.closest('.bu').querySelector('.modal');
-
-            modal.style.display = 'flex';
-        })
-    })
-
-    const modais = document.querySelectorAll('.modal');
-
-    modais.forEach(function (modal) {
-        modal.addEventListener('click', (local) => {
-            if (local.target === modal) {
-                modal.style.display = 'none'
-
-            }
-        })
-    })
-
-    const modal_novo_produto = document.getElementById('criar-produto');
-    const botao_novo_produto = document.getElementById('add_produto')
-
-    botao_novo_produto.addEventListener('click', () => {
-        modal_novo_produto.style.display = 'flex';
-    })
-</script>
-
+<script src="../JS/produtos.js"></script>
 </html>
