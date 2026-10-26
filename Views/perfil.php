@@ -41,7 +41,7 @@ $usuario = Usuario_gerenciamento::perfil();
     <nav>
         <ul class="icones">
             <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
-                    class="contadorCarrinho">1</span></li>
+                        class="contadorCarrinho">1</span></li>
             <?php
             if($_SESSION['tipo'] != 'admin'){
                 echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
@@ -61,13 +61,13 @@ $usuario = Usuario_gerenciamento::perfil();
         <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
         <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
         <?php
-            if($_SESSION['tipo'] == 'admin'){
-                echo '
+        if($_SESSION['tipo'] == 'admin'){
+            echo '
                 <h1 class="admin"> - ADM - </h1>
                 <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i><a class="aAdmin" href="gerenciamento_usuarios.php">Usuários</a></button>
                 <button class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
                 ';
-            }
+        }
         ?>
 
     </div>
@@ -77,8 +77,8 @@ $usuario = Usuario_gerenciamento::perfil();
 
         <div class="modalConteudo">
             <div class="modalIMG"><img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63lctB9SWfz7PyfuaXZW4aGwfOlZNC5_72EK_BoRBKA&s=10"
-                    alt="Foto Usuário"></div>
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63lctB9SWfz7PyfuaXZW4aGwfOlZNC5_72EK_BoRBKA&s=10"
+                        alt="Foto Usuário"></div>
 
             <form class="modalInfos" action="../Rotas/editar_usuario.php" method="post">
 
@@ -99,14 +99,15 @@ $usuario = Usuario_gerenciamento::perfil();
                 <div class="info-alterar"><i class="fa-solid fa-lock"></i>
                     <div>
                         <p class="EscritaMenor">Senha:</p>
-                        <input type="password" name="senha" placeholder="(deixe em branco para manter)*****">
+                        <input type="password" name="senha" placeholder="(deixe em branco para manter)*">
                     </div><i class="fa-solid fa-pencil"></i>
                 </div>
 
-                <input class="alterarBotao" type="submit" value="Alterar">
-            </form>
-            <form action="" method="post" style="width: 80%">
-                <input class="logoutBotao" type="submit" value="Logout">
+                <div class="botoes">
+                    <input class="alterarBotao" type="submit" value="Alterar">
+
+                    <input formaction="" class="logoutBotao" type="submit" value="Logout">
+                </div>
             </form>
         </div>
     </div>
