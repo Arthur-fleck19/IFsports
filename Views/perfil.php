@@ -147,6 +147,13 @@ $usuario = Usuario_gerenciamento::perfil();
 
 
         </script>
+        <div class="pedidos">
+            <h1 class="pedidos-titulo">Seus pedidos</h1>
+            <div class="pedido">
+              <p>Pedido #1</p>
+              <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt=""></div>
+            </div>
+        </div>
     </div>
 </body>
 
