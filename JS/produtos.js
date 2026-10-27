@@ -3,9 +3,10 @@ const modais = document.querySelectorAll('.modal');
 const modal_novo_produto = document.getElementById('criar-produto');
 const botao_novo_produto = document.getElementById('add_produto');
 const cabecalho = document.querySelector('.cabecalho');
-const formAddProduto = document.getElementById('add_produto');
+const formAddProduto = document.getElementById('formAddProduto');
 const imgInputFile = document.querySelector(".modalIMG-Produtos img");
 const inputFile = document.querySelector(".modalIMG-Produtos input");
+const iconeTipoAddProduto = document.getElementById("iconeTipoAddProduto");
 const inputTipoAddProduto = document.getElementById("inputTipoProduto");
 const inputDescricaoAddProduto = document.getElementById("inputDescricaoProduto");
 const contadorDescricaoAddProduto = document.getElementById("contadorDescricaoAddProduto");
@@ -47,6 +48,7 @@ botao_novo_produto.addEventListener('click', () => {
 
 inputTipoAddProduto.addEventListener('change', () => {
     mudarCorOpcaoSelecionada(inputTipoAddProduto);
+    mudarIconeOpcaoSelecionada(inputTipoAddProduto, iconeTipoAddProduto);
 });
 
 inputDescricaoAddProduto.addEventListener('input', () => {
@@ -58,11 +60,11 @@ inputDescricaoAddProduto.addEventListener('input', () => {
     }
 });
 
-/*formAddProduto.addEventListener('reset', () => {
-   setTimeout(() => {
-       inputDescricaoAddProduto.style.color = "#767676";
-   }, 0);
-});*/
+formAddProduto.addEventListener('reset', () => {
+   inputTipoAddProduto.style.color = "#767676";
+   iconeTipoAddProduto.className = "";
+   iconeTipoAddProduto.classList.add("fa-solid", "fa-volleyball", "fa-xl");
+});
 
 function mudarCorOpcaoSelecionada(inputSelect) {
     //An "if-else" code block responsible for applying a gray color to the current option of a select tag if its value is empty; otherwise, the color applied to the current option is black.
@@ -72,5 +74,27 @@ function mudarCorOpcaoSelecionada(inputSelect) {
     } else {
         //Applying the hexadecimal color "#000000" to the "color" property of the HTML select element.
         inputSelect.style.color = "#000000";
+    }
+}
+
+function mudarIconeOpcaoSelecionada(select, icone) {
+    icone.className = "";
+
+    switch(select.value) {
+        case "Camisas":
+            icone.classList.add("fa-solid", "fa-shirt", "fa-xl");
+        break;
+
+        case "Tênis":
+            icone.classList.add("fa-solid", "fa-shoe-prints", "fa-xl");
+        break;
+
+        case "Bolas":
+            icone.classList.add("fa-regular", "fa-futbol", "fa-xl");
+        break;
+
+        case "Equipamentos":
+            icone.classList.add("fa-solid", "fa-table-tennis-paddle-ball", "fa-xl");
+        break;
     }
 }

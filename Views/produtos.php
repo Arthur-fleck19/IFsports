@@ -84,6 +84,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
                     </div>
                     <div class="labelInputUni">
                         <label for="inputTipoProduto">Tipo</label>
+                        <i class="fa-solid fa-volleyball fa-xl" id="iconeTipoAddProduto"></i>
                         <select name="tipo-produto" id="inputTipoProduto" required>
                             <option value="" disabled selected>Selecione o tipo</option>
                             <option value="Camisas">Camisas</option>
