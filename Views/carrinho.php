@@ -1,1 +1,85 @@
 <?php
+session_start();
+
+if(!isset($_SESSION["tipo"])){
+    header("Location: login.html");
+    exit;
+}
+
+require_once("../Classes/Carrinho_gerenciamento.php");
+
+$carrinho = Carrinho_gerenciamento::consultar_carrinho($_SESSION["id"]);
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link rel="icon" href="Imagens/logoIF.png">
+    <title>Dashboard</title>
+</head>
+<body>
+<header class="cabecalho">
+    <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
+    <form class="containerInputLupa">
+        <input type="text" name="pesquisa" id="inputPesquisa" class="inputPesquisa" placeholder="Digite sua pesquisa...">
+        <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+    </form>
+    <nav>
+        <ul class="icones">
+            <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
+            <?php
+            if($_SESSION['tipo'] != 'admin'){
+                echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+            }else{
+                echo '<li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+            }
+            ?>
+
+        </ul>
+    </nav>
+
+
+</header>
+<!-- Cards testes para ver como fica -->
+<main class="vitrineProdutos">
+    <div class="botoesNav">
+        <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
+        <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
+        <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
+        <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
+        <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
+        <?php
+
+
+        if($_SESSION['tipo'] == 'admin'){
+            echo '
+                    <h1 class="admin"> - ADM - </h1>
+                    <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i><a class="aAdmin" href="gerenciamento_usuarios.php">Usuários</a></button>
+                    <button class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>  
+                ';
+        }
+        ?>
+    </div>
+    <?php
+        while($produto = $carrinho->fetch_assoc()):
+    ?>
+            <div>
+                <p><?= htmlspecialchars($produto['nome_usuario']) ?></p>
+
+                <p><?= htmlspecialchars($produto['nome_produto']) ?></p>
+
+                <p><?= htmlspecialchars($produto['quantidade']) ?></p>
+            </div>
+
+    <?php
+        endwhile;
+    ?>
+</main>
+</body>
+</html>

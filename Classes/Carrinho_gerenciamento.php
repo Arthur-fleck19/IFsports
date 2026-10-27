@@ -129,11 +129,29 @@ class Carrinho_gerenciamento
 
         if(!$stmt->execute()){
             throw new Exception("Erro ao atualizar carrinho");
-        }else{
-            header("Location: ../Views/dashboard.php");
-            exit;
         }
     }
 
+    public static function consultar_carrinho($id_usuario){
+        global $conexao;
 
+        $sql = "
+            SELECT u.nome as nome_usuario, p.nome as nome_produto, it.quantidade as quantidade FROM item_carrinho as it
+            JOIN Carrinho as c ON it.id_carrinho = c.id_carrinho
+            JOIN Usuarios as u ON c.id_usuarios = u.id_usuarios
+            JOIN Produtos as p ON it.id_produtos = p.id_produtos
+            WHERE u.id_usuarios = ?;
+        ";
+
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param("i", $id_usuario);
+
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao consultar carrinho");
+        }
+        $result = $stmt->get_result();
+
+        return $result;
+}
 }

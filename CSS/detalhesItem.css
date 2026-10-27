@@ -238,7 +238,6 @@ html, body {
 .botaoComprar {
     grid-area: comprar;
     height: 75px;
-    width: 225px;
     border: none;
     border-radius: 50px;
     padding: 0.75rem;
@@ -293,7 +292,7 @@ html, body {
 }
 
 .formBotaoAdCarrinho button {
-    width: 490px;
+    width: 100%;
 }
 
 @media(max-width: 1130px) {
