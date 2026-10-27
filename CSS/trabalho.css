@@ -154,9 +154,9 @@ html, body {
 }
 
 .botaoExcluir{
-    padding: 10px;
+    padding: 14px;
     position: relative;
-    border: rgb(165, 61, 61) solid;
+    border:none;
     border-radius: 999px;
     background-color: rgb(226, 29, 29);
     color:rgb(255, 255, 255);
@@ -170,10 +170,24 @@ html, body {
     transition: 0.2s;
 }
 
+.alterarBotao {
+    border: none ;
+    background-color: #2F9E40 ;
+    display: block;
+    width: auto;
+    padding: 8px 22px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: lighter;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
 .botaoEditar{
-    padding: 10px;
+    padding: 14px;
     position: relative;
-    border: rgb(21, 105, 35) solid;
+    border: none;
     border-radius: 999px;
     background-color:#2F9E40;
     color:rgb(255, 255, 255);
@@ -258,21 +272,27 @@ span {
     color: #8a94a3;
     margin: 0;
 }
+.EscritaMenor{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: #8a94a3;
+    margin: 0;
+}
 .info-alterar{
     width: 100%;
     display: grid;
-    grid-template-columns: 40px minmax(0, 1fr) 25px;
+    grid-template-columns: 40px minmax(0, 0.8fr) 25px;
     align-items: center;
     margin-top: 16px;
     gap: 8px;
+    justify-content: space-between;
 }
 
 
 .info-alterar i {
     color: #1b9716b0;
-    font-size: 28px;
-    width: 40px;
-    flex-shrink: 0;
+    font-size: 22px;
+    flex-shrink: 1;
 }
 .info-alterar div {
     display: flex;
@@ -280,10 +300,8 @@ span {
     align-items: flex-start;
     justify-content: center;
     text-align: left;
-    margin-left: 10px;
-
-
 }
+
 .info-alterar div h4,
 .info-alterar div p:not(.EscritaMenor) {
     margin: 0;
@@ -340,35 +358,13 @@ span {
     gap: 35px;
 }
 
-.alterarBotao {
-    margin: 10px auto 10px;
-    border: 2px solid #156923;
-    background-color: #2F9E40 ;
-
-}
-.alterarBotao,
-.logoutBotao{
-    display: block;
-    width: auto;
-    padding: 9px 22px;
-    border-radius: 20px;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-
-}
-.logoutBotao{
-    border: 2px solid #a53d3d;
-    background-color: #e21d1d;
-}
-.botoes{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-}
 
 .modalInfos form{
     width: auto;
+}
+
+.info-alterar input {
+    border: none;
+    outline: none;
+    background: transparent;
 }

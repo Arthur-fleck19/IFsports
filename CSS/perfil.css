@@ -125,9 +125,9 @@ html, body {
 }
 
 .botaoExcluir{
-    padding: 10px;
+    padding: 14px;
     position: relative;
-    border: rgb(165, 61, 61) solid;
+    border: none;
     border-radius: 999px;
     background-color: rgb(226, 29, 29);
     color:rgb(255, 255, 255);
@@ -142,9 +142,9 @@ html, body {
 }
 
 .botaoEditar{
-    padding: 10px;
+    padding: 14px;
     position: relative;
-    border: rgb(21, 105, 35) solid;
+    border: none;
     border-radius: 999px;
     background-color:#2F9E40;
     color:rgb(255, 255, 255);
