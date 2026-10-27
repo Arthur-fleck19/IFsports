@@ -93,19 +93,23 @@ $produtos = Produtos_gerenciamento::get_produtos();
                             <option value="Bolas">Bolas</option>
                             <option value="Equipamentos">Equipamentos</option>
                         </select>
+                        <span></span>
                     </div>
                     <div class="labelInputUni">
                         <label for="inputPrecoProduto">Preço</label>
-                        <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" placeholder="R$ 0,00" id="inputPrecoProduto" required>
+                        <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" placeholder="R$ 0,01" id="inputPrecoProduto" required>
+                        <span></span>
                     </div>
                     <div class="labelInputUni">
                         <label for="inputDescricaoProduto">Descrição</label>
                         <textarea placeholder="Descreva o produto..." name="desc-produto" id="inputDescricaoProduto" minlength="1" maxlength="500" required></textarea>
+                        <span></span>
                         <span class="contadorDescricao" id="contadorDescricaoAddProduto">0/500</span>
                     </div>
                     <div class="labelInputUni">
                         <label for="inputEstoqueProduto">Estoque</label>
-                        <input type="number" name="estoque-produto" id="inputEstoqueProduto" min="1" value="0" required>
+                        <input type="number" name="estoque-produto" id="inputEstoqueProduto" min="1" value="1" required>
+                        <span></span>
                     </div>
                     <div class="containerBotoesCriarCancelarFormAdd">
                         <input type="reset" class="botaoFormAdd" value="Cancelar">

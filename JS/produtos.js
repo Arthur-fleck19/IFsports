@@ -9,12 +9,13 @@ const inputFileAddProduto = document.querySelector(".modalIMG-Produtos input");
 const inputNomeAddProduto = document.getElementById("inputNomeProduto");
 const iconeTipoAddProduto = document.getElementById("iconeTipoAddProduto");
 const inputTipoAddProduto = document.getElementById("inputTipoProduto");
-const tiposProdutosValidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
 const inputPrecoAddProduto = document.getElementById("inputPrecoProduto");
 const inputDescricaoAddProduto = document.getElementById("inputDescricaoProduto");
 const inputEstoqueAddProduto = document.getElementById("inputEstoqueProduto");
 const contadorDescricaoAddProduto = document.getElementById("contadorDescricaoAddProduto");
 const container_perfis = document.querySelector('body');
+const tiposProdutosValidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
+const camposFormAddProduto = [inputNomeAddProduto, inputTipoAddProduto, inputPrecoAddProduto, inputDescricaoAddProduto, inputEstoqueAddProduto];
 
 contadorDescricaoAddProduto.textContent = inputDescricaoAddProduto.value.trim().length + "/500";
 
@@ -33,7 +34,7 @@ botoesEditar.forEach(function (botao) {
 modais.forEach(function (modal) {
     modal.addEventListener('click', (local) => {
         if(local.target === modal) {
-            modal.style.display = 'none'
+            modal.style.display = 'none';
             cabecalho.style.opacity = '1';
             cabecalho.style.pointerEvents = '';
             cabecalho.style.zIndex = '';
@@ -56,18 +57,23 @@ inputTipoAddProduto.addEventListener('change', () => {
 });
 
 inputDescricaoAddProduto.addEventListener('input', () => {
-    if(inputDescricaoAddProduto.value.trim().length <= 500) {
-        contadorDescricaoAddProduto.textContent = inputDescricaoAddProduto.value.trim().length + "/500";
-    } else {
-        inputDescricaoAddProduto.value = inputDescricaoAddProduto.value.substring(0, 500);
-        contadorDescricaoAddProduto.textContent = "500/500";
-    }
+    atualizarContadorDescricaoProduto(inputDescricaoAddProduto, contadorDescricaoAddProduto);
+});
+
+camposFormAddProduto.forEach((campoForm) => {
+    campoForm.addEventListener("input", () => {
+        limparErroCampoForm(campoForm);
+    });
 });
 
 formAddProduto.addEventListener('reset', () => {
    inputTipoAddProduto.style.color = "#767676";
    iconeTipoAddProduto.className = "";
+   contadorDescricaoAddProduto.textContent = "0/500";
+
    iconeTipoAddProduto.classList.add("fa-solid", "fa-volleyball", "fa-xl");
+
+   limparTodosErrosCamposForm("form.modalconteudo-Produtos .labelInputUni > input, form.modalconteudo-Produtos .labelInputUni > select, form.modalconteudo-Produtos .labelInputUni > textarea");
 });
 
 formAddProduto.addEventListener('submit', (evento) => {
@@ -84,12 +90,9 @@ formAddProduto.addEventListener('submit', (evento) => {
 });
 
 function mudarCorOpcaoSelecionada(inputSelect) {
-    //An "if-else" code block responsible for applying a gray color to the current option of a select tag if its value is empty; otherwise, the color applied to the current option is black.
     if(inputSelect.value === "") {
-        //Applying the hexadecimal color "#767676" to the "color" property of the HTML select element.
         inputSelect.style.color = "#767676";
     } else {
-        //Applying the hexadecimal color "#000000" to the "color" property of the HTML select element.
         inputSelect.style.color = "#000000";
     }
 }
@@ -116,8 +119,17 @@ function mudarIconeOpcaoSelecionada(select, icone) {
     }
 }
 
-function validarImagemProduto(inputFile) {
+function atualizarContadorDescricaoProduto(inputDescricao, contadorDescricao) {
+    if(inputDescricao.value.trim().length <= 500) {
+        contadorDescricao.textContent = inputDescricao.value.trim().length + "/500";
+    } else {
+        inputDescricao.value = inputDescricao.value.substring(0, 500);
+        contadorDescricao.textContent = "500/500";
+    }
+}
 
+function validarImagemProduto(inputFile) {
+    return true;
 }
 
 function validarNomeProduto(inputNome) {
@@ -131,6 +143,8 @@ function validarNomeProduto(inputNome) {
         return false;
     }
 
+    limparErroCampoForm(inputNome);
+
     return true;
 }
 
@@ -140,6 +154,8 @@ function validarTipoProduto(inputTipo, tiposProdutosValidos) {
 
         return false;
     }
+
+    limparErroCampoForm(inputTipo);
 
     return true;
 }
@@ -151,7 +167,7 @@ function validarPrecoProduto(inputPreco) {
         implementarErroCampoForm(inputPreco, "Insira um preço para o produto.");
 
         return false;
-    } else if(/^\d+([.,]\d+)?$/.test(precoTexto)) {
+    } else if(!(/^(0|[1-9]\d*)(\.\d{1,2})?$/.test(precoTexto))) {
         implementarErroCampoForm(inputPreco, "Texto de preço inválido.");
 
         return false;
@@ -160,7 +176,7 @@ function validarPrecoProduto(inputPreco) {
 
         return false;
     } else if(parseFloat(precoTexto) <= 0) {
-        implementarErroCampoForm(inputPreco, "Não use valor negativo.");
+        implementarErroCampoForm(inputPreco, "Não use valor negativo ou nulo.");
 
         return false;
     } else if(parseFloat(precoTexto) > 99999999.99) {
@@ -168,6 +184,8 @@ function validarPrecoProduto(inputPreco) {
 
         return false;
     }
+
+    limparErroCampoForm(inputPreco);
 
     return true;
 }
@@ -183,15 +201,19 @@ function validarDescricaoProduto(inputDescricao) {
         return false;
     }
 
+    limparErroCampoForm(inputDescricao);
+
     return true;
 }
 
 function validarEstoqueProduto(inputEstoque) {
-    if(/^[1-9]\d*$/.test(inputEstoque.value.trim())) {
+    if(!(/^[1-9]\d*$/.test(inputEstoque.value.trim()))) {
         implementarErroCampoForm(inputEstoque, "Insira um valor de estoque válido.");
 
         return false;
     }
+
+    limparErroCampoForm(inputEstoque);
 
     return true;
 }
@@ -206,6 +228,10 @@ function limparErroCampoForm(campoForm) {
     campoForm.nextElementSibling.innerHTML = "";
 }
 
-function limparTodosErrosCamposForm() {
+function limparTodosErrosCamposForm(cssQuerySelector) {
+    const inputsForm = document.querySelectorAll(cssQuerySelector);
 
+    inputsForm.forEach((input) => {
+        limparErroCampoForm(input);
+    });
 }
