@@ -1,0 +1,306 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-height: 100%;
+    color: var(--texto);
+}
+
+.cabecalho {
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    background-color: #FFFFFF;
+}
+
+.logoIFsportsImg, .imagemProduto {
+    object-fit: contain;
+}
+
+.containerInputLupa {
+    height: 45%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.lupaInput {
+    height: 32px;
+    width: 32px;
+    background: none;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    cursor: pointer;
+}
+
+.inputPesquisa {
+    height: 40px;
+    width: 100%;
+    padding: 1rem 1rem 1rem 45px;
+    font-size: 1.10rem;
+    border: 2px solid #666666;
+    border-radius: 20px;
+}
+
+.inputPesquisa:focus {
+    border: 2px solid #000000;
+    outline: none;
+}
+
+
+.perfil{
+    margin-top: 2rem;
+    border-radius: 15px;
+    background: white;
+    height: 175px;
+    width: 87%;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+    gap: 30px;
+
+}
+
+.imagem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 80px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.usuario{
+    align-self: center;
+    border-radius: 100%;
+    outline: 8px solid rgb(121, 117, 117);
+    border: 2px solid white;
+    width: 120px;
+    height: 120px;
+}
+
+.divUsuario{
+    height: 155px;
+    width: 165px;
+    display: flex;
+    justify-content: start;
+    border-right: rgb(121, 117, 117) solid 2px;
+    align-items: center;
+    margin-left: 15px ;
+
+}
+
+.infosUsuario {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'helvetica';
+}
+
+.botaoExcluir{
+    padding: 14px;
+    position: relative;
+    border: none;
+    border-radius: 999px;
+    background-color: rgb(226, 29, 29);
+    color:rgb(255, 255, 255);
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.botaoExcluir:hover, .lupaInput:hover {
+    background-color: #851414;
+    transition: 0.2s;
+}
+
+.botaoEditar{
+    padding: 14px;
+    position: relative;
+    border: none;
+    border-radius: 999px;
+    background-color:#2F9E40;
+    color:rgb(255, 255, 255);
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.botaoEditar:hover, .lupaInput:hover {
+    background-color: #2f6e1c;
+    transition: 0.2s;
+}
+.bu{
+    height: 100%;
+    width: 15%;
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    flex-direction: column;
+    align-items: start;
+}
+
+:root {
+    --vermelho:  rgb(226, 29, 29) ;
+    --texto: #111827;
+
+}
+
+.modal{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.651);
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    display: none;
+}
+
+.modalConteudo{
+    height: auto;
+    padding: 10px;
+    width: 400px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: #000000 12px 12px 0px 0px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.modalConteudo img{
+    width: 170px;
+    height: 170px;
+    border-radius: 100%;
+    margin-top: 37px;
+}
+.modalIMG{
+    border-bottom: #666666 solid 2px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+span {
+    color: #2F9E40;
+}
+
+
+.modalInfos {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.EscritaMenor{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: #8a94a3;
+    margin: 0;
+}
+.info-alterar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 0.8fr) 25px;
+    align-items: center;
+    margin-top: 16px;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+
+.info-alterar i {
+    color: #1b9716b0;
+    font-size: 22px;
+    flex-shrink: 1;
+}
+.info-alterar div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+}
+.info-alterar div h4,
+.info-alterar div p:not(.EscritaMenor) {
+    margin: 0;
+    font-family: 'helvetica';
+    font-size: 18px;
+
+}
+
+
+.alterarBotao {
+    border: none ;
+    background-color: #2F9E40 ;
+
+}
+.alterarBotao,
+.logoutBotao{
+    display: block;
+    width: auto;
+    padding: 8px 22px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: lighter;
+    cursor: pointer;
+
+}
+.logoutBotao{
+    border: none;
+    background-color: #e21d1d;
+}
+.botoes{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.modalInfos form{
+    width: auto;
+}
+
+.info-alterar input {
+    border: none;
+    outline: none;
+    background: transparent;
+}
