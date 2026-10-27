@@ -304,3 +304,43 @@ span {
     outline: none;
     background: transparent;
 }
+
+.pedidos{
+    margin-top: 2rem;
+    border-radius: 15px;
+    background: white;
+    height: auto;
+    width: 87%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 10px 15px 10px;
+    gap: 30px;
+}
+
+.pedido{
+    border: solid 1px;
+    width: 90%;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.pedidos-titulo{
+    font-family: sans-serif;
+    margin-bottom: 0px;
+     width: 97%;
+}
+
+.pedido p{
+    font-family: sans-serif;
+    margin-bottom: 0px;
+    margin-left: 25px;
+}
+
+.infos-pedidos{
+    height: 70%;
+}
+
+.infos-pedidos img{
+    height: 100%;
+}
