@@ -37,7 +37,7 @@
     width: 100%;
     min-height: 100%;
     margin-top: 0px;
-    gap: 35px;
+    gap: 20px;
 }
 
 .modal{
@@ -73,7 +73,7 @@
 }
 .gerenciamento{
     width: 87%;
-
+    margin-bottom: 2rem;
 }
 .gerenciamento h1{
     font-family: sans-serif;
@@ -137,10 +137,6 @@
     cursor: pointer;
 }
 
-.modalIMG-Produtos input {
-    display: none;
-}
-
 .tituloParagrafoAddProduto {
     display: flex;
     flex-direction: column;
@@ -149,6 +145,11 @@
 
 .tituloParagrafoAddProduto h2 {
     margin: 0.5rem;
+}
+
+.tituloParagrafoAddProduto span {
+    margin: 0.5rem;
+    color: #e21d1d;
 }
 
 .tituloParagrafoAddProduto p {
@@ -366,7 +367,7 @@ textarea.inforProduto {
 .botaoExcluir{
     padding: 10px;
     position: relative;
-    border: rgb(165, 61, 61) solid;
+    border: none;
     border-radius: 999px;
     background-color: rgb(226, 29, 29);
     color:rgb(255, 255, 255);
@@ -383,7 +384,7 @@ textarea.inforProduto {
 .botaoEditar{
     padding: 10px;
     position: relative;
-    border: rgb(21, 105, 35) solid;
+    border: none;
     border-radius: 999px;
     background-color:#2F9E40;
     color:rgb(255, 255, 255);

@@ -1,6 +1,46 @@
 <?php
     require_once "../Classes/Produtos_gerenciamento.php";
 
+    function validarNome($nome):bool {
+        if(empty($nome) || strlen($nome) > 150) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validarTipo($tipo, $tiposPermitidos):bool {
+        if(!in_array($tipo, $tiposPermitidos, true)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validarPreco($preco):bool {
+        if(empty($preco) || !preg_match('/^(0|[1-9]\d*)(\.\d{1,2})?$/', $preco) || $preco <= 0.0 || $preco > 99999999.99) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validarDescricao($descricao):bool {
+        if(empty($descricao) || strlen($descricao) > 500) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function validarEstoque($estoque):bool {
+        if(empty($estoque) || !preg_match('/^[1-9]\d*$/', $estoque)) {
+            return false;
+        }
+
+        return true;
+    }
+
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $arquivo = $_FILES['imagem'];
         $nome = trim($_POST['nome-produto']);
@@ -27,45 +67,5 @@
 
         header('Location: ../Views/produtos.php');
         exit();
-
-        function validarNome($nome):bool {
-            if(empty($nome) || strlen($nome) > 150) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarTipo($tipo, $tiposPermitidos):bool {
-            if(empty($tipo) || !in_array($tipo, $tiposPermitidos)) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarPreco($preco):bool {
-            if(empty($preco) || $preco <= 0.0 || $preco > 99999999.99) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarDescricao($descricao):bool {
-            if(empty($descricao) || strlen($descricao) > 500) {
-                return false;
-            }
-
-            return true;
-        }
-
-        function validarEstoque($estoque):bool {
-            if(empty($estoque) || $estoque <= 0) {
-                return false;
-            }
-
-            return true;
-        }
     }
 ?>

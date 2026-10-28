@@ -106,7 +106,7 @@ html, body {
 }
 
 .iconeSite:hover, .lupaInput:hover {
-    background-color: #CCCCCC;
+    background-color: #CCCCCC !important;
     transition: 0.2s;
 }
 
@@ -190,7 +190,7 @@ html, body {
 
 .cardProduto {
     border-radius: 40px;
-    height: 320px;
+    height: 375px;
     width: 275px;
     padding: 1.25rem;
     display: flex;

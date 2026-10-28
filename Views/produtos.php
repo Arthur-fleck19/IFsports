@@ -40,7 +40,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
     <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
                                  class="logoIFsportsImg"></a>
     <form class="containerInputLupa">
-        <input type="text" name="" id="" class="inputPesquisa" placeholder="">
+        <input type="text" name="" id="" class="inputPesquisa" placeholder="Digite sua pesquisa...">
         <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
     </form>
     <nav>
@@ -70,51 +70,52 @@ $produtos = Produtos_gerenciamento::get_produtos();
                 <header>
                     <div class="modalIMG-Produtos">
                         <img src="Imagens/imagem_adicionar_imagem_produto_input_file.jpg" alt="Imagem input adicionar imagem" height="100px">
-                        <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*" required>
+                        <label for="inputImagemProduto" hidden>Imagem do produto</label>
+                        <input class="inputImg" type="file" name="imagem" id="inputImagemProduto" accept="image/png, image/jpeg, image/webp" required hidden>
                     </div>
                     <div class="tituloParagrafoAddProduto">
                         <h2>Adicionar produto</h2>
-                        <p>Selecione uma imagem clicando no botão verde e preencha as informações do produto para adicioná-lo ao seu catálogo.</p>
+                        <p>Selecione uma imagem clicando no botão ao lado e preencha as informações do produto para adicioná-lo ao seu catálogo.</p>
+                        <span></span>
                     </div>
                 </header>
-
-                    <div class="labelInputUni">
-                        <label for="inputNomeProduto">Nome do Produto</label>
-                        <input type="text" minlength="1" maxlength="150" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="inputNomeProduto" required>
-                        <span></span>
-                    </div>
-                    <div class="labelInputUni">
-                        <label for="inputTipoProduto">Tipo</label>
-                        <i class="fa-solid fa-volleyball fa-xl" id="iconeTipoAddProduto"></i>
-                        <select name="tipo-produto" id="inputTipoProduto" required>
-                            <option value="" disabled selected>Selecione o tipo</option>
-                            <option value="Camisas">Camisas</option>
-                            <option value="Tênis">Tênis</option>
-                            <option value="Bolas">Bolas</option>
-                            <option value="Equipamentos">Equipamentos</option>
-                        </select>
-                        <span></span>
-                    </div>
-                    <div class="labelInputUni">
-                        <label for="inputPrecoProduto">Preço</label>
-                        <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" placeholder="R$ 0,01" id="inputPrecoProduto" required>
-                        <span></span>
-                    </div>
-                    <div class="labelInputUni">
-                        <label for="inputDescricaoProduto">Descrição</label>
-                        <textarea placeholder="Descreva o produto..." name="desc-produto" id="inputDescricaoProduto" minlength="1" maxlength="500" required></textarea>
-                        <span></span>
-                        <span class="contadorDescricao" id="contadorDescricaoAddProduto">0/500</span>
-                    </div>
-                    <div class="labelInputUni">
-                        <label for="inputEstoqueProduto">Estoque</label>
-                        <input type="number" name="estoque-produto" id="inputEstoqueProduto" min="1" value="1" required>
-                        <span></span>
-                    </div>
-                    <div class="containerBotoesCriarCancelarFormAdd">
-                        <input type="reset" class="botaoFormAdd" value="Cancelar">
-                        <input type="submit" class="botaoFormAdd" value="+ Adicionar produto">
-                    </div>
+                <div class="labelInputUni">
+                    <label for="inputNomeProduto">Nome do Produto</label>
+                    <input type="text" minlength="1" maxlength="150" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="inputNomeProduto" required>
+                    <span></span>
+                </div>
+                <div class="labelInputUni">
+                    <label for="inputTipoProduto">Tipo</label>
+                    <i class="fa-solid fa-volleyball fa-xl" id="iconeTipoAddProduto"></i>
+                    <select name="tipo-produto" id="inputTipoProduto" required>
+                        <option value="" disabled selected>Selecione o tipo</option>
+                        <option value="Camisas">Camisas</option>
+                        <option value="Tênis">Tênis</option>
+                        <option value="Bolas">Bolas</option>
+                        <option value="Equipamentos">Equipamentos</option>
+                    </select>
+                    <span></span>
+                </div>
+                <div class="labelInputUni">
+                    <label for="inputPrecoProduto">Preço</label>
+                    <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" placeholder="R$ 0,01" id="inputPrecoProduto" required>
+                    <span></span>
+                </div>
+                <div class="labelInputUni">
+                    <label for="inputDescricaoProduto">Descrição</label>
+                    <textarea placeholder="Descreva o produto..." name="desc-produto" id="inputDescricaoProduto" minlength="1" maxlength="500" required></textarea>
+                    <span></span>
+                    <span class="contadorDescricao" id="contadorDescricaoAddProduto">0/500</span>
+                </div>
+                <div class="labelInputUni">
+                    <label for="inputEstoqueProduto">Estoque</label>
+                    <input type="number" name="estoque-produto" id="inputEstoqueProduto" min="1" value="1" required>
+                    <span></span>
+                </div>
+                <div class="containerBotoesCriarCancelarFormAdd">
+                    <input type="reset" class="botaoFormAdd" value="Cancelar">
+                    <input type="submit" class="botaoFormAdd" value="+ Adicionar produto">
+                </div>
             </form>
         </div>
         <!-- Fim da tela de adicionar produto -->
