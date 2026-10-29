@@ -11,11 +11,8 @@ if (isset($_SESSION['id']) && isset($_POST['id_produto']) && isset($_SERVER['HTT
 
     Carrinho_gerenciamento::atualizar_carrinho($id_produto, $quantidade);
 
-    if($origem ==  'http://localhost/IFsports/Views/dashboard.php'){
-        header("Location: ../Views/dashboard.php");
-        exit;
-    }
+    echo $origem;
 
-    header("Location: ../Views/carrinho.php");
+    header("Location: $origem");
     exit;
 }

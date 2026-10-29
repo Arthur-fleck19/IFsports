@@ -69,17 +69,32 @@ $carrinho = Carrinho_gerenciamento::consultar_carrinho($_SESSION["id"]);
     <?php
         while($produto = $carrinho->fetch_assoc()):
     ?>
-            <div>
+            <div class="itemCarrinho">
                 <p><?= htmlspecialchars($produto['nome_usuario']) ?></p>
 
                 <p><?= htmlspecialchars($produto['nome_produto']) ?></p>
 
-                <p><?= htmlspecialchars($produto['quantidade']) ?></p>
+                <form action="../Rotas/remover_do_carrinho.php" method="post">
+
+                    <input type="hidden" name="id_produto" value="<?=htmlspecialchars($produto['id_produtos'])?>">
+                    <input type="hidden" name="id_item_carrinho" value="<?=htmlspecialchars($produto['id_item_carrinho'])?>">
+                    <input type="hidden" name="quantidade" value="1">
+
+                    <input formaction="../Rotas/add_carrinho.php" type="submit" value="+" class="botaoSomar">
+                    <p class="quantidadeAtual"><?= htmlspecialchars($produto['quantidade']) ?></p>
+                    <input formaction="../Rotas/subtrair_carrinho.php" type="submit" value="-" class="botaoSubtrair">
+
+                    <button type="submit" class="remover">remover</button>
+
+                </form>
             </div>
 
     <?php
         endwhile;
     ?>
+
+    <script src="../JS/carrinho.js"></script>
+
 </main>
 </body>
 </html>

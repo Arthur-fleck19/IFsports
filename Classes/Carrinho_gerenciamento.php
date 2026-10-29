@@ -136,7 +136,7 @@ class Carrinho_gerenciamento
         global $conexao;
 
         $sql = "
-            SELECT u.nome as nome_usuario, p.nome as nome_produto, it.quantidade as quantidade FROM item_carrinho as it
+            SELECT u.nome as nome_usuario, p.nome as nome_produto, it.quantidade as quantidade, it.id_item_carrinho as id_item_carrinho, p.id_produtos as id_produtos FROM item_carrinho as it
             JOIN Carrinho as c ON it.id_carrinho = c.id_carrinho
             JOIN Usuarios as u ON c.id_usuarios = u.id_usuarios
             JOIN Produtos as p ON it.id_produtos = p.id_produtos
@@ -153,5 +153,45 @@ class Carrinho_gerenciamento
         $result = $stmt->get_result();
 
         return $result;
-}
+    }
+
+    public static function subtrair_carrinho($id_item_carrinho){
+        global $conexao;
+
+        $sql = 'SELECT quantidade FROM item_carrinho WHERE id_item_carrinho = ?';
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $id_item_carrinho);
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao consultar carrinho");
+        }
+
+        $result = $stmt->get_result();
+        $quantidade_anterior = $result->fetch_assoc();
+
+        $quantidade_anterior = $quantidade_anterior["quantidade"];
+
+        $quantidade_nova = --$quantidade_anterior;
+
+        if($quantidade_nova <= 0){
+            self::remover_do_carrinho($id_item_carrinho);
+        }else{
+            $sql = "UPDATE item_carrinho SET quantidade = ? WHERE id_item_carrinho = ?";
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param("ii", $quantidade_nova, $id_item_carrinho);
+            if(!$stmt->execute()){
+                throw new Exception("Erro ao atualizar carrinho");
+            }
+        }
+    }
+
+    public static function remover_do_carrinho($id_item_carrinho){
+        global $conexao;
+
+        $sql = "DELETE FROM item_carrinho WHERE id_item_carrinho = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $id_item_carrinho);
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao excluir carrinho");
+        }
+    }
 }
