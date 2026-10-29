@@ -68,10 +68,10 @@ $produtos = Produtos_gerenciamento::get_produtos();
         <div class="modal" id="criar-produto">
             <form action="../Rotas/criar_produto.php" method="post" id="formAddProduto" class="modalconteudo-Produtos" enctype="multipart/form-data" novalidate>
                 <header>
-                    <div class="modalIMG-Produtos">
-                        <img src="Imagens/imagem_adicionar_imagem_produto_input_file.jpg" alt="Imagem input adicionar imagem" height="100px">
-                        <label for="inputImagemProduto" hidden>Imagem do produto</label>
-                        <input class="inputImg" type="file" name="imagem" id="inputImagemProduto" accept="image/png, image/jpeg, image/webp" required hidden>
+                    <div class="modalIMG-addProdutos">
+                        <img src="Imagens/imagem_adicionar_imagem_produto_input_file.jpg" alt="Imagem input adicionar imagem" height="100px" width="100px">
+                        <label for="inputImagemAddProduto" hidden>Imagem do produto</label>
+                        <input class="inputFileImgAddProduto" type="file" name="imagem" id="inputImagemAddProduto" accept="image/png, image/jpeg, image/webp" required hidden>
                     </div>
                     <div class="tituloParagrafoAddProduto">
                         <h2>Adicionar produto</h2>
@@ -80,14 +80,14 @@ $produtos = Produtos_gerenciamento::get_produtos();
                     </div>
                 </header>
                 <div class="labelInputUni">
-                    <label for="inputNomeProduto">Nome do Produto</label>
-                    <input type="text" minlength="1" maxlength="150" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="inputNomeProduto" required>
+                    <label for="inputNomeAddProduto">Nome do Produto</label>
+                    <input type="text" minlength="1" maxlength="150" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="inputNomeAddProduto" required>
                     <span></span>
                 </div>
                 <div class="labelInputUni">
-                    <label for="inputTipoProduto">Tipo</label>
+                    <label for="inputTipoAddProduto">Tipo</label>
                     <i class="fa-solid fa-volleyball fa-xl" id="iconeTipoAddProduto"></i>
-                    <select name="tipo-produto" id="inputTipoProduto" required>
+                    <select name="tipo-produto" id="inputTipoAddProduto" required>
                         <option value="" disabled selected>Selecione o tipo</option>
                         <option value="Camisas">Camisas</option>
                         <option value="Tênis">Tênis</option>
@@ -97,19 +97,19 @@ $produtos = Produtos_gerenciamento::get_produtos();
                     <span></span>
                 </div>
                 <div class="labelInputUni">
-                    <label for="inputPrecoProduto">Preço</label>
-                    <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" placeholder="R$ 0,01" id="inputPrecoProduto" required>
+                    <label for="inputPrecoAddProduto">Preço</label>
+                    <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" placeholder="R$ 0,01" id="inputPrecoAddProduto" required>
                     <span></span>
                 </div>
                 <div class="labelInputUni">
-                    <label for="inputDescricaoProduto">Descrição</label>
-                    <textarea placeholder="Descreva o produto..." name="desc-produto" id="inputDescricaoProduto" minlength="1" maxlength="500" required></textarea>
+                    <label for="inputDescricaoAddProduto">Descrição</label>
+                    <textarea placeholder="Descreva o produto..." name="desc-produto" id="inputDescricaoAddProduto" minlength="1" maxlength="500" required></textarea>
                     <span></span>
                     <span class="contadorDescricao" id="contadorDescricaoAddProduto">0/500</span>
                 </div>
                 <div class="labelInputUni">
-                    <label for="inputEstoqueProduto">Estoque</label>
-                    <input type="number" name="estoque-produto" id="inputEstoqueProduto" min="1" value="1" required>
+                    <label for="inputEstoqueAddProduto">Estoque</label>
+                    <input type="number" name="estoque-produto" id="inputEstoqueAddProduto" min="1" value="1" required>
                     <span></span>
                 </div>
                 <div class="containerBotoesCriarCancelarFormAdd">
@@ -156,7 +156,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
 
                                 <div class="modalconteudo-Produtos">
 
-                                    <div class="modalIMG-Produtos"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
+                                    <div class="modalIMG-addProdutos"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
                                     <div class="Lapis">
                                         <i class="fa-solid fa-pencil"></i>
                                     </div>

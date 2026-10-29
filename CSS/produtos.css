@@ -127,14 +127,15 @@
     justify-content: flex-start;
 }
 
-.modalIMG-Produtos {
+.modalIMG-addProdutos {
     border-radius: 50%;
     position: relative;
 }
 
-.modalIMG-Produtos img {
+.modalIMG-addProdutos img {
     border-radius: 50%;
     cursor: pointer;
+    object-fit: contain;
 }
 
 .tituloParagrafoAddProduto {
@@ -192,7 +193,7 @@
     width: 50%;
 }
 
-.labelInputUni input#inputEstoqueProduto {
+.labelInputUni input#inputEstoqueAddProduto {
     width: 50%;
 }
 

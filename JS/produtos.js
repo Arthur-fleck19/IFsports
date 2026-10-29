@@ -4,15 +4,15 @@ const modal_novo_produto = document.getElementById('criar-produto');
 const botao_novo_produto = document.getElementById('add_produto');
 const cabecalho = document.querySelector('.cabecalho');
 const formAddProduto = document.getElementById('formAddProduto');
-const imgInputFileAddProduto = document.querySelector(".modalIMG-Produtos img");
-const spanMensagemErroInputFile = document.querySelector(".tituloParagrafoAddProduto span");
-const inputFileAddProduto = document.querySelector(".modalIMG-Produtos input");
-const inputNomeAddProduto = document.getElementById("inputNomeProduto");
+const imgInputFileAddProduto = document.querySelector(".modalIMG-addProdutos img");
+const spanMensagemErroInputFileAddProduto = document.querySelector(".tituloParagrafoAddProduto span");
+const inputFileAddProduto = document.querySelector(".modalIMG-addProdutos input");
+const inputNomeAddProduto = document.getElementById("inputNomeAddProduto");
 const iconeTipoAddProduto = document.getElementById("iconeTipoAddProduto");
-const inputTipoAddProduto = document.getElementById("inputTipoProduto");
-const inputPrecoAddProduto = document.getElementById("inputPrecoProduto");
-const inputDescricaoAddProduto = document.getElementById("inputDescricaoProduto");
-const inputEstoqueAddProduto = document.getElementById("inputEstoqueProduto");
+const inputTipoAddProduto = document.getElementById("inputTipoAddProduto");
+const inputPrecoAddProduto = document.getElementById("inputPrecoAddProduto");
+const inputDescricaoAddProduto = document.getElementById("inputDescricaoAddProduto");
+const inputEstoqueAddProduto = document.getElementById("inputEstoqueAddProduto");
 const contadorDescricaoAddProduto = document.getElementById("contadorDescricaoAddProduto");
 const container_perfis = document.querySelector('body');
 const tiposProdutosValidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
@@ -142,30 +142,30 @@ function validarImagemProduto(inputFile) {
 
             if(tiposImagensValidos.includes(arquivoImgProduto.type)) {
                 if(arquivoImgProduto.size <= 5242880) {
-                    spanMensagemErroInputFile.innerHTML = "";
+                    spanMensagemErroInputFileAddProduto.innerHTML = "";
                     imgInputFileAddProduto.src = URL.createObjectURL(arquivoImgProduto);
 
                     return true;
                 } else {
-                    spanMensagemErroInputFile.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Tamanho da imagem é muito grande, selecione uma imagem com menos de 5 MiB.";
+                    spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Tamanho da imagem é muito grande, selecione uma imagem com menos de 5 MiB.";
                     imgInputFileAddProduto.src = "Imagens/imagem_erro_arquivo_imagem_produto.png";
 
                     return false;
                 }
             } else {
-                spanMensagemErroInputFile.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Tipo de imagem inválido.";
+                spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Tipo de imagem inválido.";
                 imgInputFileAddProduto.src = "Imagens/imagem_erro_arquivo_imagem_produto.png";
 
                 return false;
             }
         } else {
-            spanMensagemErroInputFile.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Não selecione mais de um arquivo de imagem.";
+            spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Não selecione mais de um arquivo de imagem.";
             imgInputFileAddProduto.src = "Imagens/imagem_erro_arquivo_imagem_produto.png";
 
             return false;
         }
     } else {
-        spanMensagemErroInputFile.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Selecione uma imagem para o produto.";
+        spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Selecione uma imagem para o produto.";
 
         return false;
     }
