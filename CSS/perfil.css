@@ -334,13 +334,37 @@ span {
 .pedido p{
     font-family: sans-serif;
     margin-bottom: 0px;
-    margin-left: 25px;
+    margin-left: 35px;
 }
 
 .infos-pedidos{
     height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .infos-pedidos img{
     height: 100%;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+.infos-pedidos h1 {
+    font-family: sans-serif;
+    text-align: right;
+    color: #277e34;
+    height: auto;
+    margin: 0px;
+    position: relative;
+    right: 10px;
+}
+.pedidos-valores {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
+  
+}
+.pedidos-valores p{
+    margin: 0px;
 }

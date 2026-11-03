@@ -150,8 +150,22 @@ $usuario = Usuario_gerenciamento::perfil();
         <div class="pedidos">
             <h1 class="pedidos-titulo">Seus pedidos</h1>
             <div class="pedido">
-              <p>Pedido #1</p>
-              <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt=""></div>
+                <p>Pedido #1</p>
+                <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt="">
+                    <div class="pedidos-valores">
+                        <h1>R$79,99</h1>
+                        <p>2 artigo</p>
+                    </div>
+                </div>
+            </div>
+            <div class="pedido">
+                <p>Pedido #1</p>
+                <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt="">
+                    <div class="pedidos-valores">
+                        <h1>R$79,99</h1>
+                        <p>2 artigo</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
