@@ -1,57 +1,46 @@
 <?php
-session_start();
-require_once("../Classes/Produtos_gerenciamento.php");
-
-if ($_SESSION['tipo'] != 'admin') {
-    header('Location: dashboard.php');
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['id'])) {
-        $id = $_POST['id'];
-        Produtos_gerenciamento::excluir($id);
+    session_start();
+    require_once("../Classes/Produtos_gerenciamento.php");
+    
+    if ($_SESSION['tipo'] != 'admin') {
+        header('Location: dashboard.php');
+        exit;
     }
-}
-
-$produtos = Produtos_gerenciamento::get_produtos();
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            Produtos_gerenciamento::excluir($id);
+        }
+    }
+    
+    $produtos = Produtos_gerenciamento::get_produtos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
-          integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="icon" href="Imagens/logoIF.png">
     <link rel="stylesheet" href="../CSS/produtos.css">
-   
-    
     <title>Dashboard</title>
 </head>
-
 <body>
-
-
-<header class="cabecalho">
-    <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px"
-                                 class="logoIFsportsImg"></a>
-    <form class="containerInputLupa">
-        <input type="text" name="" id="" class="inputPesquisa" placeholder="Digite sua pesquisa...">
-        <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
-    </form>
-    <nav>
-        <ul class="icones">
-            <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
-                        class="contadorCarrinho">1</span></li>
+    <header class="cabecalho">
+        <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
+        <form class="containerInputLupa">
+            <input type="text" name="" id="" class="inputPesquisa" placeholder="Digite sua pesquisa...">
+            <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+        </form>
+        <nav>
+            <ul class="icones">
+                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
                 <li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
             </ul>
         </nav>
     </header>
-    <!-- Cards testes para ver como fica -->
     <main class="vitrineProdutos">
         <div class="botoesNav">
             <button class="botaoNav"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
@@ -69,9 +58,9 @@ $produtos = Produtos_gerenciamento::get_produtos();
             <form action="../Rotas/criar_produto.php" method="post" id="formAddProduto" class="modalconteudo-Produtos" enctype="multipart/form-data" novalidate>
                 <header>
                     <div class="modalIMG-addProdutos">
-                        <img src="Imagens/imagem_adicionar_imagem_produto_input_file.jpg" alt="Imagem input adicionar imagem" height="100px" width="100px">
+                        <img class="botaoAtivarInputFile" src="Imagens/imagem_adicionar_imagem_produto_input_file.jpg" alt="Imagem input adicionar imagem" height="100px" width="100px">
                         <label for="inputImagemAddProduto" hidden>Imagem do produto</label>
-                        <input class="inputFileImgAddProduto" type="file" name="imagem" id="inputImagemAddProduto" accept="image/png, image/jpeg, image/webp" required hidden>
+                        <input type="file" name="imagem" class="inputImagem" id="inputImagemAddProduto" accept="image/png, image/jpeg, image/webp" required hidden>
                     </div>
                     <div class="tituloParagrafoAddProduto">
                         <h2>Adicionar produto</h2>
@@ -81,7 +70,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
                 </header>
                 <div class="labelInputUni">
                     <label for="inputNomeAddProduto">Nome do Produto</label>
-                    <input type="text" minlength="1" maxlength="150" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="inputNomeAddProduto" required>
+                    <input type="text" class="inputNome" minlength="1" maxlength="150" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="inputNomeAddProduto" required>
                     <span></span>
                 </div>
                 <div class="labelInputUni">
@@ -120,79 +109,89 @@ $produtos = Produtos_gerenciamento::get_produtos();
         </div>
         <!-- Fim da tela de adicionar produto -->
         <div class="gerenciamento">
-            <h1>Produtos</h1>
+            <h2>Produtos</h2>
             <p>Gerenciamento dos produtos do IFsports</p>
-
             <button id="add_produto" class="botaoEditar">Adicionar produto</button>
         </div>
-
         <!--Alguém vai ter que ajeitar os nomes dessas classes-->
-
         <div class="produtos">
-            <?php
-            while ($produto = $produtos->fetch_assoc()):
-                ?>
+            <?php while ($produto = $produtos->fetch_assoc()): ?>
                 <div class="produto">
-                    <div class="divProduto"><img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
-                                                 alt="Foto produto" class="usuario"></div>
-
+                    <div class="divProduto">
+                        <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Foto produto" class="usuario">
+                    </div>
                     <div class="infosProduto">
                         <p>ID: <?= $produto['id_produtos'] ?></p>
                         <h3>Produto: <?= $produto['nome'] ?></h3>
                         <p>Valor: R$ <?= $produto['preco'] ?></p>
                     </div>
-
                     <div class="bu">
-                        <form style="width: 100%;display: inline-flex" method="POST" action=""
-                              onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');">
-
-                            <input type="hidden" name="id"
-                                   value="<?= (int)$produto["id_produtos"] ?>">
-
+                        <form style="width: 100%; display: inline-flex;" method="POST" action="" onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');">
+                            <input type="hidden" name="id" value="<?= $produto["id_produtos"] ?>">
                             <button type="submit" class="botaoExcluir">Remover produto</button>
                         </form>
                         <button class="botaoEditar" id="BotaoEditar">Editar produto</button>
-                        <div class="modal" id="modal">
-
-                                <div class="modalconteudo-Produtos">
-
-                                    <div class="modalIMG-addProdutos"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto"></div>
-                                    <div class="Lapis">
-                                        <i class="fa-solid fa-pencil"></i>
+                        <div class="modal" id="<?= "editar-produto" . $produto['id_produtos'] ?>">
+                            <form action="../Rotas/editar_produto.php" method="post" id="<?= "formEditarProduto" . $produto['id_produtos'] ?>" class="modalconteudo-Produtos" enctype="multipart/form-data" novalidate>
+                                <header>
+                                    <div class="modalIMG-editarProdutos">
+                                        <div>
+                                            <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem input editar imagem" height="100px" width="100px">
+                                            <button type="button" class="botaoCamEditarProduto botaoAtivarInputFile"><i class="fa-regular fa-camera fa-xl"></i></button>
+                                        </div>
+                                        <label for="<?= "inputImagemEditarProduto" . $produto['id_produtos'] ?>" hidden>Imagem do produto</label>
+                                        <input type="file" name="imagem" class="inputImagem" id="<?= "inputImagemEditarProduto" . $produto['id_produtos'] ?>" accept="image/png, image/jpeg, image/webp" required hidden>
                                     </div>
-                                    <form action="../Rotas/editar_produto.php" method="post">
-                                        <div class="camposProdutos">
-                                            <h4>Nome do Produto</h4>
-                                            <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id_produtos']) ?>">
-                                            <input type="text" name="nome" id="" class="inforProduto" value="<?= htmlspecialchars($produto['nome']) ?>">
-
-
-                                            <h4>Preço</h4>
-                                            <div class="preco">
-                                                <i class="fa-solid fa-dollar-sign"></i>
-                                                <input type="number" step="0.01" min="0" value="<?= htmlspecialchars($produto['preco']) ?>" id="" name="preco" class="inforProduto">
-                                            </div>
-
-                                            <h4>Descrição</h4>
-                                            <textarea name="descricao" id="" class="inforProduto"><?= $produto['descricao'] ?></textarea>
-                                            <h4>Estoque</h4>
-                                            <input type="number" name="estoque" id="" class="inforProduto" value="<?= htmlspecialchars($produto['estoque']) ?>">
-                                        </div>
-                                        <div class="botoesProdutos">
-                                            <button class="botaoProdutosCan">Cancelar</button> <button class="botaoProdutos">Salvar Alterações</button>
-                                        </div>
-                                    </form>
-
+                                    <div class="tituloParagrafoEditarProduto">
+                                        <h2>Editar produto</h2>
+                                        <p>Altere as informações do produto.</p>
+                                        <span></span>
+                                    </div>
+                                </header>
+                                <div class="labelInputUni">
+                                    <label for="<?= "inputNomeEditarProduto" . $produto['id_produtos'] ?>">Nome do Produto</label>
+                                    <input type="text" class="inputNome" minlength="1" maxlength="150" value="<?= $produto['nome'] ?>" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="<?= "inputNomeEditarProduto" . $produto['id_produtos'] ?>" required>
+                                    <span></span>
                                 </div>
-                            </div>
+                                <div class="labelInputUni">
+                                    <label for="<?= "inputTipoEditarProduto" . $produto['id_produtos'] ?>">Tipo</label>
+                                    <i class="fa-solid fa-volleyball fa-xl" id="<?= "iconeTipoEditarProduto" . $produto['id_produtos'] ?>"></i>
+                                    <select name="tipo-produto" id="<?= "inputTipoEditarProduto" . $produto['id_produtos'] ?>" required>
+                                        <option value="" disabled>Selecione o tipo</option>
+                                        <option value="Camisas" <?= $produto['tipo'] === "Camisas" ? "selected" : "" ?>>Camisas</option>
+                                        <option value="Tênis" <?= $produto['tipo'] === "Tênis" ? "selected" : "" ?>>Tênis</option>
+                                        <option value="Bolas" <?= $produto['tipo'] === "Bolas" ? "selected" : "" ?>>Bolas</option>
+                                        <option value="Equipamentos" <?= $produto['tipo'] === "Equipamentos" ? "selected" : "" ?>>Equipamentos</option>
+                                    </select>
+                                    <span></span>
+                                </div>
+                                <div class="labelInputUni">
+                                    <label for="<?= "inputPrecoEditarProduto" . $produto['id_produtos'] ?>">Preço</label>
+                                    <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" value="<?= $produto['preco'] ?>" placeholder="R$ 0,01" id="<?= "inputPrecoEditarProduto" . $produto['id_produtos'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="labelInputUni">
+                                    <label for="<?= "inputDescricaoEditarProduto" . $produto['id_produtos'] ?>">Descrição</label>
+                                    <textarea placeholder="Descreva o produto..." name="desc-produto" id="<?= "inputDescricaoEditarProduto" . $produto['id_produtos'] ?>" minlength="1" maxlength="500" required><?= $produto['descricao'] ?></textarea>
+                                    <span></span>
+                                    <span class="contadorDescricao" id="<?= "contadorDescricaoEditarProduto" . $produto['id_produtos'] ?>">0/500</span>
+                                </div>
+                                <div class="labelInputUni">
+                                    <label for="<?= "inputEstoqueEditarProduto" . $produto['id_produtos'] ?>">Estoque</label>
+                                    <input type="number" name="estoque-produto" id="<?= "inputEstoqueEditarProduto" . $produto['id_produtos'] ?>" min="1" value="<?= $produto['estoque'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="containerBotoesCriarCancelarFormEditar">
+                                    <input type="reset" class="botaoFormEditar" value="Cancelar">
+                                    <button type="submit" class="botaoFormEditar"><i class="fa-regular fa-floppy-disk fa-xl"></i> Salvar alterações</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                <?php
-                endwhile;
-                ?>
-            </div>
+                </div>
+            <?php endwhile; ?>
+        </div>
     </main>
-
 </body>
 <script src="../JS/produtos.js"></script>
 </html>

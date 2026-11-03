@@ -4,10 +4,10 @@ const modal_novo_produto = document.getElementById('criar-produto');
 const botao_novo_produto = document.getElementById('add_produto');
 const cabecalho = document.querySelector('.cabecalho');
 const formAddProduto = document.getElementById('formAddProduto');
-const imgInputFileAddProduto = document.querySelector(".modalIMG-addProdutos img");
+const botoesAtivarInputFileProduto = document.querySelectorAll(".botaoAtivarInputFile");
 const spanMensagemErroInputFileAddProduto = document.querySelector(".tituloParagrafoAddProduto span");
-const inputFileAddProduto = document.querySelector(".modalIMG-addProdutos input");
-const inputNomeAddProduto = document.getElementById("inputNomeAddProduto");
+const inputsFileImagemProduto = document.querySelectorAll(".inputImagem");
+const inputsNomeProduto = document.querySelectorAll(".inputNome");
 const iconeTipoAddProduto = document.getElementById("iconeTipoAddProduto");
 const inputTipoAddProduto = document.getElementById("inputTipoAddProduto");
 const inputPrecoAddProduto = document.getElementById("inputPrecoAddProduto");
@@ -21,12 +21,19 @@ const camposFormAddProduto = [inputNomeAddProduto, inputTipoAddProduto, inputPre
 
 contadorDescricaoAddProduto.textContent = inputDescricaoAddProduto.value.trim().length + "/500";
 
-imgInputFileAddProduto.addEventListener("click", () => {
-    inputFileAddProduto.click();
+botoesAtivarInputFileProduto.forEach((botaoAtivarInputFileProduto) => {
+    botaoAtivarInputFileProduto.addEventListener("click", () => {
+        const container = botaoAtivarInputFileProduto.closest('.modalIMG-addProdutos, .modalIMG-editarProdutos');
+        const inputFile = container.querySelector(".inputImagem");
+
+        inputFile.click();
+    });
 });
 
-inputFileAddProduto.addEventListener("change", () => {
-    validarImagemProduto(inputFileAddProduto);
+inputsFileImagemProduto.forEach((inputFileImagemProduto) => {
+    inputFileImagemProduto.addEventListener("change", () => {
+        validarImagemProduto(inputFileImagemProduto);
+    });
 });
 
 botoesEditar.forEach(function (botao) {
@@ -34,6 +41,10 @@ botoesEditar.forEach(function (botao) {
         const modal = botao.closest('.bu').querySelector('.modal');
 
         modal.style.display = 'flex';
+        cabecalho.style.opacity = '0.651';
+        cabecalho.style.pointerEvents = 'none';
+        cabecalho.style.zIndex = '0';
+        container_perfis.style.overflow = 'hidden';
     });
 });
 
