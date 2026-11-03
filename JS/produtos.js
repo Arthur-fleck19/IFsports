@@ -1,111 +1,225 @@
-const botoesEditar = document.querySelectorAll(".botaoEditar");
-const modais = document.querySelectorAll('.modal');
-const modal_novo_produto = document.getElementById('criar-produto');
-const botao_novo_produto = document.getElementById('add_produto');
-const cabecalho = document.querySelector('.cabecalho');
-const formAddProduto = document.getElementById('formAddProduto');
-const botoesAtivarInputFileProduto = document.querySelectorAll(".botaoAtivarInputFile");
-const spanMensagemErroInputFileAddProduto = document.querySelector(".tituloParagrafoAddProduto span");
-const inputsFileImagemProduto = document.querySelectorAll(".inputImagem");
-const inputsNomeProduto = document.querySelectorAll(".inputNome");
-const iconeTipoAddProduto = document.getElementById("iconeTipoAddProduto");
-const inputTipoAddProduto = document.getElementById("inputTipoAddProduto");
-const inputPrecoAddProduto = document.getElementById("inputPrecoAddProduto");
-const inputDescricaoAddProduto = document.getElementById("inputDescricaoAddProduto");
-const inputEstoqueAddProduto = document.getElementById("inputEstoqueAddProduto");
-const contadorDescricaoAddProduto = document.getElementById("contadorDescricaoAddProduto");
-const container_perfis = document.querySelector('body');
+const modais = document.querySelectorAll(".modal");
+
+const modalNovoProduto = document.getElementById("criar-produto");
+const botaoNovoProduto = document.getElementById("add_produto");
+
+const botoesEditar = document.querySelectorAll(".botaoAbrirEdicao");
+const botoesAtivarInputFile = document.querySelectorAll(".botaoAtivarInputFile");
+
+const cabecalho = document.querySelector(".cabecalho");
+const corpo = document.body;
+
+const formsProdutos = document.querySelectorAll("form.modalconteudo-Produtos");
+
 const tiposProdutosValidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
 const tiposImagensValidos = ["image/jpeg", "image/png", "image/webp"];
-const camposFormAddProduto = [inputNomeAddProduto, inputTipoAddProduto, inputPrecoAddProduto, inputDescricaoAddProduto, inputEstoqueAddProduto];
 
-contadorDescricaoAddProduto.textContent = inputDescricaoAddProduto.value.trim().length + "/500";
+const tamanhoMaximoImagem = 5 * 1024 * 1024;
+/*contadoresDescricaoProduto.forEach(contadorDescricaoProduto => {
+    contadorDescricaoProduto.textContent = contadorDescricaoProduto.previousElementSibling.previousElementSibling.value.length + "/500";
+});*/
 
-botoesAtivarInputFileProduto.forEach((botaoAtivarInputFileProduto) => {
-    botaoAtivarInputFileProduto.addEventListener("click", () => {
-        const container = botaoAtivarInputFileProduto.closest('.modalIMG-addProdutos, .modalIMG-editarProdutos');
+formsProdutos.forEach((form) => {
+    const inputFile = form.querySelector(".inputImagem");
+
+    inputFile.addEventListener("change", () => {
+        validarImagemProduto(inputFile);
+    });
+
+    const selectTipo = form.querySelector(".selectTipo");
+    const iconeTipo = selectTipo.previousElementSibling;
+
+    selectTipo.addEventListener("change", () => {
+        mudarCorOpcaoSelecionada(selectTipo);
+
+        mudarIconeOpcaoSelecionada(selectTipo, iconeTipo);
+    });
+
+    // Inicializa a aparência de cada formulário.
+    mudarCorOpcaoSelecionada(selectTipo);
+
+    mudarIconeOpcaoSelecionada(selectTipo, iconeTipo);
+
+    const descricao = form.querySelector(".textareaDescricao");
+    const contador = form.querySelector(".contadorDescricao");
+
+    atualizarContadorDescricaoProduto(descricao, contador);
+
+    descricao.addEventListener("input", () => {
+        atualizarContadorDescricaoProduto(descricao, contador);
+    });
+
+    // Limpa os erros enquanto o usuário altera os campos.
+    const campos = form.querySelectorAll(".inputForm");
+
+    campos.forEach((campo) => {
+        campo.addEventListener("input", () => {
+            limparErroCampoForm(campo);
+        });
+
+        campo.addEventListener("change", () => {
+            limparErroCampoForm(campo);
+        });
+    });
+
+    // Valida o formulário antes do envio.
+    form.addEventListener("submit", (evento) => {
+        const formularioValido = validarFormularioProduto(form);
+
+        if (!formularioValido) {
+            evento.preventDefault();
+        }
+
+    });
+
+    const preview = form.querySelector(".previewImagemProduto");
+
+    // Guarda a imagem que estava sendo exibida inicialmente.
+    preview.dataset.imagemOriginal = preview.src;
+
+    form.addEventListener("reset", () => {
+
+        // Espera o navegador restaurar os valores originais dos campos.
+        setTimeout(() => {
+
+            // Restaura a imagem original.
+            if (preview.dataset.urlObjeto) {
+                URL.revokeObjectURL(preview.dataset.urlObjeto);
+
+                delete preview.dataset.urlObjeto;
+            }
+
+            preview.src = preview.dataset.imagemOriginal;
+
+            // Limpa erros dos campos.
+            form.querySelectorAll(".inputForm").forEach((campo) => {
+                limparErroCampoForm(campo);
+            });
+
+            // Limpa mensagem de erro da imagem.
+            form.querySelector(".mensagemErroImagem").textContent = "";
+
+            // Atualiza o contador da descrição.
+            const descricao = form.querySelector(".textareaDescricao");
+
+            const contador = form.querySelector(".contadorDescricao");
+
+            atualizarContadorDescricaoProduto(descricao, contador);
+
+            // Restaura a aparência do select e seu ícone.
+            const selectTipo = form.querySelector(".selectTipo");
+
+            const iconeTipo = selectTipo.previousElementSibling;
+
+            mudarCorOpcaoSelecionada(selectTipo);
+
+            mudarIconeOpcaoSelecionada(selectTipo, iconeTipo);
+
+        }, 0);
+
+    });
+});
+
+botoesAtivarInputFile.forEach((botao) => {
+    botao.addEventListener("click", () => {
+        const container = botao.closest(
+            ".modalIMG-addProdutos, .modalIMG-editarProdutos"
+        );
+
         const inputFile = container.querySelector(".inputImagem");
 
         inputFile.click();
     });
 });
 
-inputsFileImagemProduto.forEach((inputFileImagemProduto) => {
+/*inputsFileImagemProduto.forEach((inputFileImagemProduto) => {
     inputFileImagemProduto.addEventListener("change", () => {
         validarImagemProduto(inputFileImagemProduto);
     });
-});
+});*/
 
-botoesEditar.forEach(function (botao) {
-    botao.addEventListener('click', () => {
-        const modal = botao.closest('.bu').querySelector('.modal');
+botoesEditar.forEach((botaoEditar) => {
+    botaoEditar.addEventListener("click", () => {
+        console.log("fdfdg");
+        const modal = botaoEditar.closest(".bu").querySelector(".modal");
 
-        modal.style.display = 'flex';
-        cabecalho.style.opacity = '0.651';
-        cabecalho.style.pointerEvents = 'none';
-        cabecalho.style.zIndex = '0';
-        container_perfis.style.overflow = 'hidden';
+        abrirModal(modal);
     });
 });
 
-modais.forEach(function (modal) {
-    modal.addEventListener('click', (local) => {
-        if(local.target === modal) {
-            modal.style.display = 'none';
-            cabecalho.style.opacity = '1';
-            cabecalho.style.pointerEvents = '';
-            cabecalho.style.zIndex = '';
-            container_perfis.style.overflow = '';
+modais.forEach((modal) => {
+    console.log("fdfdg");
+    modal.addEventListener("click", (evento) => {
+        if (evento.target === modal) {
+            fecharModal(modal);
         }
     });
 });
 
-botao_novo_produto.addEventListener('click', () => {
-    modal_novo_produto.style.display = 'flex';
-    cabecalho.style.opacity = '0.651';
-    cabecalho.style.pointerEvents = 'none';
-    cabecalho.style.zIndex = '0';
-    container_perfis.style.overflow = 'hidden';
+botaoNovoProduto.addEventListener("click", () => {
+    abrirModal(modalNovoProduto);
 });
 
-inputTipoAddProduto.addEventListener('change', () => {
-    mudarCorOpcaoSelecionada(inputTipoAddProduto);
-    mudarIconeOpcaoSelecionada(inputTipoAddProduto, iconeTipoAddProduto);
-});
+/*inputsTipoProduto.forEach((inputTipoProduto) => {
+    inputTipoProduto.addEventListener("change", () => {
+        mudarCorOpcaoSelecionada(inputTipoProduto);
+        mudarIconeOpcaoSelecionada(inputTipoProduto, inputTipoProduto.previousElementSibling);
+    });
 
-inputDescricaoAddProduto.addEventListener('input', () => {
-    atualizarContadorDescricaoProduto(inputDescricaoAddProduto, contadorDescricaoAddProduto);
-});
+    mudarCorOpcaoSelecionada(inputTipoProduto);
+    mudarIconeOpcaoSelecionada(inputTipoProduto, inputTipoProduto.previousElementSibling);
+});*/
 
-camposFormAddProduto.forEach((campoForm) => {
+/*inputsDescricaoProduto.forEach((inputDescricaoProduto) => {
+    inputDescricaoProduto.addEventListener('input', () => {
+        atualizarContadorDescricaoProduto(inputDescricaoProduto, inputDescricaoProduto.nextElementSibling.nextElementSibling);
+    });
+});*/
+
+/*todosCamposFormsProdutos.forEach((campoForm) => {
     campoForm.addEventListener("input", () => {
         limparErroCampoForm(campoForm);
     });
-});
+});*/
 
-formAddProduto.addEventListener('reset', () => {
-   inputTipoAddProduto.style.color = "#767676";
+/*formAddProduto.addEventListener('reset', () => {
+   formAddProduto.querySelector(".selectTipo").style.color = "#767676";
    iconeTipoAddProduto.className = "";
-   contadorDescricaoAddProduto.textContent = "0/500";
-   imgInputFileAddProduto.src = "Imagens/imagem_adicionar_imagem_produto_input_file.jpg";
+   formAddProduto.querySelector(".contadorDescricao").textContent = "0/500";
+   formAddProduto.querySelector(".botaoAtivarInputFile").src = "Imagens/imagem_adicionar_imagem_produto_input_file.jpg";
 
    iconeTipoAddProduto.classList.add("fa-solid", "fa-volleyball", "fa-xl");
 
    limparTodosErrosCamposForm("form.modalconteudo-Produtos .labelInputUni > input, form.modalconteudo-Produtos .labelInputUni > select, form.modalconteudo-Produtos .labelInputUni > textarea");
-});
+});*/
 
-formAddProduto.addEventListener('submit', (evento) => {
-    const imagemProdutoValido = validarImagemProduto(inputFileAddProduto);
-    const nomeProdutoValido = validarNomeProduto(inputNomeAddProduto);
-    const tipoProdutoValido = validarTipoProduto(inputTipoAddProduto, tiposProdutosValidos);
-    const precoProdutoValido = validarPrecoProduto(inputPrecoAddProduto);
-    const descricaoProdutoValido = validarDescricaoProduto(inputDescricaoAddProduto);
-    const estoqueProdutoValido = validarEstoqueProduto(inputEstoqueAddProduto);
+/*formAddProduto.addEventListener('submit', (evento) => {
+    const imagemProdutoValido = validarImagemProduto(formAddProduto.querySelector(".inputImagem"));
+    const nomeProdutoValido = validarNomeProduto(formAddProduto.querySelector(".inputNome"));
+    const tipoProdutoValido = validarTipoProduto(formAddProduto.querySelector(".selectTipo"));
+    const precoProdutoValido = validarPrecoProduto(formAddProduto.querySelector(".inputPreco"));
+    const descricaoProdutoValido = validarDescricaoProduto(formAddProduto.querySelector(".textareaDescricao"));
+    const estoqueProdutoValido = validarEstoqueProduto(formAddProduto.querySelector(".inputEstoque"));
 
     if(!(imagemProdutoValido && nomeProdutoValido && tipoProdutoValido && precoProdutoValido && descricaoProdutoValido && estoqueProdutoValido)) {
         evento.preventDefault();
     }
-});
+});*/
+
+/*formsEditarProduto.forEach((formEditarProduto) => {
+    formEditarProduto.addEventListener('submit', (evento) => {
+        const imagemProdutoValido = validarImagemProduto(formEditarProduto.querySelector(".inputImagem"));
+        const nomeProdutoValido = validarNomeProduto(formEditarProduto.querySelector(".inputNome"));
+        const tipoProdutoValido = validarTipoProduto(formEditarProduto.querySelector(".selectTipo"));
+        const precoProdutoValido = validarPrecoProduto(formEditarProduto.querySelector(".inputPreco"));
+        const descricaoProdutoValido = validarDescricaoProduto(formEditarProduto.querySelector(".textareaDescricao"));
+        const estoqueProdutoValido = validarEstoqueProduto(formEditarProduto.querySelector(".inputEstoque"));
+
+        if(!(imagemProdutoValido && nomeProdutoValido && tipoProdutoValido && precoProdutoValido && descricaoProdutoValido && estoqueProdutoValido)) {
+            evento.preventDefault();
+        }
+    });
+});*/
 
 function mudarCorOpcaoSelecionada(inputSelect) {
     if(inputSelect.value === "") {
@@ -134,12 +248,15 @@ function mudarIconeOpcaoSelecionada(select, icone) {
         case "Equipamentos":
             icone.classList.add("fa-solid", "fa-table-tennis-paddle-ball", "fa-xl");
         break;
+
+        default:
+            icone.classList.add("fa-solid", "fa-volleyball", "fa-xl");
     }
 }
 
 function atualizarContadorDescricaoProduto(inputDescricao, contadorDescricao) {
-    if(inputDescricao.value.trim().length <= 500) {
-        contadorDescricao.textContent = inputDescricao.value.trim().length + "/500";
+    if(inputDescricao.value.length <= 500) {
+        contadorDescricao.textContent = inputDescricao.value.length + "/500";
     } else {
         inputDescricao.value = inputDescricao.value.substring(0, 500);
         contadorDescricao.textContent = "500/500";
@@ -147,39 +264,63 @@ function atualizarContadorDescricaoProduto(inputDescricao, contadorDescricao) {
 }
 
 function validarImagemProduto(inputFile) {
-    if(inputFile.files.length > 0) {
-        if(inputFile.files.length < 2) {
-            const arquivoImgProduto = inputFile.files[0];
+    const form = inputFile.closest("form");
 
-            if(tiposImagensValidos.includes(arquivoImgProduto.type)) {
-                if(arquivoImgProduto.size <= 5242880) {
-                    spanMensagemErroInputFileAddProduto.innerHTML = "";
-                    imgInputFileAddProduto.src = URL.createObjectURL(arquivoImgProduto);
+    const imagemObrigatoria =
+        form.dataset.imagemObrigatoria === "true";
 
-                    return true;
-                } else {
-                    spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Tamanho da imagem é muito grande, selecione uma imagem com menos de 5 MiB.";
-                    imgInputFileAddProduto.src = "Imagens/imagem_erro_arquivo_imagem_produto.png";
+    const mensagemErro = form.querySelector(".mensagemErroImagem");
 
-                    return false;
-                }
-            } else {
-                spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Tipo de imagem inválido.";
-                imgInputFileAddProduto.src = "Imagens/imagem_erro_arquivo_imagem_produto.png";
+    const preview = form.querySelector(".previewImagemProduto");
 
-                return false;
-            }
-        } else {
-            spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Não selecione mais de um arquivo de imagem.";
-            imgInputFileAddProduto.src = "Imagens/imagem_erro_arquivo_imagem_produto.png";
+    const arquivo = inputFile.files[0];
 
-            return false;
-        }
-    } else {
-        spanMensagemErroInputFileAddProduto.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Selecione uma imagem para o produto.";
+    // Verifica se o usuário selecionou uma imagem.
+    if (!arquivo) {
+        mensagemErro.textContent = imagemObrigatoria
+            ? "Selecione uma imagem para o produto."
+            : "";
+
+        return !imagemObrigatoria;
+    }
+
+    // Verifica a quantidade de arquivos.
+    if (inputFile.files.length !== 1) {
+        mensagemErro.textContent = "Selecione apenas uma imagem.";
 
         return false;
     }
+
+    // Verifica o formato da imagem.
+    if (!tiposImagensValidos.includes(arquivo.type)) {
+        mensagemErro.textContent = "Tipo de imagem inválido.";
+
+        return false;
+    }
+
+    // Verifica o tamanho da imagem.
+    if (arquivo.size > tamanhoMaximoImagem) {
+        mensagemErro.textContent =
+            "A imagem deve possuir no máximo 5 MiB.";
+
+        return false;
+    }
+
+    // Libera uma URL temporária anterior, caso exista.
+    if (preview.dataset.urlObjeto) {
+        URL.revokeObjectURL(preview.dataset.urlObjeto);
+    }
+
+    // Cria uma URL temporária para a imagem selecionada.
+    const urlImagem = URL.createObjectURL(arquivo);
+
+    preview.src = urlImagem;
+
+    preview.dataset.urlObjeto = urlImagem;
+
+    mensagemErro.textContent = "";
+
+    return true;
 }
 
 function validarNomeProduto(inputNome) {
@@ -198,7 +339,7 @@ function validarNomeProduto(inputNome) {
     return true;
 }
 
-function validarTipoProduto(inputTipo, tiposProdutosValidos) {
+function validarTipoProduto(inputTipo) {
     if(!(tiposProdutosValidos.includes(inputTipo.value.trim()))) {
         implementarErroCampoForm(inputTipo, "Selecione um tipo de produto válido.");
 
@@ -245,7 +386,7 @@ function validarDescricaoProduto(inputDescricao) {
         implementarErroCampoForm(inputDescricao, "Insira uma descrição para o produto.");
 
         return false;
-    } else if(inputDescricao.value.trim().length > 500) {
+    } else if(inputDescricao.value.length > 500) {
         implementarErroCampoForm(inputDescricao, "Não exceda 500 caracteres.");
 
         return false;
@@ -284,4 +425,58 @@ function limparTodosErrosCamposForm(cssQuerySelector) {
     inputsForm.forEach((input) => {
         limparErroCampoForm(input);
     });
+}
+
+function validarFormularioProduto(form) {
+
+    const imagemValida = validarImagemProduto(
+        form.querySelector(".inputImagem")
+    );
+
+    const nomeValido = validarNomeProduto(
+        form.querySelector(".inputNome")
+    );
+
+    const tipoValido = validarTipoProduto(
+        form.querySelector(".selectTipo")
+    );
+
+    const precoValido = validarPrecoProduto(
+        form.querySelector(".inputPreco")
+    );
+
+    const descricaoValida = validarDescricaoProduto(
+        form.querySelector(".textareaDescricao")
+    );
+
+    const estoqueValido = validarEstoqueProduto(
+        form.querySelector(".inputEstoque")
+    );
+
+    return (
+        imagemValida &&
+        nomeValido &&
+        tipoValido &&
+        precoValido &&
+        descricaoValida &&
+        estoqueValido
+    );
+}
+
+function abrirModal(modal) {
+    modal.style.display = "flex";
+
+    cabecalho.style.opacity = "0.651";
+    cabecalho.style.pointerEvents = "none";
+
+    corpo.style.overflow = "hidden";
+}
+
+function fecharModal(modal) {
+    modal.style.display = "none";
+
+    cabecalho.style.opacity = "1";
+    cabecalho.style.pointerEvents = "";
+
+    corpo.style.overflow = "";
 }
