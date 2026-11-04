@@ -1,31 +1,6 @@
 <?php
     require_once "../Classes/Produtos_gerenciamento.php";
 
-    $id = $_POST['id'];
-    $nome = trim($_POST['nome']);
-    $tipo = trim($_POST['tipo']);
-    $tiposPermitidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
-    $preco = str_replace(",", ".", trim($_POST['preco']));
-    $preco = (double) trim($preco);
-    $descricao = trim($_POST['descricao']);
-    $estoque = (int) trim($_POST['estoque']);
-    $nomeValido = validarNome($nome);
-    $tipoValido = validarTipo($tipo, $tiposPermitidos);
-    $precoValido = validarPreco($preco);
-    $descricaoValida = validarDescricao($descricao);
-    $estoqueValido = validarEstoque($estoque);
-
-    if(!($nomeValido && $precoValido && $descricaoValida && $estoqueValido)) {
-        //Se precisar depois, adicionar lógica de alertar erro ou algo assim.
-        header("Location: ../Views/produtos.php");
-        exit();
-    }
-
-    Produtos_gerenciamento::editar_produto($id, $nome, $preco, $descricao, $estoque);
-
-    header("Location: ../Views/produtos.php");
-    exit();
-
     function validarNome($nome):bool {
         if(empty($nome) || strlen($nome) > 150) {
             return false;
@@ -64,4 +39,36 @@
         }
 
         return true;
+    }
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
+        $arquivoImagem = $_FILES['imagem'];
+        $nome = trim($_POST['nome']);
+        $tipo = trim($_POST['tipo']);
+        $tiposPermitidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
+        $preco = str_replace(",", ".", trim($_POST['preco']));
+        $preco = (double) trim($preco);
+        $descricao = trim($_POST['descricao']);
+        $estoque = (int) trim($_POST['estoque']);
+        $nomeValido = validarNome($nome);
+        $tipoValido = validarTipo($tipo, $tiposPermitidos);
+        $precoValido = validarPreco($preco);
+        $descricaoValida = validarDescricao($descricao);
+        $estoqueValido = validarEstoque($estoque);
+
+        if(!($nomeValido && $precoValido && $descricaoValida && $estoqueValido)) {
+            //Se precisar depois, adicionar lógica de alertar erro ou algo assim.
+            header("Location: ../Views/produtos.php");
+            exit();
+        }
+
+        $imagem = Produtos_gerenciamento::salvar_imagem($arquivoImagem);
+        Produtos_gerenciamento::editar_produto($id, $imagem, $nome, $tipo, $preco, $descricao, $estoque);
+
+        header("Location: ../Views/produtos.php");
+        exit();
+    } else {
+        header("Location: ../Views/produtos.php");
+        exit();
     }

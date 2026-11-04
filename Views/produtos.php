@@ -4,7 +4,7 @@
     
     if($_SESSION['tipo'] != 'admin') {
         header('Location: dashboard.php');
-        exit;
+        exit();
     }
     
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="icon" href="Imagens/logoIF.png">
     <link rel="stylesheet" href="../CSS/produtos.css">
-    <title>Dashboard</title>
+    <title>Dashboard de produtos</title>
 </head>
 <body>
     <header class="cabecalho">
@@ -118,229 +118,74 @@
             <?php while($produto = $produtos->fetch_assoc()): ?>
                 <div class="produto">
                     <div class="divProduto">
-                        <img
-                                src="../uploads/<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>"
-                                alt="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>"
-                                class="usuario"
-                        >
+                        <img src="../uploads/<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>" class="usuario">
                     </div>
-
                     <div class="infosProduto">
                         <p>ID: <?= (int)$produto['id_produtos'] ?></p>
-
-                        <h3>
-                            Produto:
-                            <?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>
-                        </h3>
-
-                        <p>
-                            Valor: R$
-                            <?= htmlspecialchars((string)$produto['preco'], ENT_QUOTES, 'UTF-8') ?>
-                        </p>
+                        <h3>Produto: <?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?></h3>
+                        <p>Valor: R$<?= htmlspecialchars((string)$produto['preco'], ENT_QUOTES, 'UTF-8') ?></p>
                     </div>
-
                     <div class="bu">
-                        <form
-                                style="width: 100%; display: inline-flex;"
-                                method="POST"
-                                action=""
-                                onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');"
-                        >
-                            <input
-                                    type="hidden"
-                                    name="id"
-                                    value="<?= (int)$produto['id_produtos'] ?>"
-                            >
-
-                            <button type="submit" class="botaoExcluir">
-                                Remover produto
-                            </button>
+                        <form style="width: 100%; display: inline-flex;" method="POST" action="" onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');">
+                            <input type="hidden" name="id" value="<?= (int)$produto['id_produtos'] ?>">
+                            <button type="submit" class="botaoExcluir">Remover produto</button>
                         </form>
-
-                        <button type="button" class="botaoEditar botaoAbrirEdicao">
-                            Editar produto
-                        </button>
+                        <button type="button" class="botaoEditar botaoAbrirEdicao">Editar produto</button>
                         <div class="modal" id="<?= 'editar-produto' . (int)$produto['id_produtos'] ?>">
-                            <form
-                                    action="../Rotas/editar_produto.php"
-                                    method="post"
-                                    class="formEditarProduto modalconteudo-Produtos"
-                                    id="<?= 'formEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                    enctype="multipart/form-data"
-                                    novalidate
-                                    data-imagem-obrigatoria="false"
-                            >
-                                <input
-                                        type="hidden"
-                                        name="id-produto"
-                                        value="<?= (int)$produto['id_produtos'] ?>"
-                                >
-
+                            <form action="../Rotas/editar_produto.php" method="post" class="formEditarProduto modalconteudo-Produtos" id="<?= 'formEditarProduto' . (int)$produto['id_produtos'] ?>" enctype="multipart/form-data" novalidate data-imagem-obrigatoria="false">
+                                <input type="hidden" name="id" value="<?= (int)$produto['id_produtos'] ?>">
                                 <header>
                                     <div class="modalIMG-editarProdutos">
                                         <div class="containerPreviewImagem">
-                                            <img
-                                                    class="previewImagemProduto"
-                                                    src="../uploads/<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>"
-                                                    alt="Imagem atual do produto"
-                                                    height="100"
-                                                    width="100"
-                                            >
-
-                                            <button
-                                                    type="button"
-                                                    class="botaoCamEditarProduto botaoAtivarInputFile"
-                                                    aria-label="Alterar imagem do produto"
-                                            >
+                                            <img class="previewImagemProduto" src="../uploads/<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>" alt="Imagem atual do produto" height="100" width="100">
+                                            <button type="button" class="botaoCamEditarProduto botaoAtivarInputFile" aria-label="Alterar imagem do produto">
                                                 <i class="fa-regular fa-camera fa-xl"></i>
                                             </button>
                                         </div>
-
-                                        <label
-                                                for="<?= 'inputImagemEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                                hidden
-                                        >
-                                            Imagem do produto
-                                        </label>
-
-                                        <input
-                                                type="file"
-                                                name="imagem"
-                                                class="inputImagem"
-                                                id="<?= 'inputImagemEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                                accept="image/png, image/jpeg, image/webp"
-                                                hidden
-                                        >
+                                        <label for="<?= 'inputImagemEditarProduto' . (int)$produto['id_produtos'] ?>" hidden>Imagem do produto</label>
+                                        <input type="file" name="imagem" class="inputImagem" id="<?= 'inputImagemEditarProduto' . (int)$produto['id_produtos'] ?>" accept="image/png, image/jpeg, image/webp" hidden>
                                     </div>
-
                                     <div class="tituloParagrafoEditarProduto">
                                         <h2>Editar produto</h2>
                                         <p>Altere as informações do produto.</p>
                                         <span class="mensagemErroImagem"></span>
                                     </div>
                                 </header>
-
                                 <div class="labelInputUni">
-                                    <label for="<?= 'inputNomeEditarProduto' . (int)$produto['id_produtos'] ?>">
-                                        Nome do Produto
-                                    </label>
-
-                                    <input
-                                            type="text"
-                                            class="inputNome inputForm"
-                                            minlength="1"
-                                            maxlength="150"
-                                            value="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>"
-                                            placeholder="Ex.: Bola de vôlei"
-                                            name="nome"
-                                            id="<?= 'inputNomeEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                            required
-                                    >
+                                    <label for="<?= 'inputNomeEditarProduto' . (int)$produto['id_produtos'] ?>">Nome do Produto</label>
+                                    <input type="text" class="inputNome inputForm" minlength="1" maxlength="150" value="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Ex.: Bola de vôlei" name="nome" id="<?= 'inputNomeEditarProduto' . (int)$produto['id_produtos'] ?>" required>
                                     <span></span>
                                 </div>
-
                                 <div class="labelInputUni">
-                                    <label for="<?= 'inputTipoEditarProduto' . (int)$produto['id_produtos'] ?>">
-                                        Tipo
-                                    </label>
-
+                                    <label for="<?= 'inputTipoEditarProduto' . (int)$produto['id_produtos'] ?>">Tipo</label>
                                     <i class="fa-solid fa-volleyball fa-xl"></i>
-
-                                    <select
-                                            name="tipo"
-                                            class="selectTipo inputForm"
-                                            id="<?= 'inputTipoEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                            required
-                                    >
+                                    <select name="tipo" class="selectTipo inputForm" id="<?= 'inputTipoEditarProduto' . (int)$produto['id_produtos'] ?>" required>
                                         <option value="" disabled>Selecione o tipo</option>
-
-                                        <option value="Camisas" <?= $produto['tipo'] === "Camisas" ? "selected" : "" ?>>
-                                            Camisas
-                                        </option>
-
-                                        <option value="Tênis" <?= $produto['tipo'] === "Tênis" ? "selected" : "" ?>>
-                                            Tênis
-                                        </option>
-
-                                        <option value="Bolas" <?= $produto['tipo'] === "Bolas" ? "selected" : "" ?>>
-                                            Bolas
-                                        </option>
-
-                                        <option value="Equipamentos" <?= $produto['tipo'] === "Equipamentos" ? "selected" : "" ?>>
-                                            Equipamentos
-                                        </option>
+                                        <option value="Camisas" <?= $produto['tipo'] === "Camisas" ? "selected" : "" ?>>Camisas</option>
+                                        <option value="Tênis" <?= $produto['tipo'] === "Tênis" ? "selected" : "" ?>>Tênis</option>
+                                        <option value="Bolas" <?= $produto['tipo'] === "Bolas" ? "selected" : "" ?>>Bolas</option>
+                                        <option value="Equipamentos" <?= $produto['tipo'] === "Equipamentos" ? "selected" : "" ?>>Equipamentos</option>
                                     </select>
-
                                     <span></span>
                                 </div>
-
                                 <div class="labelInputUni">
-                                    <label for="<?= 'inputPrecoEditarProduto' . (int)$produto['id_produtos'] ?>">
-                                        Preço
-                                    </label>
-
-                                    <input
-                                            type="number"
-                                            step="0.01"
-                                            min="0.01"
-                                            max="99999999.99"
-                                            name="preco"
-                                            value="<?= htmlspecialchars((string)$produto['preco'], ENT_QUOTES, 'UTF-8') ?>"
-                                            placeholder="R$ 0,01"
-                                            class="inputPreco inputForm"
-                                            id="<?= 'inputPrecoEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                            required
-                                    >
+                                    <label for="<?= 'inputPrecoEditarProduto' . (int)$produto['id_produtos'] ?>">Preço</label><input type="number" step="0.01" min="0.01" max="99999999.99" name="preco" value="<?= htmlspecialchars((string)$produto['preco'], ENT_QUOTES, 'UTF-8') ?>" placeholder="R$ 0,01" class="inputPreco inputForm" id="<?= 'inputPrecoEditarProduto' . (int)$produto['id_produtos'] ?>" required>
                                     <span></span>
                                 </div>
-
                                 <div class="labelInputUni">
-                                    <label for="<?= 'inputDescricaoEditarProduto' . (int)$produto['id_produtos'] ?>">
-                                        Descrição
-                                    </label>
-
-                                    <textarea
-                                            placeholder="Descreva o produto..."
-                                            name="descricao"
-                                            class="textareaDescricao inputForm"
-                                            id="<?= 'inputDescricaoEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                            minlength="1"
-                                            maxlength="500"
-                                            required
-                                    ><?= htmlspecialchars($produto['descricao'], ENT_QUOTES, 'UTF-8') ?></textarea>
-
+                                    <label for="<?= 'inputDescricaoEditarProduto' . (int)$produto['id_produtos'] ?>">Descrição</label>
+                                    <textarea placeholder="Descreva o produto..." name="descricao" class="textareaDescricao inputForm" id="<?= 'inputDescricaoEditarProduto' . (int)$produto['id_produtos'] ?>" minlength="1" maxlength="500" required><?= htmlspecialchars($produto['descricao'], ENT_QUOTES, 'UTF-8') ?></textarea>
                                     <span></span>
-
-                                    <span
-                                            class="contadorDescricao"
-                                            id="<?= 'contadorDescricaoEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                    >0/500</span>
+                                    <span class="contadorDescricao" id="<?= 'contadorDescricaoEditarProduto' . (int)$produto['id_produtos'] ?>">0/500</span>
                                 </div>
-
                                 <div class="labelInputUni">
-                                    <label for="<?= 'inputEstoqueEditarProduto' . (int)$produto['id_produtos'] ?>">
-                                        Estoque
-                                    </label>
-
-                                    <input
-                                            type="number"
-                                            name="estoque"
-                                            class="inputEstoque inputForm"
-                                            id="<?= 'inputEstoqueEditarProduto' . (int)$produto['id_produtos'] ?>"
-                                            min="1"
-                                            value="<?= (int)$produto['estoque'] ?>"
-                                            required
-                                    >
+                                    <label for="<?= 'inputEstoqueEditarProduto' . (int)$produto['id_produtos'] ?>">Estoque</label>
+                                    <input type="number" name="estoque" class="inputEstoque inputForm" id="<?= 'inputEstoqueEditarProduto' . (int)$produto['id_produtos'] ?>" min="1" value="<?= (int)$produto['estoque'] ?>" required>
                                     <span></span>
                                 </div>
-
                                 <div class="containerBotoesCriarCancelarFormEditar">
                                     <input type="reset" class="botaoFormEditar" value="Cancelar">
-
-                                    <button type="submit" class="botaoFormEditar">
-                                        <i class="fa-regular fa-floppy-disk fa-xl"></i>
-                                        Salvar alterações
-                                    </button>
+                                    <button type="submit" class="botaoFormEditar"><i class="fa-regular fa-floppy-disk fa-xl"></i>Salvar alterações</button>
                                 </div>
                             </form>
                         </div>

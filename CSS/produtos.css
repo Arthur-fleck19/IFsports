@@ -13,7 +13,7 @@
     color: var(--texto);
 }
 
-.aAdmin{
+.aAdmin {
     text-decoration: none;
     color: white;
 }
@@ -24,10 +24,8 @@
     background: white;
     min-height: 175px;
     width: 87%;
-
     display: flex;
     align-items: center;
-
     padding: 10px;
     gap: 30px;
 }
@@ -55,7 +53,7 @@
     display: none;
 }
 
-.imagem{
+.imagem {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,7 +63,7 @@
     border-radius: 50%;
 }
 
-.usuario{
+.usuario {
     align-self: center;
     border-radius: 100%;
     outline: 8px solid rgb(121, 117, 117);
@@ -73,31 +71,33 @@
     width: 120px;
     height: 120px;
 }
-.gerenciamento{
+
+.gerenciamento {
     width: 87%;
     margin-bottom: 2rem;
 }
-.gerenciamento h2{
+
+.gerenciamento h2 {
     font-family: sans-serif;
     margin-bottom: 0px;
 }
 
 .gerenciamento p {
     margin-top: 5px;
-    font-family: 'helvetica';
+    font-family: Helvetica, Arial, sans-serif;
 }
+
 .divProduto {
     min-height: 155px;
     width: 165px;
     flex-shrink: 0;
-
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-
     border-right: 2px solid rgb(121, 117, 117);
 }
+
 .infosProduto {
     display: flex;
     flex-direction: column;
@@ -115,16 +115,13 @@
     background-color: white;
     border-radius: 25px;
     box-shadow: #000000 12px 12px 0 0;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 15px;
-
     overflow-x: hidden;
     overflow-y: auto;
-
     scrollbar-color: #555555 transparent;
 }
 
@@ -137,8 +134,7 @@
     flex-shrink: 0;
 }
 
-.modalIMG-addProdutos,
-.modalIMG-editarProdutos {
+.modalIMG-addProdutos, .modalIMG-editarProdutos {
     width: 100px;
     height: 100px;
     flex-shrink: 0;
@@ -146,8 +142,7 @@
     position: relative;
 }
 
-.modalIMG-addProdutos img,
-.previewImagemProduto {
+.modalIMG-addProdutos img, .previewImagemProduto {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -165,16 +160,14 @@
     height: 100px;
 }
 
-.tituloParagrafoAddProduto,
-.tituloParagrafoEditarProduto {
+.tituloParagrafoAddProduto, .tituloParagrafoEditarProduto {
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     min-width: 0;
 }
 
-.tituloParagrafoAddProduto h2,
-.tituloParagrafoEditarProduto h2 {
+.tituloParagrafoAddProduto h2, .tituloParagrafoEditarProduto h2 {
     margin: 0.5rem;
 }
 
@@ -183,8 +176,7 @@
     color: #e21d1d;
 }
 
-.tituloParagrafoAddProduto p,
-.tituloParagrafoEditarProduto p {
+.tituloParagrafoAddProduto p, .tituloParagrafoEditarProduto p {
     margin: 0 0 0 0.5rem;
     color: #676767;
 }
@@ -220,9 +212,7 @@
     outline: none;
 }
 
-.labelInputUni input:focus-visible,
-.labelInputUni select:focus-visible,
-.labelInputUni textarea:focus-visible {
+.labelInputUni input:focus-visible, .labelInputUni select:focus-visible, .labelInputUni textarea:focus-visible {
     border: 2px solid #000000;
 }
 
@@ -303,46 +293,39 @@
     width: 50%;
 }
 
-.containerBotoesCriarCancelarFormAdd,
-.containerBotoesCriarCancelarFormEditar {
+.containerBotoesCriarCancelarFormAdd, .containerBotoesCriarCancelarFormEditar {
     border-top: 1px solid #BEBEBE;
     width: 95%;
     margin-top: 1rem;
     padding: 1rem 0 1rem 1rem;
-
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-
     flex-shrink: 0;
 }
 
-.botaoFormAdd,
-.botaoFormEditar {
+.botaoFormAdd, .botaoFormEditar {
     padding: 1rem;
     border: none;
     border-radius: 25px;
     cursor: pointer;
 }
 
-.botaoFormAdd:hover,
-.botaoFormEditar:hover {
+.botaoFormAdd:hover, .botaoFormEditar:hover {
     opacity: 0.75;
 }
 
-.botaoFormAdd:focus-visible,
-.botaoFormEditar:focus-visible {
+.botaoFormAdd:focus-visible, .botaoFormEditar:focus-visible {
     outline: 2px solid #000000;
     outline-offset: 2px;
 }
 
-.containerBotoesCriarCancelarFormAdd input[type="submit"],
-.containerBotoesCriarCancelarFormEditar button[type="submit"] {
+.containerBotoesCriarCancelarFormAdd input[type="submit"], .containerBotoesCriarCancelarFormEditar button[type="submit"] {
     background-color: #2F9E40;
     color: #FFFFFF;
 }
 
-@media (max-width: 700px) {
+@media(max-width: 700px) {
     .modalconteudo-Produtos {
         width: 95%;
         height: 90%;
@@ -353,8 +336,7 @@
         gap: 10px;
     }
 
-    .tituloParagrafoAddProduto p,
-    .tituloParagrafoEditarProduto p {
+    .tituloParagrafoAddProduto p, .tituloParagrafoEditarProduto p {
         font-size: 0.85rem;
     }
 
@@ -372,7 +354,7 @@
     }
 }
 
-@media (max-width: 450px) {
+@media(max-width: 450px) {
     .modalconteudo-Produtos {
         width: 98%;
         padding: 0.3rem;
@@ -382,10 +364,7 @@
         align-items: flex-start;
     }
 
-    .modalIMG-addProdutos,
-    .modalIMG-editarProdutos,
-    .previewImagemProduto,
-    .containerPreviewImagem {
+    .modalIMG-addProdutos, .modalIMG-editarProdutos, .previewImagemProduto, .containerPreviewImagem {
         width: 75px;
         height: 75px;
     }
@@ -399,15 +378,13 @@
         width: 92%;
     }
 
-    .containerBotoesCriarCancelarFormAdd,
-    .containerBotoesCriarCancelarFormEditar {
+    .containerBotoesCriarCancelarFormAdd, .containerBotoesCriarCancelarFormEditar {
         padding-left: 0;
         justify-content: center;
         gap: 8px;
     }
 
-    .botaoFormAdd,
-    .botaoFormEditar {
+    .botaoFormAdd, .botaoFormEditar {
         padding: 0.75rem;
         font-size: 0.8rem;
     }
@@ -444,17 +421,13 @@
 .botaoCamEditarProduto {
     height: 40px;
     width: 40px;
-
     border: 1px solid black;
     border-radius: 100%;
-
     background-color: white;
     cursor: pointer;
-
     position: absolute;
     bottom: 0;
     right: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -463,56 +436,15 @@
 .botaoCamEditarProduto:hover {
     background-color: #e5e5e5;
 }
-/* Tela de editar produto */
 
-/*Fim da tela de editar produto*/
-
-/*.inputImg {
-    height: 100px;
-    width: 100px;
-    background-color: green;
-    border-radius: 100%;
-    cursor: pointer;
-}*/
-
-/*.Lapis {
-    position: absolute;
-    top: 85px;
-    left: 120px;
-    width: 30px;
-    height: 30px;
-    color: black;
-    font-size: 20px;
-    z-index: 999;
-    cursor: pointer;
-}*/
-
-
-/*.inforProduto {
-    height: 30px;
-    width: 190%;
-    margin-top: 10px;
-    border: solid  #666666;
-    border-radius: 20px;
-    font-family: 'helvetica';
-    font-size: 12px;
-    padding-left: 10px;
-}*/
-
-.modalconteudo-Produtos h4{
+.modalconteudo-Produtos h4 {
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 0;
-    font-family: 'helvetica';
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
 }
 
-textarea.inforProduto {
-     height: 70px;
-    padding: 8px 10px;
-    resize: none;
-    box-sizing: border-box;
-}
 .preco {
     position: relative;
     width: 190%;
@@ -527,28 +459,25 @@ textarea.inforProduto {
     color: #000;
 }
 
-.preco .inforProduto {
+.preco {
     width: 100%;
     padding-left: 30px;
     box-sizing: border-box;
 }
 
-.botaoExcluir,
-.botaoEditar {
+.botaoExcluir, .botaoEditar {
     box-sizing: border-box;
     padding: 10px;
     border: none;
     border-radius: 999px;
-
     display: inline-flex;
     width: 100%;
     justify-content: center;
     align-items: center;
-
     cursor: pointer;
 }
 
-.botaoExcluir{
+.botaoExcluir {
     padding: 10px;
     position: relative;
     border: none;
@@ -570,7 +499,7 @@ textarea.inforProduto {
     transition: 0.2s;
 }
 
-.botaoEditar{
+.botaoEditar {
     padding: 10px;
     position: relative;
     border: none;
@@ -580,22 +509,20 @@ textarea.inforProduto {
     display: inline-flex;
     width: 100%;
     justify-content: center;
-
 }
 
 .botaoEditar:hover, .lupaInput:hover {
     background-color: #2f6e1c;
     transition: 0.2s;
 }
+
 .bu {
     min-height: 155px;
     width: 15%;
     flex-shrink: 0;
-
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     align-items: stretch;
-
     margin-left: auto;
 }

@@ -46,6 +46,10 @@ class Produtos_gerenciamento
         return $nome;
     }
 
+    public static function deletar_imagem() {
+
+    }
+
     public static function get_produtos(){
         global $conexao;
         $sql = "SELECT * FROM Produtos";
@@ -66,12 +70,12 @@ class Produtos_gerenciamento
         return $resultado->fetch_assoc();
     }
 
-    public static function editar_produto($idProduto, $nome, $preco, $descricao, $estoque) {
+    public static function editar_produto($idProduto, $imagem, $nome, $tipo, $preco, $descricao, $estoque) {
         global $conexao;
-        $sql = "UPDATE Produtos SET nome = ?, preco = ?, descricao = ?, estoque = ? WHERE id_produtos = ?";
+        $sql = "UPDATE Produtos SET imagem = ?, nome = ?, tipo = ?, preco = ?, descricao = ?, estoque = ? WHERE id_produtos = ?";
         $stmt = $conexao->prepare($sql);
 
-        $stmt->bind_param("sdsii", $nome, $preco, $descricao, $estoque, $idProduto);
+        $stmt->bind_param("sssdsii", $imagem, $nome, $tipo, $preco, $descricao, $estoque, $idProduto);
         $stmt->execute();
     }
 

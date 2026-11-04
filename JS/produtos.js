@@ -1,23 +1,14 @@
 const modais = document.querySelectorAll(".modal");
-
 const modalNovoProduto = document.getElementById("criar-produto");
 const botaoNovoProduto = document.getElementById("add_produto");
-
 const botoesEditar = document.querySelectorAll(".botaoAbrirEdicao");
 const botoesAtivarInputFile = document.querySelectorAll(".botaoAtivarInputFile");
-
 const cabecalho = document.querySelector(".cabecalho");
 const corpo = document.body;
-
 const formsProdutos = document.querySelectorAll("form.modalconteudo-Produtos");
-
 const tiposProdutosValidos = ["Camisas", "Tênis", "Bolas", "Equipamentos"];
 const tiposImagensValidos = ["image/jpeg", "image/png", "image/webp"];
-
 const tamanhoMaximoImagem = 5 * 1024 * 1024;
-/*contadoresDescricaoProduto.forEach(contadorDescricaoProduto => {
-    contadorDescricaoProduto.textContent = contadorDescricaoProduto.previousElementSibling.previousElementSibling.value.length + "/500";
-});*/
 
 formsProdutos.forEach((form) => {
     const inputFile = form.querySelector(".inputImagem");
@@ -31,13 +22,11 @@ formsProdutos.forEach((form) => {
 
     selectTipo.addEventListener("change", () => {
         mudarCorOpcaoSelecionada(selectTipo);
-
         mudarIconeOpcaoSelecionada(selectTipo, iconeTipo);
     });
 
     // Inicializa a aparência de cada formulário.
     mudarCorOpcaoSelecionada(selectTipo);
-
     mudarIconeOpcaoSelecionada(selectTipo, iconeTipo);
 
     const descricao = form.querySelector(".textareaDescricao");
@@ -56,7 +45,6 @@ formsProdutos.forEach((form) => {
         campo.addEventListener("input", () => {
             limparErroCampoForm(campo);
         });
-
         campo.addEventListener("change", () => {
             limparErroCampoForm(campo);
         });
@@ -65,11 +53,11 @@ formsProdutos.forEach((form) => {
     // Valida o formulário antes do envio.
     form.addEventListener("submit", (evento) => {
         const formularioValido = validarFormularioProduto(form);
+        console.log("Formulário é valido: " + formularioValido);
 
         if (!formularioValido) {
             evento.preventDefault();
         }
-
     });
 
     const preview = form.querySelector(".previewImagemProduto");
@@ -78,10 +66,8 @@ formsProdutos.forEach((form) => {
     preview.dataset.imagemOriginal = preview.src;
 
     form.addEventListener("reset", () => {
-
         // Espera o navegador restaurar os valores originais dos campos.
         setTimeout(() => {
-
             // Restaura a imagem original.
             if (preview.dataset.urlObjeto) {
                 URL.revokeObjectURL(preview.dataset.urlObjeto);
@@ -101,46 +87,31 @@ formsProdutos.forEach((form) => {
 
             // Atualiza o contador da descrição.
             const descricao = form.querySelector(".textareaDescricao");
-
             const contador = form.querySelector(".contadorDescricao");
 
             atualizarContadorDescricaoProduto(descricao, contador);
 
             // Restaura a aparência do select e seu ícone.
             const selectTipo = form.querySelector(".selectTipo");
-
             const iconeTipo = selectTipo.previousElementSibling;
 
             mudarCorOpcaoSelecionada(selectTipo);
-
             mudarIconeOpcaoSelecionada(selectTipo, iconeTipo);
-
         }, 0);
-
     });
 });
 
 botoesAtivarInputFile.forEach((botao) => {
     botao.addEventListener("click", () => {
-        const container = botao.closest(
-            ".modalIMG-addProdutos, .modalIMG-editarProdutos"
-        );
-
+        const container = botao.closest(".modalIMG-addProdutos, .modalIMG-editarProdutos");
         const inputFile = container.querySelector(".inputImagem");
 
         inputFile.click();
     });
 });
 
-/*inputsFileImagemProduto.forEach((inputFileImagemProduto) => {
-    inputFileImagemProduto.addEventListener("change", () => {
-        validarImagemProduto(inputFileImagemProduto);
-    });
-});*/
-
 botoesEditar.forEach((botaoEditar) => {
     botaoEditar.addEventListener("click", () => {
-        console.log("fdfdg");
         const modal = botaoEditar.closest(".bu").querySelector(".modal");
 
         abrirModal(modal);
@@ -148,9 +119,8 @@ botoesEditar.forEach((botaoEditar) => {
 });
 
 modais.forEach((modal) => {
-    console.log("fdfdg");
     modal.addEventListener("click", (evento) => {
-        if (evento.target === modal) {
+        if(evento.target === modal) {
             fecharModal(modal);
         }
     });
@@ -159,67 +129,6 @@ modais.forEach((modal) => {
 botaoNovoProduto.addEventListener("click", () => {
     abrirModal(modalNovoProduto);
 });
-
-/*inputsTipoProduto.forEach((inputTipoProduto) => {
-    inputTipoProduto.addEventListener("change", () => {
-        mudarCorOpcaoSelecionada(inputTipoProduto);
-        mudarIconeOpcaoSelecionada(inputTipoProduto, inputTipoProduto.previousElementSibling);
-    });
-
-    mudarCorOpcaoSelecionada(inputTipoProduto);
-    mudarIconeOpcaoSelecionada(inputTipoProduto, inputTipoProduto.previousElementSibling);
-});*/
-
-/*inputsDescricaoProduto.forEach((inputDescricaoProduto) => {
-    inputDescricaoProduto.addEventListener('input', () => {
-        atualizarContadorDescricaoProduto(inputDescricaoProduto, inputDescricaoProduto.nextElementSibling.nextElementSibling);
-    });
-});*/
-
-/*todosCamposFormsProdutos.forEach((campoForm) => {
-    campoForm.addEventListener("input", () => {
-        limparErroCampoForm(campoForm);
-    });
-});*/
-
-/*formAddProduto.addEventListener('reset', () => {
-   formAddProduto.querySelector(".selectTipo").style.color = "#767676";
-   iconeTipoAddProduto.className = "";
-   formAddProduto.querySelector(".contadorDescricao").textContent = "0/500";
-   formAddProduto.querySelector(".botaoAtivarInputFile").src = "Imagens/imagem_adicionar_imagem_produto_input_file.jpg";
-
-   iconeTipoAddProduto.classList.add("fa-solid", "fa-volleyball", "fa-xl");
-
-   limparTodosErrosCamposForm("form.modalconteudo-Produtos .labelInputUni > input, form.modalconteudo-Produtos .labelInputUni > select, form.modalconteudo-Produtos .labelInputUni > textarea");
-});*/
-
-/*formAddProduto.addEventListener('submit', (evento) => {
-    const imagemProdutoValido = validarImagemProduto(formAddProduto.querySelector(".inputImagem"));
-    const nomeProdutoValido = validarNomeProduto(formAddProduto.querySelector(".inputNome"));
-    const tipoProdutoValido = validarTipoProduto(formAddProduto.querySelector(".selectTipo"));
-    const precoProdutoValido = validarPrecoProduto(formAddProduto.querySelector(".inputPreco"));
-    const descricaoProdutoValido = validarDescricaoProduto(formAddProduto.querySelector(".textareaDescricao"));
-    const estoqueProdutoValido = validarEstoqueProduto(formAddProduto.querySelector(".inputEstoque"));
-
-    if(!(imagemProdutoValido && nomeProdutoValido && tipoProdutoValido && precoProdutoValido && descricaoProdutoValido && estoqueProdutoValido)) {
-        evento.preventDefault();
-    }
-});*/
-
-/*formsEditarProduto.forEach((formEditarProduto) => {
-    formEditarProduto.addEventListener('submit', (evento) => {
-        const imagemProdutoValido = validarImagemProduto(formEditarProduto.querySelector(".inputImagem"));
-        const nomeProdutoValido = validarNomeProduto(formEditarProduto.querySelector(".inputNome"));
-        const tipoProdutoValido = validarTipoProduto(formEditarProduto.querySelector(".selectTipo"));
-        const precoProdutoValido = validarPrecoProduto(formEditarProduto.querySelector(".inputPreco"));
-        const descricaoProdutoValido = validarDescricaoProduto(formEditarProduto.querySelector(".textareaDescricao"));
-        const estoqueProdutoValido = validarEstoqueProduto(formEditarProduto.querySelector(".inputEstoque"));
-
-        if(!(imagemProdutoValido && nomeProdutoValido && tipoProdutoValido && precoProdutoValido && descricaoProdutoValido && estoqueProdutoValido)) {
-            evento.preventDefault();
-        }
-    });
-});*/
 
 function mudarCorOpcaoSelecionada(inputSelect) {
     if(inputSelect.value === "") {
@@ -265,49 +174,41 @@ function atualizarContadorDescricaoProduto(inputDescricao, contadorDescricao) {
 
 function validarImagemProduto(inputFile) {
     const form = inputFile.closest("form");
-
-    const imagemObrigatoria =
-        form.dataset.imagemObrigatoria === "true";
-
+    const imagemObrigatoria = form.dataset.imagemObrigatoria === "true";
     const mensagemErro = form.querySelector(".mensagemErroImagem");
-
     const preview = form.querySelector(".previewImagemProduto");
-
     const arquivo = inputFile.files[0];
 
     // Verifica se o usuário selecionou uma imagem.
-    if (!arquivo) {
-        mensagemErro.textContent = imagemObrigatoria
-            ? "Selecione uma imagem para o produto."
-            : "";
+    if(!arquivo) {
+        mensagemErro.innerHTML = imagemObrigatoria ? "<i class='fa-solid fa-circle-exclamation'></i> Selecione uma imagem para o produto." : "";
 
         return !imagemObrigatoria;
     }
 
     // Verifica a quantidade de arquivos.
-    if (inputFile.files.length !== 1) {
-        mensagemErro.textContent = "Selecione apenas uma imagem.";
+    if(inputFile.files.length !== 1) {
+        mensagemErro.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Selecione apenas uma imagem.";
 
         return false;
     }
 
     // Verifica o formato da imagem.
-    if (!tiposImagensValidos.includes(arquivo.type)) {
-        mensagemErro.textContent = "Tipo de imagem inválido.";
+    if(!tiposImagensValidos.includes(arquivo.type)) {
+        mensagemErro.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Tipo de imagem inválido.";
 
         return false;
     }
 
     // Verifica o tamanho da imagem.
-    if (arquivo.size > tamanhoMaximoImagem) {
-        mensagemErro.textContent =
-            "A imagem deve possuir no máximo 5 MiB.";
+    if(arquivo.size > tamanhoMaximoImagem) {
+        mensagemErro.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> A imagem deve possuir no máximo 5 MiB.";
 
         return false;
     }
 
     // Libera uma URL temporária anterior, caso exista.
-    if (preview.dataset.urlObjeto) {
+    if(preview.dataset.urlObjeto) {
         URL.revokeObjectURL(preview.dataset.urlObjeto);
     }
 
@@ -315,9 +216,7 @@ function validarImagemProduto(inputFile) {
     const urlImagem = URL.createObjectURL(arquivo);
 
     preview.src = urlImagem;
-
     preview.dataset.urlObjeto = urlImagem;
-
     mensagemErro.textContent = "";
 
     return true;
@@ -419,64 +318,28 @@ function limparErroCampoForm(campoForm) {
     campoForm.nextElementSibling.innerHTML = "";
 }
 
-function limparTodosErrosCamposForm(cssQuerySelector) {
-    const inputsForm = document.querySelectorAll(cssQuerySelector);
-
-    inputsForm.forEach((input) => {
-        limparErroCampoForm(input);
-    });
-}
-
 function validarFormularioProduto(form) {
+    const imagemValida = validarImagemProduto(form.querySelector(".inputImagem"));
+    const nomeValido = validarNomeProduto(form.querySelector(".inputNome"));
+    const tipoValido = validarTipoProduto(form.querySelector(".selectTipo"));
+    const precoValido = validarPrecoProduto(form.querySelector(".inputPreco"));
+    const descricaoValida = validarDescricaoProduto(form.querySelector(".textareaDescricao"));
+    const estoqueValido = validarEstoqueProduto(form.querySelector(".inputEstoque"));
 
-    const imagemValida = validarImagemProduto(
-        form.querySelector(".inputImagem")
-    );
-
-    const nomeValido = validarNomeProduto(
-        form.querySelector(".inputNome")
-    );
-
-    const tipoValido = validarTipoProduto(
-        form.querySelector(".selectTipo")
-    );
-
-    const precoValido = validarPrecoProduto(
-        form.querySelector(".inputPreco")
-    );
-
-    const descricaoValida = validarDescricaoProduto(
-        form.querySelector(".textareaDescricao")
-    );
-
-    const estoqueValido = validarEstoqueProduto(
-        form.querySelector(".inputEstoque")
-    );
-
-    return (
-        imagemValida &&
-        nomeValido &&
-        tipoValido &&
-        precoValido &&
-        descricaoValida &&
-        estoqueValido
-    );
+    console.log("Todos os campos do formulário são válidos: " + (imagemValida && nomeValido && tipoValido && precoValido && descricaoValida && estoqueValido));
+    return (imagemValida && nomeValido && tipoValido && precoValido && descricaoValida && estoqueValido);
 }
 
 function abrirModal(modal) {
     modal.style.display = "flex";
-
     cabecalho.style.opacity = "0.651";
     cabecalho.style.pointerEvents = "none";
-
     corpo.style.overflow = "hidden";
 }
 
 function fecharModal(modal) {
     modal.style.display = "none";
-
     cabecalho.style.opacity = "1";
     cabecalho.style.pointerEvents = "";
-
     corpo.style.overflow = "";
 }
