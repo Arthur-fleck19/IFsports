@@ -1,14 +1,14 @@
 <?php
     session_start();
-    require_once("../Classes/Produtos_gerenciamento.php");
+    require_once "../Classes/Produtos_gerenciamento.php";
     
-    if ($_SESSION['tipo'] != 'admin') {
+    if($_SESSION['tipo'] != 'admin') {
         header('Location: dashboard.php');
         exit;
     }
     
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['id'])) {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST['id'])) {
             $id = $_POST['id'];
             Produtos_gerenciamento::excluir($id);
         }
@@ -55,140 +55,55 @@
     <div class="container">
         <!-- Tela de adicionar produto -->
         <div class="modal" id="criar-produto">
-            <form
-                    action="../Rotas/criar_produto.php"
-                    method="post"
-                    id="formAddProduto"
-                    class="modalconteudo-Produtos"
-                    enctype="multipart/form-data"
-                    novalidate
-                    data-imagem-obrigatoria="true"
-            >
+            <form action="../Rotas/criar_produto.php" method="post" id="formAddProduto" class="modalconteudo-Produtos" enctype="multipart/form-data" novalidate data-imagem-obrigatoria="true">
                 <header>
                     <div class="modalIMG-addProdutos">
-                        <img
-                                class="botaoAtivarInputFile previewImagemProduto"
-                                src="Imagens/imagem_adicionar_imagem_produto_input_file.jpg"
-                                alt="Adicionar imagem do produto"
-                                height="100"
-                                width="100"
-                        >
-
-                        <label for="inputImagemAddProduto" hidden>
-                            Imagem do produto
-                        </label>
-
-                        <input
-                                type="file"
-                                name="imagem"
-                                class="inputImagem"
-                                id="inputImagemAddProduto"
-                                accept="image/png, image/jpeg, image/webp"
-                                required
-                                hidden
-                        >
+                        <img class="botaoAtivarInputFile previewImagemProduto" src="Imagens/imagem_adicionar_imagem_produto_input_file.jpg" alt="Adicionar imagem do produto" height="100" width="100">
+                        <label for="inputImagemAddProduto" hidden>Imagem do produto</label>
+                        <input type="file" name="imagem" class="inputImagem" id="inputImagemAddProduto" accept="image/png, image/jpeg, image/webp" required hidden>
                     </div>
-
                     <div class="tituloParagrafoAddProduto">
                         <h2>Adicionar produto</h2>
-                        <p>
-                            Selecione uma imagem clicando no botão ao lado e
-                            preencha as informações do produto para adicioná-lo
-                            ao seu catálogo.
-                        </p>
+                        <p>Selecione uma imagem clicando no botão ao lado e preencha as informações do produto para adicioná-lo ao seu catálogo.</p>
                         <span class="mensagemErroImagem"></span>
                     </div>
                 </header>
-
                 <div class="labelInputUni">
                     <label for="inputNomeAddProduto">Nome do Produto</label>
-                    <input
-                            type="text"
-                            class="inputNome inputForm"
-                            minlength="1"
-                            maxlength="150"
-                            placeholder="Ex.: Bola de vôlei"
-                            name="nome-produto"
-                            id="inputNomeAddProduto"
-                            required
-                    >
+                    <input type="text" class="inputNome inputForm" minlength="1" maxlength="150" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="inputNomeAddProduto" required>
                     <span></span>
                 </div>
-
                 <div class="labelInputUni">
                     <label for="inputTipoAddProduto">Tipo</label>
                     <i class="fa-solid fa-volleyball fa-xl"></i>
-
-                    <select
-                            name="tipo-produto"
-                            class="selectTipo inputForm"
-                            id="inputTipoAddProduto"
-                            required
-                    >
+                    <select name="tipo-produto" class="selectTipo inputForm" id="inputTipoAddProduto" required>
                         <option value="" disabled selected>Selecione o tipo</option>
                         <option value="Camisas">Camisas</option>
                         <option value="Tênis">Tênis</option>
                         <option value="Bolas">Bolas</option>
                         <option value="Equipamentos">Equipamentos</option>
                     </select>
-
                     <span></span>
                 </div>
-
                 <div class="labelInputUni">
                     <label for="inputPrecoAddProduto">Preço</label>
-                    <input
-                            type="number"
-                            step="0.01"
-                            min="0.01"
-                            max="99999999.99"
-                            name="preco-produto"
-                            placeholder="R$ 0,01"
-                            class="inputPreco inputForm"
-                            id="inputPrecoAddProduto"
-                            required
-                    >
+                    <input type="number" step="0.01" min="0.01" max="99999999.99" name="preco-produto" placeholder="R$ 0,01" class="inputPreco inputForm" id="inputPrecoAddProduto" required>
                     <span></span>
                 </div>
-
                 <div class="labelInputUni">
                     <label for="inputDescricaoAddProduto">Descrição</label>
-                    <textarea
-                            placeholder="Descreva o produto..."
-                            name="desc-produto"
-                            class="textareaDescricao inputForm"
-                            id="inputDescricaoAddProduto"
-                            minlength="1"
-                            maxlength="500"
-                            required
-                    ></textarea>
+                    <textarea placeholder="Descreva o produto..." name="desc-produto" class="textareaDescricao inputForm" id="inputDescricaoAddProduto" minlength="1" maxlength="500" required></textarea>
                     <span></span>
-                    <span class="contadorDescricao" id="contadorDescricaoAddProduto">
-            0/500
-        </span>
+                    <span class="contadorDescricao" id="contadorDescricaoAddProduto">0/500</span>
                 </div>
-
                 <div class="labelInputUni">
                     <label for="inputEstoqueAddProduto">Estoque</label>
-                    <input
-                            type="number"
-                            name="estoque-produto"
-                            class="inputEstoque inputForm"
-                            id="inputEstoqueAddProduto"
-                            min="1"
-                            value="1"
-                            required
-                    >
+                    <input type="number" name="estoque-produto" class="inputEstoque inputForm" id="inputEstoqueAddProduto" min="1" value="1" required>
                     <span></span>
                 </div>
-
                 <div class="containerBotoesCriarCancelarFormAdd">
                     <input type="reset" class="botaoFormAdd" value="Cancelar">
-                    <input
-                            type="submit"
-                            class="botaoFormAdd"
-                            value="+ Adicionar produto"
-                    >
+                    <input type="submit" class="botaoFormAdd" value="+ Adicionar produto">
                 </div>
             </form>
         </div>
