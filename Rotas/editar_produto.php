@@ -63,8 +63,27 @@
             exit();
         }
 
-        $imagem = Produtos_gerenciamento::salvar_imagem($arquivoImagem);
-        Produtos_gerenciamento::editar_produto($id, $imagem, $nome, $tipo, $preco, $descricao, $estoque);
+        $imagemAntiga = Produtos_gerenciamento::get_imagem_produto($id);
+
+        if($imagemAntiga === null) {
+            die("Produto não encontrado");
+        }
+
+        $imagem = $imagemAntiga;
+
+        if($_FILES['imagem']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $imagem = Produtos_gerenciamento::salvar_imagem($arquivoImagem);
+        }
+
+        $atualizou = Produtos_gerenciamento::editar_produto($id, $imagem, $nome, $tipo, $preco, $descricao, $estoque);
+
+        if($imagem !== $imagemAntiga) {
+            if($atualizou) {
+                Produtos_gerenciamento::deletar_imagem_produto($imagemAntiga);
+            } else {
+                Produtos_gerenciamento::deletar_imagem_produto($imagem);
+            }
+        }
 
         header("Location: ../Views/produtos.php");
         exit();

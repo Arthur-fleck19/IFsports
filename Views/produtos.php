@@ -123,7 +123,7 @@
                     <div class="infosProduto">
                         <p>ID: <?= (int)$produto['id_produtos'] ?></p>
                         <h3>Produto: <?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?></h3>
-                        <p>Valor: R$<?= htmlspecialchars((string)$produto['preco'], ENT_QUOTES, 'UTF-8') ?></p>
+                        <p>Valor: R$ <?= htmlspecialchars((string)$produto['preco'], ENT_QUOTES, 'UTF-8') ?></p>
                     </div>
                     <div class="bu">
                         <form style="width: 100%; display: inline-flex;" method="POST" action="" onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');">
@@ -185,7 +185,7 @@
                                 </div>
                                 <div class="containerBotoesCriarCancelarFormEditar">
                                     <input type="reset" class="botaoFormEditar" value="Cancelar">
-                                    <button type="submit" class="botaoFormEditar"><i class="fa-regular fa-floppy-disk fa-xl"></i>Salvar alterações</button>
+                                    <button type="submit" class="botaoFormEditar"><i class="fa-regular fa-floppy-disk fa-xl"></i> Salvar alterações</button>
                                 </div>
                             </form>
                         </div>

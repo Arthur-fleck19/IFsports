@@ -46,8 +46,30 @@ class Produtos_gerenciamento
         return $nome;
     }
 
-    public static function deletar_imagem() {
+    public static function get_imagem_produto($idProduto) {
+        global $conexao;
+        $sql = "SELECT imagem FROM Produtos WHERE id_produtos = ?";
+        $stmt = $conexao->prepare($sql);
 
+        $stmt->bind_param('i', $idProduto);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+        $produto = $resultado->fetch_assoc();
+        
+        $stmt->close();
+
+        return $produto ? $produto['imagem'] : null;
+    }
+
+    public static function deletar_imagem_produto($imagem) {
+        $caminho = __DIR__ . "../uploads/" . $imagem;
+
+        if(file_exists($caminho) && is_file($caminho)) {
+            return unlink($caminho);
+        }
+
+        return false;
     }
 
     public static function get_produtos(){
@@ -76,7 +98,10 @@ class Produtos_gerenciamento
         $stmt = $conexao->prepare($sql);
 
         $stmt->bind_param("sssdsii", $imagem, $nome, $tipo, $preco, $descricao, $estoque, $idProduto);
-        $stmt->execute();
+
+        $resultado = $stmt->execute();
+
+        return $resultado;
     }
 
     public static function excluir($id){

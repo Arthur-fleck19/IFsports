@@ -333,6 +333,7 @@ function validarFormularioProduto(form) {
 function abrirModal(modal) {
     modal.style.display = "flex";
     cabecalho.style.opacity = "0.651";
+    cabecalho.style.zIndex = "1";
     cabecalho.style.pointerEvents = "none";
     corpo.style.overflow = "hidden";
 }
@@ -340,6 +341,7 @@ function abrirModal(modal) {
 function fecharModal(modal) {
     modal.style.display = "none";
     cabecalho.style.opacity = "1";
+    cabecalho.style.zIndex = "";
     cabecalho.style.pointerEvents = "";
     corpo.style.overflow = "";
 }
