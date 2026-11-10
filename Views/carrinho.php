@@ -95,6 +95,8 @@ $carrinho = Carrinho_gerenciamento::consultar_carrinho($_SESSION["id"]);
 
     <script src="../JS/carrinho.js"></script>
 
+    <a href="finalizar_compra.php"><button>Finalizar pedido</button></a>
+
 </main>
 </body>
 </html>
