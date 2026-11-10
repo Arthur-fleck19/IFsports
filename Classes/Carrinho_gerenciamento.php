@@ -194,4 +194,25 @@ class Carrinho_gerenciamento
             throw new Exception("Erro ao excluir carrinho");
         }
     }
+
+    public static function get_quant_prod_carrinho_usuario($id_usuario) {
+        global $conexao;
+
+        $sql = "SELECT SUM(quantidade) FROM item_carrinho AS ic INNER JOIN carrinho AS c ON ic.id_carrinho = c.id_carrinho WHERE c.id_usuarios = ?";
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param("i", $id_usuario);
+
+        $resultado_consulta = $stmt->execute();
+
+        if(!$resultado_consulta) {
+            throw new Exception("Erro ao consultar quantidade de produtos no carrinho");
+        }
+
+        $retorno_consulta = $stmt->get_result();
+        $retorno_consulta = $retorno_consulta->fetch_assoc();
+        $quant_prod_carrinho_usuario = $retorno_consulta["SUM(quantidade)"];
+
+        return $quant_prod_carrinho_usuario;
+    }
 }

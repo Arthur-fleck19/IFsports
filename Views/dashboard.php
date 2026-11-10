@@ -1,14 +1,16 @@
 <?php
-session_start();
+    session_start();
 
-if(!isset($_SESSION["tipo"])){
-    header("Location: login.html");
-    exit;
-}
+    if(!isset($_SESSION["tipo"])){
+        header("Location: login.html");
+        exit();
+    }
 
-require_once("../Classes/Produtos_gerenciamento.php");
+    require_once "../Classes/Produtos_gerenciamento.php";
+    require_once "../Classes/Carrinho_gerenciamento.php";
 
-$produtos = Produtos_gerenciamento::get_produtos();
+    $produtos = Produtos_gerenciamento::get_produtos();
+    $quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -32,7 +34,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
         </form>
         <nav>
             <ul class="icones">
-                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
+                <li><a href="carrinho.php" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><?= ((int) $quant_carrinho > 0) ? "<span class='contadorCarrinho'>" . ($quant_carrinho > 99 ? '+99' : (int) $quant_carrinho) . "</span>" : "" ?></li>
                 <?php
                     if($_SESSION['tipo'] != 'admin'){
                         echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
