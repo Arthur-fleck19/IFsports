@@ -198,7 +198,7 @@ class Carrinho_gerenciamento
     public static function get_quant_prod_carrinho_usuario($id_usuario) {
         global $conexao;
 
-        $sql = "SELECT SUM(quantidade) FROM item_carrinho AS ic INNER JOIN carrinho AS c ON ic.id_carrinho = c.id_carrinho WHERE c.id_usuarios = ?";
+        $sql = "SELECT SUM(quantidade) FROM item_carrinho AS ic INNER JOIN Carrinho AS c ON ic.id_carrinho = c.id_carrinho WHERE c.id_usuarios = ?";
         $stmt = $conexao->prepare($sql);
 
         $stmt->bind_param("i", $id_usuario);
