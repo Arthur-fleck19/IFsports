@@ -52,6 +52,32 @@ class Produtos_gerenciamento
         return $nome;
     }
 
+    public static function get_imagem_produto($idProduto) {
+        global $conexao;
+        $sql = "SELECT imagem FROM Produtos WHERE id_produtos = ?";
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param('i', $idProduto);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+        $produto = $resultado->fetch_assoc();
+        
+        $stmt->close();
+
+        return $produto ? $produto['imagem'] : null;
+    }
+
+    public static function deletar_imagem_produto($imagem) {
+        $caminho = __DIR__ . "../uploads/" . $imagem;
+
+        if(file_exists($caminho) && is_file($caminho)) {
+            return unlink($caminho);
+        }
+
+        return false;
+    }
+
     public static function get_produtos(){
         global $conexao;
         $sql = "SELECT * FROM Produtos";
@@ -72,13 +98,16 @@ class Produtos_gerenciamento
         return $resultado->fetch_assoc();
     }
 
-    public static function editar_produto($idProduto, $nome, $preco, $descricao, $estoque) {
+    public static function editar_produto($idProduto, $imagem, $nome, $tipo, $preco, $descricao, $estoque) {
         global $conexao;
-        $sql = "UPDATE Produtos SET nome = ?, preco = ?, descricao = ?, estoque = ? WHERE id_produtos = ?";
+        $sql = "UPDATE Produtos SET imagem = ?, nome = ?, tipo = ?, preco = ?, descricao = ?, estoque = ? WHERE id_produtos = ?";
         $stmt = $conexao->prepare($sql);
 
-        $stmt->bind_param("sdsii", $nome, $preco, $descricao, $estoque, $idProduto);
-        $stmt->execute();
+        $stmt->bind_param("sssdsii", $imagem, $nome, $tipo, $preco, $descricao, $estoque, $idProduto);
+
+        $resultado = $stmt->execute();
+
+        return $resultado;
     }
 
     public static function excluir($id){

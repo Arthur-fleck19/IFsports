@@ -24,7 +24,7 @@ html, body {
     background-color: #FFFFFF;
 }
 
-.logoIFsportsImg, .imagemProduto {
+.logoIFsportsImg {
     object-fit: contain;
 }
 

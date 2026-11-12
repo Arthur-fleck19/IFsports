@@ -51,11 +51,11 @@
     <!-- Cards testes para ver como fica -->
     <main class="vitrineProdutos">
         <div class="botoesNav">
-            <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
-            <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
-            <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
-            <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
-            <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
+            <button class="botaoNav corFundoBotaoSelecionado" data-categoria="Todos"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
+            <button class="botaoNav" data-categoria="Camisas"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
+            <button class="botaoNav" data-categoria="Tênis"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
+            <button class="botaoNav" data-categoria="Bolas"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
+            <button class="botaoNav" data-categoria="Equipamentos"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
             <?php
 
 
@@ -72,15 +72,12 @@
             <?php
             while ($produto = $produtos->fetch_assoc()):
             ?>
-            <a href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
+            <a class="a-cardProduto" href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
-
                     <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-
                     <h3><?= $produto['nome'] ?></h3>
-
                     <span><span class="corRS">R$</span> <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span></span>
-
+                    <input type="hidden" name="categoria" class="produto-categoria" value="<?= htmlspecialchars($produto['tipo']) ?>">
                     <form action="../Rotas/add_carrinho.php" method="post">
                         <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
                         <input type="hidden" name="quantidade" value="1">
@@ -94,6 +91,32 @@
             ?>
 
         </section>
+        <script>
+            // Seleciona os botões de filtro e os cards de produtos
+            const botoesFiltro = document.querySelectorAll('.botaoNav');
+            const cardsProdutos = document.querySelectorAll('.a-cardProduto');
+
+            botoesFiltro.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    // Pega a categoria do botão clicado
+                    const categoriaSelecionada = botao.getAttribute('data-categoria');
+
+                    cardsProdutos.forEach(card => {
+                        // Busca o input hidden específico DESTE card e pega o valor dele
+                        const inputHidden = card.querySelector('.produto-categoria');
+                        const categoriaProduto = inputHidden.value;
+
+                        // Lógica de filtragem: mostra se for "todos" ou se bater com a categoria
+                        if (categoriaSelecionada === 'Todos' || categoriaSelecionada === categoriaProduto) {
+                            card.style.display = 'flex'; // Mostra o produto
+                        } else {
+                            card.style.display = 'none';  // Esconde o produto
+                        }
+                    });
+                });
+            });
+
+        </script>
     </main>
 </body>
 </html>
