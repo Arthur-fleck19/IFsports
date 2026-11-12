@@ -85,29 +85,66 @@ $produtos = Produtos_gerenciamento::get_produtos();
 
         </section>
         <script>
-            // Seleciona os botões de filtro e os cards de produtos
-            const botoesFiltro = document.querySelectorAll('.botaoNav');
-            const cardsProdutos = document.querySelectorAll('.a-cardProduto');
+            const botoesFiltro = document.querySelectorAll('.botaoNav[data-categoria]');
+const cardsProdutos = document.querySelectorAll('.a-cardProduto');
 
-            botoesFiltro.forEach(botao => {
-                botao.addEventListener('click', () => {
-                    // Pega a categoria do botão clicado
-                    const categoriaSelecionada = botao.getAttribute('data-categoria');
+// Array que guarda as categorias selecionadas
+let categoriasSelecionadas = ['Todos'];
 
-                    cardsProdutos.forEach(card => {
-                        // Busca o input hidden específico DESTE card e pega o valor dele
-                        const inputHidden = card.querySelector('.produto-categoria');
-                        const categoriaProduto = inputHidden.value;
+botoesFiltro.forEach(botao => {
+    botao.addEventListener('click', () => {
 
-                        // Lógica de filtragem: mostra se for "todos" ou se bater com a categoria
-                        if (categoriaSelecionada === 'Todos' || categoriaSelecionada === categoriaProduto) {
-                            card.style.display = 'flex'; // Mostra o produto
-                        } else {
-                            card.style.display = 'none';  // Esconde o produto
-                        }
-                    });
-                });
-            });
+        const categoria = botao.getAttribute('data-categoria');
+
+        // Se clicar em Todos
+        if (categoria === 'Todos') {
+            categoriasSelecionadas = ['Todos'];
+        } else {
+
+            // Remove o Todos quando selecionar outra categoria
+            categoriasSelecionadas = categoriasSelecionadas.filter(
+                cat => cat !== 'Todos'
+            );
+
+            // Se já estiver selecionada, remove
+            if (categoriasSelecionadas.includes(categoria)) {
+                categoriasSelecionadas = categoriasSelecionadas.filter(
+                    cat => cat !== categoria
+                );
+            } else {
+                // Se não estiver selecionada, adiciona
+                categoriasSelecionadas.push(categoria);
+            }
+
+            // Se nenhuma categoria estiver selecionada, volta para Todos
+            if (categoriasSelecionadas.length === 0) {
+                categoriasSelecionadas = ['Todos'];
+            }
+        }
+
+        // Atualiza a aparência dos botões
+        botoesFiltro.forEach(btn => {
+            btn.classList.toggle(
+                'corFundoBotaoSelecionado',
+                categoriasSelecionadas.includes(btn.getAttribute('data-categoria'))
+            );
+        });
+
+        // Filtra os produtos
+        cardsProdutos.forEach(card => {
+            const categoriaProduto = card.querySelector('.produto-categoria').value;
+
+            if (
+                categoriasSelecionadas.includes('Todos') ||
+                categoriasSelecionadas.includes(categoriaProduto)
+            ) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
 
         </script>
     </main>
