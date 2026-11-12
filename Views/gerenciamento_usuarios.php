@@ -89,7 +89,7 @@ $usuarios = Usuario_gerenciamento::get_usuarios();
                     </div>
                     <div class="bu">
 
-                        <form action="../Rotas/excluir_usuario.php" method="post" style="width: 100%;display: inline-flex">
+                        <form action="../Rotas/excluir_usuario.php" method="post" style="width: 100%;display: inline-flex" onsubmit="return confirm('Tem certeza de que deseja remover este usuário do sistema?');">
                             <input type="hidden" name="id" value="<?= htmlspecialchars($usuario['id_usuarios']) ?>">
                             <input type="submit" class="botaoExcluir" value="Excluir perfil">
                         </form>
