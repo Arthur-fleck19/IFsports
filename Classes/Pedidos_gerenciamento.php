@@ -150,4 +150,18 @@ class Pedidos_gerenciamento
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+
+    public static function get_pedidos(){
+        global $conexao;
+
+        $sql = "SELECT p.id_pedidos as id, pr.imagem, it.subtotal, it.quantidade FROM Item_pedidos as it JOIN Pedidos as p ON it.id_pedidos = p.id_pedidos JOIN Produtos as pr ON it.id_produtos = pr.id_produtos WHERE id_usuarios = ?";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $_SESSION['id']);
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao consultar pedidos");
+        }
+
+        return $stmt->get_result();
+    }
 }

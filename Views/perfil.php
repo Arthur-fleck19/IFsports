@@ -3,6 +3,7 @@ session_start();
 
 require_once "../Classes/Usuario_gerenciamento.php";
 require_once "../Classes/Carrinho_gerenciamento.php";
+require_once "../Classes/Pedidos_gerenciamento.php";
 
 if(!isset($_SESSION["id"])){
     header("Location: login.html");
@@ -14,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
 $usuario = Usuario_gerenciamento::perfil();
-$quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
+$pedidos = Pedidos_gerenciamento::get_pedidos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -149,24 +150,21 @@ $quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESS
         </script>
         <div class="pedidos">
             <h1 class="pedidos-titulo">Seus pedidos</h1>
-            <div class="pedido">
-                <p>Pedido #1</p>
-                <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt="">
-                    <div class="pedidos-valores">
-                        <h1>R$79,99</h1>
-                        <p>2 artigo</p>
+            <?php
+                while($pedido = $pedidos->fetch_assoc()):
+            ?>
+                    <div class="pedido">
+                        <p>Pedido <?= htmlspecialchars($pedido['id']) ?></p>
+                        <div class="infos-pedidos"><img src="../uploads/<?= htmlspecialchars($pedido['imagem']) ?>" alt="">
+                            <div class="pedidos-valores">
+                                <h1>R$<?= htmlspecialchars($pedido['subtotal']) ?></h1>
+                                <p><?= htmlspecialchars($pedido['quantidade']) ?> artigo(s)</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="pedido">
-                <p>Pedido #1</p>
-                <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt="">
-                    <div class="pedidos-valores">
-                        <h1>R$79,99</h1>
-                        <p>2 artigo</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+                endwhile;
+            ?>
         </div>
     </div>
 </body>
