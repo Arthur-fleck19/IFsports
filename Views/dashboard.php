@@ -48,7 +48,6 @@
 
 
     </header>
-    <!-- Cards testes para ver como fica -->
     <main class="vitrineProdutos">
         <div class="botoesNav">
             <button class="botaoNav corFundoBotaoSelecionado" data-categoria="Todos"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
