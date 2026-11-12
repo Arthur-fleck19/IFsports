@@ -8,6 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="../Rotas/finalizar_pedido.php"><button>Finalizar pedido</button></a>
+    <form action="../Rotas/finalizar_pedido.php" method="post">
+        <input type="hidden" name="frete" value="10">
+
+        <input type="submit" value="Finalizar pedido">
+    </form>
 </body>
 </html>

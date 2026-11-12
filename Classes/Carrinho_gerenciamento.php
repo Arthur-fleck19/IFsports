@@ -215,4 +215,22 @@ class Carrinho_gerenciamento
 
         return $quant_prod_carrinho_usuario;
     }
+
+    public static function limpar_carrinho(){
+        global $conexao;
+
+        $id = $_SESSION["id"];
+
+        $sql = "DELETE it FROM item_carrinho AS it 
+        JOIN Carrinho ON it.id_carrinho = Carrinho.id_carrinho 
+        WHERE Carrinho.id_usuarios = ?  ";
+
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param("i", $id);
+
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao limpar carrinho");
+        }
+    }
 }

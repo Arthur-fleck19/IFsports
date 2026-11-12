@@ -102,4 +102,30 @@ class Produtos_gerenciamento
             exit;
         }
     }
+
+    public static function atualizar_estoque($id_produto, $quantidade){
+        global $conexao;
+
+        $sql = "SELECT quantidade FROM item_carrinho WHERE id_produtos = ?";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $id_produto);
+        if (!$stmt->execute()) {
+            throw new Exception('Erro ao consultar estoque');
+        }
+
+        $estoque_antigo = $stmt->get_result()->fetch_assoc();
+
+        $sql = "UPDATE Produtos SET estoque = ? WHERE id_produtos = ?";
+
+        $stmt = $conexao->prepare($sql);
+
+        $estoque = $estoque_antigo['quantidade'] - $quantidade;
+
+        $stmt->bind_param("ii", $estoque, $id);
+
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao atualizar estoque");
+        }
+    }
 }
