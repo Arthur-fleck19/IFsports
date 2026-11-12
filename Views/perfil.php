@@ -98,14 +98,15 @@ $usuario = Usuario_gerenciamento::perfil();
                 <div class="info-alterar"><i class="fa-solid fa-lock"></i>
                     <div>
                         <p class="EscritaMenor">Senha:</p>
-                        <input type="password" name="senha" placeholder="(deixe em branco para manter)*****">
+                        <input type="password" name="senha" placeholder="(deixe em branco para manter)*">
                     </div><i class="fa-solid fa-pencil"></i>
                 </div>
 
-                <input class="alterarBotao" type="submit" value="Alterar">
-            </form>
-            <form action="" method="post" style="width: 80%">
-                <input class="logoutBotao" type="submit" value="Logout">
+                <div class="botoes">
+                    <input class="alterarBotao" type="submit" value="Alterar">
+
+                    <input formaction="" class="logoutBotao" type="submit" value="Logout">
+                </div>
             </form>
         </div>
     </div>

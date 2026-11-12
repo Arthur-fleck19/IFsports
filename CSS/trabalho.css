@@ -261,10 +261,13 @@ span {
 .info-alterar{
     width: 100%;
     display: grid;
-    grid-template-columns: 50px 1fr 50px;
+    grid-template-columns: 40px minmax(0, 1fr) 25px;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 16px;
+    gap: 8px;
 }
+
+
 .info-alterar i {
     color: #1b9716b0;
     font-size: 28px;
@@ -318,7 +321,8 @@ span {
 
 }
 .gerenciamento h1{
-    font-family: sans-serif;
+    font-family: sans-s
+    .erif;
     margin-bottom: 0px;
 }
 
@@ -338,32 +342,34 @@ span {
 }
 
 .alterarBotao {
-
-    display: block;
-    width: 100px;
-    margin: 20px auto 0;
-    padding: 8px;
-    border: 2px solid rgb(21, 105, 35);
-    border-radius: 999px;
-    background-color: #2F9E40;
-    color: white;
-    cursor: pointer;
-
+    margin: 10px auto 10px;
+    border: 2px solid #156923;
+    background-color: #2F9E40 ;
 
 }
-
+.alterarBotao,
 .logoutBotao{
     display: block;
-    width: 100px;
-    padding: 8px;
-    margin: 20px auto 0;
-    border: 2px solid rgb(165, 61, 61);
-    border-radius: 999px;
-    background-color: rgb(226, 29, 29);
+    width: auto;
+    padding: 9px 22px;
+    border-radius: 20px;
     color: white;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
+
+}
+.logoutBotao{
+    border: 2px solid #a53d3d;
+    background-color: #e21d1d;
+}
+.botoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 .modalInfos form{
-    width: 100px;
+    width: auto;
 }

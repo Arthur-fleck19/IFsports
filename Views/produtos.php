@@ -25,12 +25,13 @@ $produtos = Produtos_gerenciamento::get_produtos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
-        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
+          integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../CSS/dashboard.css">
     <link rel="icon" href="Imagens/logoIF.png">
-    <link rel="stylesheet" href="../CSS/trabalho.css">
     <link rel="stylesheet" href="../CSS/produtos.css">
+
+
     <title>Dashboard</title>
 </head>
 
@@ -61,89 +62,80 @@ $produtos = Produtos_gerenciamento::get_produtos();
             <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
             <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
             <h1 class="admin"> - ADM - </h1>
-            <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+            <button class="botaoNav botaoAdmin "><a class="aAdmin" href="gerenciamento_usuarios.php"><i class="fa-solid fa-user fa-xl"></i>Usuários</a></button>
             <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
         </div>
 
-        <div class="container">
-
-            <!-- Tela de adicionar produto -->
-
-            <div class="modal" id="criar-produto">
-
-                <form action="../Rotas/criar_produto.php" method="post" class="modalconteudo-Produtos" enctype="multipart/form-data">
-
+    <div class="container">
+        <!-- Tela de adicionar produto -->
+        <div class="modal" id="criar-produto">
+            <form action="../Rotas/criar_produto.php" method="post" class="modalconteudo-Produtos" enctype="multipart/form-data">
+                <header>
                     <div class="modalIMG-Produtos">
-                        <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*" required>
+                        <img src="https://img.icons8.com/color/1200/plus--v3.jpg" alt="Imagem input adicionar imagem" height="100px">
+                        <input class="inputImg" type="file" name="imagem" id="imagem" accept="image/*"  required>
                     </div>
-                    <div class="Lapis">
-                        <i class="fa-solid fa-pencil"></i>
+                    <div class="tituloParagrafoAddProduto">
+                        <h2>Adicionar produto</h2>
+                        <p>Preencha as informações do produto para adicioná-lo ao seu catálogo.</p>
                     </div>
-                    <div>
-                        <div class="camposProdutos">
-                            <h4>Nome do Produto</h4>
-                            <input type="text" name="nome-produto" id="" class="inforProduto" required>
-
-
-                            <h4>Preço</h4>
-                            <div class="preco">
-                                <i class="fa-solid fa-dollar-sign"></i>
-                                <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id="" class="inforProduto" required>
-                            </div>
-
-                            <h4>Descrição</h4>
-                            <textarea name="desc-produto" id="" class="inforProduto" required></textarea>
-
-                            <h4>Categoria</h4>
-                            <input type="text" name="tipo-produto" id="tipo-produto" class="inforProduto" required>
-
-                            <h4>Estoque</h4>
-                            <input type="number" name="estoque-produto" id="" class="inforProduto" value="1" required>
-                        </div>
-                        <div class="botoesProdutos">
-                            <button class="botaoProdutosCan">Cancelar</button> <input type="submit" class="botaoProdutos" value="Criar">
-                        </div>
+                </header>
+                <div class="camposProdutos">
+                    <label>Nome do Produto</label>
+                    <input type="text" placeholder="Ex.: Bola de vôlei" name="nome-produto" id="" class="inforProduto" required>
+                    <label>Preço</label>
+                    <div class="preco">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input type="number" step="0.01" min="0" name="preco-produto" placeholder="0.00" id="" class="inforProduto" required>
                     </div>
+                    <label>Descrição</label>
+                    <textarea name="desc-produto" id="" class="inforProduto" required></textarea>
+                    <label>Categoria</label>
+                    <input type="text" name="tipo-produto" id="tipo-produto" class="inforProduto" required>
+                    <label>Estoque</label>
+                    <input type="number" name="estoque-produto" id="" class="inforProduto" value="1" required>
+                </div>
+                <div class="botoesProdutos">
+                    <button class="botaoProdutosCan">Cancelar</button>
+                    <input type="submit" class="botaoProdutos" value="Criar">
+                </div>
+            </form>
+        </div>
+        <!-- Fim da tela de adicionar produto -->
+        <div class="gerenciamento">
+            <h1>Produtos</h1>
+            <p>Gerenciamento dos produtos do IFsports</p>
 
-                </form>
+            <button id="add_produto" class="botaoEditar">Adicionar produto</button>
+        </div>
 
-            </div>
+        <!--Alguém vai ter que ajeitar os nomes dessas classes-->
 
-            <!-- Fim da tela de adicionar produto -->
-
-            <div class="gerenciamento">
-                <h1>Produtos</h1>
-                <p>Gerenciamento dos produtos do IFsports</p>
-
-                <button id="add_produto" class="botaoEditar">Adicionar produto</button>
-            </div>
-
-            <!--Alguém vai ter que ajeitar os nomes dessas classes-->
-
-            <div class="perfis">
-                <?php
-                while($produto = $produtos->fetch_assoc()):
+        <div class="produtos">
+            <?php
+            while ($produto = $produtos->fetch_assoc()):
                 ?>
-                    <div class="perfil">
-                        <div class="divUsuario"><img src="uploads/<?=htmlspecialchars($produto['imagem'])?>" alt="Foto produto" class="usuario"></div>
+                <div class="produto">
+                    <div class="divProduto"><img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
+                                                 alt="Foto produto" class="usuario"></div>
 
-                        <div class="infosUsuario">
-                            <p>ID: <?= $produto['id_produtos'] ?></p>
-                            <h3>Produto: <?= $produto['nome'] ?></h3>
-                            <p>Valor: R$ <?= $produto['preco'] ?></p>
-                        </div>
+                    <div class="infosProduto">
+                        <p>ID: <?= $produto['id_produtos'] ?></p>
+                        <h3>Produto: <?= $produto['nome'] ?></h3>
+                        <p>Valor: R$ <?= $produto['preco'] ?></p>
+                    </div>
 
-                        <div class="bu">
-                            <form style="width: 100%;display: inline-flex" method="POST" action=""
-                                  onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');">
+                    <div class="bu">
+                        <form style="width: 100%;display: inline-flex" method="POST" action=""
+                              onsubmit="return confirm('Tem certeza de que deseja remover este produto do catálogo?');">
 
-                                <input type="hidden" name="id"
-                                       value="<?= (int)$produto["id_produtos"] ?>">
+                            <input type="hidden" name="id"
+                                   value="<?= (int)$produto["id_produtos"] ?>">
 
-                                <button type="submit" class="botaoExcluir">Remover produto</button>
-                            </form>
-                            <button class="botaoEditar" id="BotaoEditar">Editar produto</button>
-                            <div class="modal" id="modal">
+                            <button type="submit" class="botaoExcluir">Remover produto</button>
+                        </form>
+                        <button class="botaoEditar" id="BotaoEditar">Editar produto</button>
+                        <div class="modal" id="modal">
 
                                 <div class="modalconteudo-Produtos">
 
@@ -185,35 +177,5 @@ $produtos = Produtos_gerenciamento::get_produtos();
     </main>
 
 </body>
-
-<script>
-    const botoesEditar = document.querySelectorAll(".botaoEditar");
-
-    botoesEditar.forEach(function (botao) {
-        botao.addEventListener('click', () => {
-            const modal = botao.closest('.bu').querySelector('.modal');
-
-            modal.style.display = 'flex';
-        })
-    })
-
-    const modais = document.querySelectorAll('.modal');
-
-    modais.forEach(function (modal){
-        modal.addEventListener('click', (local) => {
-            if (local.target === modal) {
-                modal.style.display = 'none'
-
-            }
-        })
-    })
-
-    const modal_novo_produto = document.getElementById('criar-produto');
-    const botao_novo_produto = document.getElementById('add_produto')
-
-    botao_novo_produto.addEventListener('click', () => {
-        modal_novo_produto.style.display = 'flex';
-    })
-</script>
-
+<script src="../JS/produtos.js"></script>
 </html>
