@@ -39,8 +39,41 @@ class Pedidos_gerenciamento
         return $stmt->get_result();
     }
 
-    public static function finalizarPedido($frete){
+    public static function calcular_frete($entrega, $uf){
+        if ($uf === 'RS') {
+            $tabela = ['padrao' => [0.00, 4],     'expressa' => [14.90, 1]];
+        } elseif (in_array($uf, ['SC','PR','SP','RJ','MG','ES'], true)) {
+            $tabela = ['padrao' => [15.00, 7],    'expressa' => [29.90, 3]];
+        } else {
+            $tabela = ['padrao' => [28.50, 12],   'expressa' => [49.90, 5]];
+        }
+        return ['valor' => $tabela[$entrega][0], 'prazo' => $tabela[$entrega][1]];
+    }
+
+    public static function consultar_cep(string $cep): ?array {
+        $cep = preg_replace('/\D/', '', $cep);
+        if (strlen($cep) !== 8) return null;
+
+        $resp = @file_get_contents("https://viacep.com.br/ws/$cep/json/");
+        if ($resp === false) return null;
+
+        $dados = json_decode($resp, true);
+        return (!$dados || isset($dados['erro'])) ? null : $dados;
+    }
+
+    public static function finalizar_pedido($entrega, $cep){
         global $conexao;
+
+        $endereco = self::consultar_cep($cep);
+
+        if(!$endereco){
+            throw new Exception("Endereço invalido");
+        }
+
+        $uf = $endereco['uf'];
+
+        $frete = self::calcular_frete($entrega, $uf);
+        $frete = (double) $frete['valor'];
 
         $itens = self::consultar_itens_pedido();
         if ($itens->num_rows === 0) {

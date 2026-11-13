@@ -1,0 +1,155 @@
+:root {
+    --verde: #2e9e44;
+    --verde-claro: #e8f5ea;
+    --borda: #d9dee3;
+    --texto: #08102e;
+    --texto-suave: #6b7280;
+    --fundo: #f3f4f6;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.container {
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+}
+.tituloPagina {
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    margin: 24px 0 16px; }
+
+/* Layout em duas colunas */
+.checkout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 8%;
+    align-items: start;
+}
+
+.checkoutEtapas { display: flex; flex-direction: column; gap: 12px; }
+
+/* Cartão base */
+.cartao {
+    background: #fff;
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.cartaoTitulo {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 1rem; margin-bottom: 12px;
+}
+.cartaoTitulo i { color: var(--verde); }
+
+/* Endereço */
+.camposEndereco {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.campoCheio, .campoCep { grid-column: 1 / -1; }
+.campoCep { display: flex; gap: 10px; }
+.campoCep .inputsTexto { flex: 1; }
+
+.inputsTexto, #uf {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    font-size: .85rem;
+}
+.inputsTexto:focus, #uf:focus { outline: 2px solid var(--verde); border-color: transparent; }
+
+.btnBuscar {
+    padding: 0 18px;
+    background: #fff;
+    color: var(--verde);
+    border: 1px solid var(--verde);
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btnBuscar:hover {
+    background: var(--verde-claro);
+}
+
+/* Opções (entrega / pagamento) */
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.opcoesPagamento {
+    flex-direction: row;
+}
+.opcoesPagamento .opcao {
+    flex: 1;
+}
+
+.opcao {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    cursor: pointer;
+}
+.opcao:has(input:checked) {
+    border-color: var(--verde);
+    background: var(--verde-claro);
+}
+.opcao input[type="radio"] { accent-color: var(--verde); }
+.opcaoIcone { width: 24px; text-align: center; }
+.opcaoTexto { display: flex; flex-direction: column; flex: 1; }
+.opcaoTexto small { color: var(--texto-suave); font-size: .72rem; }
+.opcaoValor { font-weight: 600; }
+#valorPadrao { color: var(--verde); }
+
+/* Resumo */
+.resumoPedido { position: sticky; top: 16px; }
+.listaProdutos { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.produto { display: flex; align-items: center; gap: 10px; }
+.produto img { width: 48px; height: 48px; object-fit: cover; border-radius: 50%; }
+.produtoInfo { flex: 1; }
+.produtoInfo h3 { font-size: .8rem; }
+.produtoInfo p { font-size: .72rem; color: var(--texto-suave); }
+.produtoPreco { font-size: .8rem; font-weight: 600; }
+
+.valoresResumo { border-top: 1px solid var(--borda); padding-top: 10px; }
+.linhaResumo { display: flex; justify-content: space-between; font-size: .8rem; padding: 4px 0; }
+.linhaResumo dd { font-weight: 600; }
+#frete { color: var(--verde); }
+.linhaTotal { font-size: 1rem; font-weight: 700; margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--borda); }
+.linhaTotal dd { color: var(--verde); font-size: 1.25rem; }
+
+.btnFinalizar {
+    width: 100%; margin-top: 14px; padding: 12px;
+    background: var(--verde); color: #fff;
+    border: 0; border-radius: 999px;
+    font-weight: 600; cursor: pointer;
+}
+.btnFinalizar:hover { filter: brightness(.92); }
+.compraSegura { text-align: center; font-size: .72rem; color: var(--texto-suave); margin-top: 8px; }
+.compraSegura i { color: var(--verde); }
+
+.tituloPagina, .cartaoTitulo{
+    color: var(--texto);
+}
+
+/* Responsivo */
+@media (max-width: 860px) {
+    .checkout { grid-template-columns: 1fr; }
+    .resumoPedido { position: static; }
+    .opcoesPagamento { flex-direction: column; }
+}
+
+span, dd, dt, h2 {
+    font-family: sans-serif;
+}

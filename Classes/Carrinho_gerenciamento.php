@@ -132,11 +132,32 @@ class Carrinho_gerenciamento
         }
     }
 
+    public static function get_subtotal(){
+        global $conexao;
+
+        $sql = "SELECT SUM((it.quantidade * p.preco)) as subtotal FROM item_carrinho as it JOIN Produtos as p ON it.id_produtos = p.id_produtos WHERE id_carrinho = ?";
+        $id_carrinho = self::verificar_carrinho();
+        $id_carrinho = $id_carrinho["id_carrinho"];
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $id_carrinho);
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao consultar subtotal do carrinho");
+        }
+
+        $result = $stmt->get_result();
+        if($result->num_rows == 1){
+            $subtotal = $result->fetch_assoc();
+            return $subtotal["subtotal"];
+        }
+        return false;
+    }
+
     public static function consultar_carrinho($id_usuario){
         global $conexao;
 
         $sql = "
-            SELECT u.nome as nome_usuario, p.nome as nome_produto, it.quantidade as quantidade, it.id_item_carrinho as id_item_carrinho, p.id_produtos as id_produtos FROM item_carrinho as it
+            SELECT u.nome as nome_usuario, p.nome as nome_produto, it.*, p.* FROM item_carrinho as it
             JOIN Carrinho as c ON it.id_carrinho = c.id_carrinho
             JOIN Usuarios as u ON c.id_usuarios = u.id_usuarios
             JOIN Produtos as p ON it.id_produtos = p.id_produtos
