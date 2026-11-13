@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if(!isset($_SESSION["tipo"])){
+    header("Location: login.html");
+    exit;
+}
 
 if($_SESSION['tipo'] == 'comum'){
     header("location: dashboard.php");
@@ -45,14 +49,9 @@ $usuarios = Usuario_gerenciamento::get_usuarios();
 <!-- Cards testes para ver como fica -->
 <main class="vitrineProdutos">
     <div class="botoesNav">
-        <button class="botaoNav corFundoBotaoSelecionado"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
-        <button class="botaoNav"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
-        <button class="botaoNav"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
-        <button class="botaoNav"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
-        <button class="botaoNav"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
         <h1 class="admin"> - ADM - </h1>
-        <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i><a class="aAdmin" href="gerenciamento_usuarios.php">Usuários</a></button>
-        <button class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
+        <button onclick="window.location.href='gerenciamento_usuarios.php'" class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+        <button onclick="window.location.href='produtos.php'" class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
     </div>
 
 

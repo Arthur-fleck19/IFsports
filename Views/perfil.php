@@ -5,6 +5,7 @@ require_once "../Classes/Usuario_gerenciamento.php";
 
 if(!isset($_SESSION["id"])){
     header("Location: login.html");
+    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

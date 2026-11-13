@@ -60,8 +60,8 @@ $produtos = Produtos_gerenciamento::get_produtos();
             if($_SESSION['tipo'] == 'admin'){
                 echo '
                     <h1 class="admin"> - ADM - </h1>
-                    <button class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i><a class="aAdmin" href="gerenciamento_usuarios.php">Usuários</a></button>
-                    <button class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>  
+                    <button onclick="window.location.href=\'gerenciamento_usuarios.php\'" class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+                    <button onclick="window.location.href=\'produtos.php\'" class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>  
                 ';
             }
             ?>
