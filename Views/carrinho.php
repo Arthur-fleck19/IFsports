@@ -68,6 +68,8 @@ $carrinho = Carrinho_gerenciamento::consultar_carrinho($_SESSION["id"]);
         }
         ?>
     </div>
+    <div class="notificacao" id="notificacao"></div>
+    <script src="../JS/notificacao_carrinho.js"></script>
     <?php
         while($produto = $carrinho->fetch_assoc()):
     ?>

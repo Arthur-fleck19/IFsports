@@ -9,13 +9,13 @@ if (isset($_SESSION['id']) && isset($_POST['id_produto']) && isset($_SERVER['HTT
     $id_produto = $_POST["id_produto"];
     $quantidade = $_POST["quantidade"];
 
-    Carrinho_gerenciamento::atualizar_carrinho($id_produto, $quantidade);
+    $feedback = Carrinho_gerenciamento::atualizar_carrinho($id_produto, $quantidade);
 
     if($origem == "/IFsports/Views/dashboard.php"){
-        header("Location: $origem");
+        header("Location: $origem?feedback=".$feedback);
         exit();
     }
 
-    header("Location: /IFsports/Views/carrinho.php");
+    header("Location: /IFsports/Views/carrinho.php?feedback=".$feedback);
     exit();
 }

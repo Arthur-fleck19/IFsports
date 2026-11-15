@@ -88,48 +88,52 @@ class Carrinho_gerenciamento
     }
 
     public static function atualizar_carrinho($id_produto, $quantidade){
-        //se a função "verificar_carrinho()" retornar false, chama a função criar carrinho
         global $conexao;
 
-        $estoque = self::verificar_estoque($id_produto);
-        if ($estoque === false) {
-            throw new Exception("Produto não encontrado");
-        }
+        try {
+            $estoque = self::verificar_estoque($id_produto);
+            if ($estoque === false) {
+                throw new Exception("Produto não encontrado");
+            }
 
-        $quantidade = filter_var($quantidade, FILTER_VALIDATE_INT);
-        if($quantidade === false||$quantidade <= 0){
-            throw new Exception("Quantidade de produtos inválida");
-        }
+            $quantidade = filter_var($quantidade, FILTER_VALIDATE_INT);
+            if ($quantidade === false || $quantidade <= 0) {
+                throw new Exception("Quantidade de produtos inválida");
+            }
 
-        $carrinho = self::verificar_carrinho();
+            $carrinho = self::verificar_carrinho();
 
-        if(!$carrinho){
-            $id_carrinho = self::criar_carrinho();
-        }else{
-            $id_carrinho = $carrinho["id_carrinho"];
-        }
+            if (!$carrinho) {
+                $id_carrinho = self::criar_carrinho();
+            } else {
+                $id_carrinho = $carrinho["id_carrinho"];
+            }
 
-        if (empty($id_carrinho)) {
-            throw new Exception("Erro crítico: ID do carrinho não foi identificado.");
-        }
+            if (empty($id_carrinho)) {
+                throw new Exception("Erro crítico: ID do carrinho não foi identificado.");
+            }
 
-        $quant_anterior = self::verificar_produto($id_produto, $id_carrinho);
-        $quantidade_final = $quantidade + ($quant_anterior === false ? 0 : $quant_anterior);
+            $quant_anterior = self::verificar_produto($id_produto, $id_carrinho);
+            $quantidade_final = $quantidade + ($quant_anterior === false ? 0 : $quant_anterior);
 
-        if($quantidade_final > $estoque){
-            throw new Exception("Quantidade de produtos inválida");
-        }
+            if ($quantidade_final > $estoque) {
+                throw new Exception("limite");
+            }
 
-        $sql = "INSERT INTO item_carrinho (id_carrinho, id_produtos, quantidade)
+            $sql = "INSERT INTO item_carrinho (id_carrinho, id_produtos, quantidade)
         VALUES (?, ?, ?)
         ON DUPLICATE KEY UPDATE quantidade = quantidade + VALUES(quantidade)";
 
-        $stmt = $conexao->prepare($sql);
-        $stmt->bind_param("iii", $id_carrinho, $id_produto, $quantidade);
+            $stmt = $conexao->prepare($sql);
+            $stmt->bind_param("iii", $id_carrinho, $id_produto, $quantidade);
 
-        if(!$stmt->execute()){
-            throw new Exception("Erro ao atualizar carrinho");
+            if (!$stmt->execute()) {
+                throw new Exception("Erro ao atualizar carrinho");
+            }
+        }catch(Exception $e){
+            return $e->getMessage();
         }
+        return 'add-sucesso';
     }
 
     public static function get_subtotal(){

@@ -67,6 +67,8 @@
             }
             ?>
         </div>
+        <div id="notificacao" class="notificacao"></div>
+        <script src="../JS/notificacao_carrinho.js"></script>
         <section class="cardsProdutos">
             <?php
             while ($produto = $produtos->fetch_assoc()):
