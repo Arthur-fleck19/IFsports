@@ -135,7 +135,7 @@ class Produtos_gerenciamento
     public static function atualizar_estoque($id_produto, $quantidade){
         global $conexao;
 
-        $sql = "SELECT quantidade FROM item_carrinho WHERE id_produtos = ?";
+        $sql = "SELECT estoque FROM Produtos WHERE id_produtos = ?";
 
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param("i", $id_produto);
@@ -144,14 +144,15 @@ class Produtos_gerenciamento
         }
 
         $estoque_antigo = $stmt->get_result()->fetch_assoc();
+        $estoque_antigo  = $estoque_antigo['estoque'];
 
         $sql = "UPDATE Produtos SET estoque = ? WHERE id_produtos = ?";
 
         $stmt = $conexao->prepare($sql);
 
-        $estoque = $estoque_antigo['quantidade'] - $quantidade;
+        $estoque = (($estoque_antigo - $quantidade) < 0) ? 0 : ($estoque_antigo - $quantidade);
 
-        $stmt->bind_param("ii", $estoque, $id);
+        $stmt->bind_param("ii", $estoque, $id_produto);
 
         if(!$stmt->execute()){
             throw new Exception("Erro ao atualizar estoque");
