@@ -45,7 +45,7 @@
         $arquivo = $_FILES['imagem'];
         $nome = trim($_POST['nome-produto']);
         $preco = str_replace(",", ".", trim($_POST['preco-produto']));
-        $preco = (double) $preco;
+        $preco = (float) $preco;
         $descricao = trim($_POST['desc-produto']);
         $estoque = (int) trim($_POST['estoque-produto']);
         $tipo = trim($_POST['tipo-produto']);
@@ -68,4 +68,3 @@
         header('Location: ../Views/produtos.php');
         exit();
     }
-?>

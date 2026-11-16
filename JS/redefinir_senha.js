@@ -10,6 +10,10 @@ if(erro === "emailNaoAchado") {
     notificacao.textContent = "Email não encontrado!";
     notificacao.classList.add("erro");
     notificacao.classList.add("mostrar");
+} else if(erro === "emailNaoEnviado") {
+    notificacao.textContent = "Email não enviado!";
+    notificacao.classList.add("erro");
+    notificacao.classList.add("mostrar");
 }
 
 // Faz a notificação desaparecer depois de 3 segundos

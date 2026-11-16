@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['recuperacao_codigo_enviado'], $_SESSION['recuperacao_codigo_hash'], $_SESSION['recuperacao_expira_em']) && time() <= $_SESSION['recuperacao_expira_em']) {
+    if(!isset($_SESSION['recuperacao_codigo_enviado'], $_SESSION['recuperacao_codigo_hash'], $_SESSION['recuperacao_expira_em']) && time() > $_SESSION['recuperacao_expira_em']) {
         header("Location: ../Views/redefinir_senha.html");
         exit();
     }
