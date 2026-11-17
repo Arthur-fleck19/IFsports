@@ -9,8 +9,10 @@ require_once("../Classes/Carrinho_gerenciamento.php");
 require_once "../Classes/Carrinho_gerenciamento.php";
 
 $quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
-$carrinho = Carrinho_gerenciamento::consultar_carrinho($_SESSION["id"]);
+$resultado = Carrinho_gerenciamento::consultar_carrinho($_SESSION["id"]);
+$carrinho = $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
 $subtotal = Carrinho_gerenciamento::get_subtotal();
+$carrinho_vazio = empty($carrinho);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -52,7 +54,8 @@ $subtotal = Carrinho_gerenciamento::get_subtotal();
         <div class="carrinhos-criados">
 
             <?php
-                while($produto = $carrinho->fetch_assoc()):
+            if(!$carrinho_vazio):
+                foreach($carrinho as $produto):
             ?>
                     <div class="carrinho-criado">
                         <div class="divCarrinho">
@@ -76,9 +79,9 @@ $subtotal = Carrinho_gerenciamento::get_subtotal();
                                     <input type="hidden" name="id_item_carrinho" value="<?=htmlspecialchars($produto['id_item_carrinho'])?>">
                                     <input type="hidden" name="quantidade" value="1">
 
-                                    <input formaction="../Rotas/add_carrinho.php" type="submit" value="+" class="botaoSomar">
-                                    <p class="quantidadeAtual"><?= htmlspecialchars($produto['quantidade']) ?></p>
                                     <input formaction="../Rotas/subtrair_carrinho.php" type="submit" value="-" class="botaoSubtrair">
+                                    <p class="quantidadeAtual"><?= htmlspecialchars($produto['quantidade']) ?></p>
+                                    <input formaction="../Rotas/add_carrinho.php" type="submit" value="+" class="botaoSomar">
                                 </div>
 
                                 <button type="submit" class="remover"><i class="fa-solid fa-trash Delete"></i></button>
@@ -87,11 +90,19 @@ $subtotal = Carrinho_gerenciamento::get_subtotal();
                         </div>
                     </div>
             <?php
-                endwhile;
+                endforeach;
+                else:
+            ?>
+            <p>O carrinho está vazio</p>
+            <?php
+                endif;
             ?>
         </div>
     </div>
 
+    <?php
+    if(!$carrinho_vazio):
+    ?>
     <div class="Resumo-pedido">
         <div class="DivInformacao">
 
@@ -110,6 +121,9 @@ $subtotal = Carrinho_gerenciamento::get_subtotal();
 
         </div>
     </div>
+    <?php
+        endif;
+    ?>
 </section>
 <script src="../JS/carrinho.js"></script>
 <script src="../JS/notificacao_carrinho.js"></script>

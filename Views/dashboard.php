@@ -92,7 +92,7 @@ if ($pesquisa != '') {
             <a class="a-cardProduto" href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
                     <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3><?= $produto['nome'] ?></h3>
+                    <h3><?= htmlspecialchars($produto['nome']) ?></h3>
                     <span><span class="corRS">R$</span> <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span></span>
                     <input type="hidden" name="categoria" class="produto-categoria" value="<?= htmlspecialchars($produto['tipo']) ?>">
                     <form action="../Rotas/add_carrinho.php" method="post">
@@ -117,123 +117,118 @@ if ($pesquisa != '') {
         </section>
         <script>
             const botoesFiltro = document.querySelectorAll('.botaoNav[data-categoria]');
-const cardsProdutos = document.querySelectorAll('.a-cardProduto');
+            const inputPesquisa = document.querySelector('#inputPesquisa');
+            const formPesquisa = document.querySelector('.containerInputLupa');
+            const vitrine = document.querySelector('.cardsProdutos');
 
-// Array que guarda as categorias selecionadas
-let categoriasSelecionadas = ['Todos'];
+            let categoriasSelecionadas = ['Todos'];
+            let controladorBusca = null;
+            let temporizadorBusca = null;
 
-botoesFiltro.forEach(botao => {
-    botao.addEventListener('click', () => {
-
-        const categoria = botao.getAttribute('data-categoria');
-
-        // Se clicar em Todos
-        if (categoria === 'Todos') {
-            categoriasSelecionadas = ['Todos'];
-        } else {
-
-            // Remove o Todos quando selecionar outra categoria
-            categoriasSelecionadas = categoriasSelecionadas.filter(
-                cat => cat !== 'Todos'
-            );
-
-            // Se já estiver selecionada, remove
-            if (categoriasSelecionadas.includes(categoria)) {
-                categoriasSelecionadas = categoriasSelecionadas.filter(
-                    cat => cat !== categoria
-                );
-            } else {
-                // Se não estiver selecionada, adiciona
-                categoriasSelecionadas.push(categoria);
+            // Atualiza a aparência dos botões de categoria
+            function atualizarBotoes() {
+                botoesFiltro.forEach(btn => {
+                    btn.classList.toggle(
+                        'corFundoBotaoSelecionado',
+                        categoriasSelecionadas.includes(btn.dataset.categoria)
+                    );
+                });
             }
 
-            // Se nenhuma categoria estiver selecionada, volta para Todos
-            if (categoriasSelecionadas.length === 0) {
-                categoriasSelecionadas = ['Todos'];
+            // Filtra os cards que estão na vitrine NO MOMENTO (busca os cards a cada chamada)
+            function aplicarFiltro() {
+                vitrine.querySelectorAll('.a-cardProduto').forEach(card => {
+                    const categoriaProduto = card.querySelector('.produto-categoria').value;
+                    const visivel =
+                        categoriasSelecionadas.includes('Todos') ||
+                        categoriasSelecionadas.includes(categoriaProduto);
+
+                    card.style.display = visivel ? 'flex' : 'none';
+                });
             }
-        }
 
-        // Atualiza a aparência dos botões
-        botoesFiltro.forEach(btn => {
-            btn.classList.toggle(
-                'corFundoBotaoSelecionado',
-                categoriasSelecionadas.includes(btn.getAttribute('data-categoria'))
-            );
-        });
+            // Clique nos botões de categoria
+            botoesFiltro.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    const categoria = botao.dataset.categoria;
 
-        // Filtra os produtos
-        cardsProdutos.forEach(card => {
-            const categoriaProduto = card.querySelector('.produto-categoria').value;
+                    if (categoria === 'Todos') {
+                        categoriasSelecionadas = ['Todos'];
+                    } else {
+                        // Remove "Todos" ao escolher uma categoria específica
+                        categoriasSelecionadas = categoriasSelecionadas.filter(cat => cat !== 'Todos');
 
-            if (
-                categoriasSelecionadas.includes('Todos') ||
-                categoriasSelecionadas.includes(categoriaProduto)
-            ) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
+                        // Alterna a categoria clicada
+                        if (categoriasSelecionadas.includes(categoria)) {
+                            categoriasSelecionadas = categoriasSelecionadas.filter(cat => cat !== categoria);
+                        } else {
+                            categoriasSelecionadas.push(categoria);
+                        }
+
+                        // Se não sobrou nenhuma, volta para "Todos"
+                        if (categoriasSelecionadas.length === 0) {
+                            categoriasSelecionadas = ['Todos'];
+                        }
+                    }
+
+                    atualizarBotoes();
+                    aplicarFiltro();
+                });
+            });
+
+            // Pesquisa via fetch
+            function pesquisar() {
+                // Cancela a requisição anterior, se ainda estiver em andamento
+                if (controladorBusca) {
+                    controladorBusca.abort();
+                }
+                controladorBusca = new AbortController();
+
+                const termo = inputPesquisa.value.trim();
+
+                fetch('dashboard.php?pesquisa=' + encodeURIComponent(termo), {
+                    signal: controladorBusca.signal
+                })
+                    .then(resposta => {
+                        if (!resposta.ok) {
+                            throw new Error('Resposta inválida: ' + resposta.status);
+                        }
+                        return resposta.text();
+                    })
+                    .then(html => {
+                        const documento = new DOMParser().parseFromString(html, 'text/html');
+                        const novosProdutos = documento.querySelector('.cardsProdutos');
+
+                        if (!novosProdutos) {
+                            throw new Error('Vitrine não encontrada na resposta.');
+                        }
+
+                        vitrine.innerHTML = novosProdutos.innerHTML;
+
+                        // Reaplica os filtros de categoria nos novos cards
+                        aplicarFiltro();
+                    })
+                    .catch(erro => {
+                        if (erro.name === 'AbortError') return; // cancelamento esperado
+                        console.error('Erro ao pesquisar produtos:', erro);
+                    });
             }
-        });
 
-        const inputPesquisa = document.querySelector('#inputPesquisa');
-const vitrine = document.querySelector('.cardsProdutos');
+            // Pesquisa enquanto o usuário digita (com debounce de 300ms)
+            inputPesquisa.addEventListener('input', () => {
+                clearTimeout(temporizadorBusca);
+                temporizadorBusca = setTimeout(pesquisar, 300);
+            });
 
-// Impede que o formulário recarregue a página ao apertar Enter
-document.querySelector('.containerInputLupa').addEventListener('submit', function(event) {
-    event.preventDefault();
-});
+            // Enter ou clique na lupa: pesquisa sem recarregar a página
+            formPesquisa.addEventListener('submit', event => {
+                event.preventDefault();
+                clearTimeout(temporizadorBusca);
+                pesquisar();
+            });
 
-// Pesquisa enquanto o usuário digita
-inputPesquisa.addEventListener('input', function() {
-    const pesquisa = inputPesquisa.value;
-
-    fetch('dashboard.php?pesquisa=' + encodeURIComponent(pesquisa))
-        .then(resposta => resposta.text())
-        .then(html => {
-            const documento = new DOMParser().parseFromString(html, 'text/html');
-
-            const novosProdutos = documento.querySelector('.cardsProdutos');
-
-            vitrine.innerHTML = novosProdutos.innerHTML;
-        })
-        .catch(erro => {
-            console.error('Erro ao pesquisar produtos:', erro);
-        });
-});
-    });
-});
-
-
-const inputPesquisa = document.querySelector('#inputPesquisa');
-const vitrine = document.querySelector('.cardsProdutos');
-
-// Pesquisa enquanto o usuário digita
-inputPesquisa.addEventListener('input', function() {
-
-    const pesquisa = inputPesquisa.value;
-
-    fetch('dashboard.php?pesquisa=' + encodeURIComponent(pesquisa))
-        .then(resposta => resposta.text())
-        .then(html => {
-
-            const documento = new DOMParser().parseFromString(html, 'text/html');
-
-            const novosProdutos = documento.querySelector('.cardsProdutos');
-
-            vitrine.innerHTML = novosProdutos.innerHTML;
-
-        })
-        .catch(erro => {
-            console.error('Erro ao pesquisar produtos:', erro);
-        });
-
-});
-
-document.querySelector('.containerInputLupa').addEventListener('submit', function(event) {
-    event.preventDefault();
-});
-
-
+            // Se a página abriu com ?pesquisa=..., o PHP já filtrou os produtos
+            atualizarBotoes();
         </script>
     </main>
 </body>
