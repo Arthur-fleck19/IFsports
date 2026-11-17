@@ -50,6 +50,7 @@ CREATE TABLE Carrinho(
     id_usuarios INT NOT NULL UNIQUE,
     data_criacao DATE NOT NULL,
     FOREIGN KEY(id_usuarios) REFERENCES Usuarios(id_usuarios)
+    ON DELETE CASCADE
 );
 
 
@@ -58,8 +59,10 @@ CREATE TABLE item_carrinho(
     id_carrinho INT NOT NULL,
     id_produtos INT NOT NULL,
     quantidade INT NOT NULL,
-    FOREIGN KEY(id_carrinho) REFERENCES Carrinho(id_carrinho),
+    FOREIGN KEY(id_carrinho) REFERENCES Carrinho(id_carrinho)
+    ON DELETE CASCADE,
     FOREIGN KEY(id_produtos) REFERENCES Produtos(id_produtos)
+    ON DELETE CASCADE
 );
 
 ALTER TABLE item_carrinho ADD UNIQUE (id_carrinho, id_produtos);
