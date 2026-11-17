@@ -106,9 +106,11 @@ $produtos = Produtos_gerenciamento::get_produtos();
         </div>
         <!-- Fim da tela de adicionar produto -->
         <div class="gerenciamento">
-            <h2>Produtos</h2>
-            <p>Gerenciamento dos produtos do IFsports</p>
-            <button id="add_produto" class="botaoEditar">Adicionar produto</button>
+            <h1>Produtos</h1>
+            <div class="adicionar">
+                <p>Gerenciamento dos produtos do IFsports</p>
+                <button id="add_produto" class="botaoEditar botaoAdd">Adicionar produto</button>
+            </div>
         </div>
         <div class="produtos">
             <?php while($produto = $produtos->fetch_assoc()): ?>
