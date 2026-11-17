@@ -141,7 +141,8 @@ class Carrinho_gerenciamento
 
         $sql = "SELECT SUM((it.quantidade * p.preco)) as subtotal FROM item_carrinho as it JOIN Produtos as p ON it.id_produtos = p.id_produtos WHERE id_carrinho = ?";
         $id_carrinho = self::verificar_carrinho();
-        $id_carrinho = $id_carrinho["id_carrinho"];
+
+        if(isset($id_carrinho["id_carrinho"])) $id_carrinho = $id_carrinho["id_carrinho"];
 
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param("i", $id_carrinho);
