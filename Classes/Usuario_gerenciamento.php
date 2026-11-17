@@ -162,5 +162,36 @@ class Usuario_gerenciamento
         return $row;
     }
 
+    public static function email_existente_retorna_id($email):string {
+        global $conexao;
+        $sql = "SELECT id_usuarios FROM Usuarios WHERE email = ?";
+        $stmt = $conexao->prepare($sql);
 
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+
+        if($resultado->num_rows == 1) {
+            $infosUsuario = $resultado->fetch_assoc();
+
+            return $infosUsuario["id_usuarios"];
+        } else {
+            return "-1";
+        }
+    }
+
+    public static function editar_senha($idUsuario, $novaSenha) {
+        global $conexao;
+        $novaSenha = password_hash($novaSenha, PASSWORD_DEFAULT);
+        $sql = "UPDATE Usuarios SET senha = ? WHERE id_usuarios = ?";
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param("si", $novaSenha, $idUsuario);
+        $stmt->execute();
+
+        session_unset();
+        header("Location: ../Views/login.html");
+        exit();
+    }
 }
