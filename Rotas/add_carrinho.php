@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && isset($_POST['id_produto']) && isset($_SERVER['HTTP_REFERER'])) {
+if (isset($_SESSION['id']) && isset($_POST['id_produto']) && isset($_SERVER['HTTP_REFERER']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $origem = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
 
     require_once "../Classes/Carrinho_gerenciamento.php";
@@ -18,4 +18,6 @@ if (isset($_SESSION['id']) && isset($_POST['id_produto']) && isset($_SERVER['HTT
 
     header("Location: /IFsports/Views/carrinho.php?feedback=".$feedback);
     exit();
+}else{
+    header("Location: dashboard.php");
 }

@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(isset($_SESSION['id'])){
+        header("Location: ../Views/dashboard.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -41,7 +49,7 @@
                     <span></span>
                 </div>
                 <div class="link-registro">
-                    <p class="coisa">Não tem uma conta? <a href="cadastro.html">Crie uma conta</a></p>
+                    <p class="coisa">Não tem uma conta? <a href="cadastro.php">Crie uma conta</a></p>
                 </div>
                 <div class="caixa-esqueci">
                     <p class="coisa">Esqueceu sua senha? <a href="redefinir_senha.html">Redefinir senha</a></p>

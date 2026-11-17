@@ -1,0 +1,257 @@
+.cabecalho {
+    height: 100px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    background-color: #FFFFFF;
+}
+
+.container {
+    padding-top: 20px;
+    padding-left: 30px;
+    gap: 10%;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.icones {
+    height: 55px;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5px;
+    list-style: none;
+}
+
+.icone:hover, .lupaInput:hover {
+    background-color: #CCCCCC;
+    transition: 0.2s;
+}
+
+
+.gerenciamento {
+    font-family: sans-serif;
+    width: auto;
+}
+
+.carrinho-criado{
+    border-radius: 15px;
+    background: white;
+    min-height: 160px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    align-items: center;
+    padding: 15px;
+    gap: 25px;
+}
+
+.divCarrinho{
+    margin-left: 5px;
+    flex-shrink: 0;
+}
+
+.divCarrinho img{
+    width: 180px;
+    height: 125px;
+    object-fit: cover;
+    display: block;
+}
+
+.divProduto{
+    text-align: left;
+    margin-top: -20px;
+
+}
+.divProduto h1 {
+    margin: 15px 0 2px 0;
+    font-size: 25px;
+    font-family: sans-serif;
+}
+
+.divProduto p {
+    margin: 2px;
+    font-family: sans-serif;
+}
+
+.Estoque {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #E8F0F3;
+    color: #536878;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+.Valor{
+    color: #2e9e44;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.Valor p {
+    margin: 0;
+}
+
+.controleQuantidade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #CCCCCC;
+    border-radius: 15px;
+    padding: 4px;
+    gap: 6px;
+    transform: scale(1.2);
+}
+
+.controleQuantidade button {
+    background: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 3px 8px;
+}
+
+.quantidade {
+    width: 45px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 14px;
+}
+.controleQuantidade button:hover {
+    background-color: #EEEEEE;
+    border-color: #999999;
+}
+.Delete {
+    color: rgb(226, 29, 29);
+    font-size: 22px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 0;
+}
+
+.Delete:hover {
+    color: #851414;
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.remover {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.InformacoesCompra{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: auto;
+}
+.Resumo-Pedido {
+    max-width: 20%;
+    min-width: 400px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    border: solid 1px;
+    display: flex;
+
+}
+.DivInformacao{
+    border-radius: 15px;
+    background: white;
+    width: 330px;
+    min-height: 260px;
+    padding: 10px;
+    display: flex;
+    margin: 0;
+    margin-top: 80px;
+
+    display: flex;
+    flex-direction: column;
+}
+.DivInformacao h1{
+    margin-top: 5px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.DivInformacao hr{
+    border: none;
+    border-top: 1px solid   rgb(150, 134, 134);
+    margin: 12px 0;
+    width: 100%;
+}
+
+.DivInformacao div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.DivInformacao p{
+
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 5px;
+}
+.Final{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+.Frete{
+    color: #2e9e44;
+}
+
+.BotaoFinalizar{
+    margin-top: 15px;
+    height: auto;
+    padding: 12px 14px;
+    background-color: #2e9e44;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.formQuantidade {
+    display: flex;
+    height: 2rem;
+}
+
+.controleQuantidade input, .controleQuantidade button {
+    background: none;
+    border: none;
+}
+
+.carrinhos-criados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.controleQuantidade input:hover{
+    cursor: pointer;
+}

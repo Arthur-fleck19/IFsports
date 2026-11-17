@@ -2,6 +2,13 @@
     require_once "../Classes/Produtos_gerenciamento.php";
     require_once "../Classes/Carrinho_gerenciamento.php";
 
+    session_start();
+
+    if (!isset($_SESSION["tipo"])) {
+        header("Location: login.php");
+        exit();
+    }
+
     $id= $_GET['id'];
     $quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
     $produto = Produtos_gerenciamento::get_detalhes_produto($id);

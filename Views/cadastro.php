@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(isset($_SESSION['id'])){
+        header("Location: ../Views/dashboard.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,19 +20,16 @@
 <body>
     <header class="cabecalho">
 
-
         <a href="#">
             <img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg">
         </a>
     </header>
 
+    <div id="notificacao" class="notificacao"></div>
    
 <div class="icone-voltar">
-    <a href="login.html"><i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: rgb(255, 255, 255); "></i></div></a>
+    <a href="login.php"><i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: rgb(255, 255, 255); "></i></div></a>
 <div  class="container">
-
-
-   
    
     <div class="formulario">
 
@@ -76,21 +81,7 @@
 </div>
     </div>
 
-   <script>
-const senha = document.getElementById("senha");
-const olho = document.getElementById("toggleSenha");
-
-olho.addEventListener("click", () => {
-    if (senha.type === "password") {
-        senha.type = "text"; // mostra a senha
-        olho.classList.remove("fa-eye-slash");
-        olho.classList.add("fa-eye");
-    } else {
-        senha.type = "password"; // esconde a senha
-        olho.classList.remove("fa-eye");
-        olho.classList.add("fa-eye-slash");
-    }
-});
-</script>  
+   <script src="../JS/cadastro.js">
+   </script>
 </body>
 </html>

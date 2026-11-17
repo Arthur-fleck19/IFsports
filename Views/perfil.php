@@ -6,7 +6,8 @@ require_once "../Classes/Carrinho_gerenciamento.php";
 require_once "../Classes/Pedidos_gerenciamento.php";
 
 if(!isset($_SESSION["id"])){
-    header("Location: login.html");
+    header("Location: login.php");
+    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,7 +58,7 @@ $pedidos = Pedidos_gerenciamento::get_pedidos();
     <div class="container">
         <div class="perfil">
                     <div class="divUsuario"><img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63lctB9SWfz7PyfuaXZW4aGwfOlZNC5_72EK_BoRBKA&s=10"
+                                src="Imagens/perfil.jpg"
                                 alt="Foto Usuário" class="usuario"></div>
 
                     <div class="infosUsuario">
