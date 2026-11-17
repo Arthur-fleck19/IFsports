@@ -86,6 +86,26 @@ class Produtos_gerenciamento
         return $resultado;
     }
 
+
+public static function pesquisar_produtos($pesquisa){
+    global $conexao;
+
+    $sql = "SELECT * FROM Produtos WHERE nome LIKE ?";
+
+    $stmt = $conexao->prepare($sql);
+
+    $pesquisa = "%" . $pesquisa . "%";
+
+    $stmt->bind_param("s", $pesquisa);
+
+    $stmt->execute();
+
+    $resultado = $stmt->get_result();
+
+    return $resultado;
+}
+
+
     public static function get_detalhes_produto($id){
         global $conexao;
         $sql = "SELECT * FROM Produtos WHERE id_produtos = ?";

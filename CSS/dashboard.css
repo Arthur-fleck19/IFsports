@@ -375,3 +375,11 @@ html, body {
     text-decoration: none;
     color: white;
 }
+
+.mensagemSemProdutos {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    padding: 40px 0;
+}

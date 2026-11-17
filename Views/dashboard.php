@@ -9,8 +9,16 @@
     require_once "../Classes/Produtos_gerenciamento.php";
     require_once "../Classes/Carrinho_gerenciamento.php";
 
-    $produtos = Produtos_gerenciamento::get_produtos();
     $quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
+
+    $pesquisa = trim($_GET['pesquisa'] ?? '');
+
+if ($pesquisa != '') {
+    $produtos = Produtos_gerenciamento::pesquisar_produtos($pesquisa);
+} else {
+    $produtos = Produtos_gerenciamento::get_produtos();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -28,8 +36,14 @@
 <body>
     <header class="cabecalho">
         <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
-        <form class="containerInputLupa">
-            <input type="text" name="pesquisa" id="inputPesquisa" class="inputPesquisa" placeholder="Digite sua pesquisa...">
+        <form class="containerInputLupa" method="GET" action="dashboard.php">
+            <input type="text"
+             name="pesquisa"
+             id="inputPesquisa"
+             class="inputPesquisa"
+             placeholder="Digite sua pesquisa..."
+              value="<?= htmlspecialchars($pesquisa, ENT_QUOTES, 'UTF-8') ?>">
+
             <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
         </form>
         <nav>
@@ -70,9 +84,11 @@
         <div id="notificacao" class="notificacao"></div>
         <script src="../JS/notificacao_carrinho.js"></script>
         <section class="cardsProdutos">
-            <?php
-            while ($produto = $produtos->fetch_assoc()):
-            ?>
+
+    <?php if ($produtos && $produtos->num_rows > 0): ?>
+
+        <?php while ($produto = $produtos->fetch_assoc()): ?>
+
             <a class="a-cardProduto" href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
                     <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
@@ -87,9 +103,16 @@
 
                 </article>
             </a>
-            <?php
-            endwhile;
-            ?>
+
+        <?php endwhile; ?>
+
+    <?php else: ?>
+
+        <p class="mensagemSemProdutos">
+            Nenhum produto encontrado.
+        </p>
+
+    <?php endif; ?>
 
         </section>
         <script>
@@ -151,8 +174,65 @@ botoesFiltro.forEach(botao => {
                 card.style.display = 'none';
             }
         });
+
+        const inputPesquisa = document.querySelector('#inputPesquisa');
+const vitrine = document.querySelector('.cardsProdutos');
+
+// Impede que o formulário recarregue a página ao apertar Enter
+document.querySelector('.containerInputLupa').addEventListener('submit', function(event) {
+    event.preventDefault();
+});
+
+// Pesquisa enquanto o usuário digita
+inputPesquisa.addEventListener('input', function() {
+    const pesquisa = inputPesquisa.value;
+
+    fetch('dashboard.php?pesquisa=' + encodeURIComponent(pesquisa))
+        .then(resposta => resposta.text())
+        .then(html => {
+            const documento = new DOMParser().parseFromString(html, 'text/html');
+
+            const novosProdutos = documento.querySelector('.cardsProdutos');
+
+            vitrine.innerHTML = novosProdutos.innerHTML;
+        })
+        .catch(erro => {
+            console.error('Erro ao pesquisar produtos:', erro);
+        });
+});
     });
 });
+
+
+const inputPesquisa = document.querySelector('#inputPesquisa');
+const vitrine = document.querySelector('.cardsProdutos');
+
+// Pesquisa enquanto o usuário digita
+inputPesquisa.addEventListener('input', function() {
+
+    const pesquisa = inputPesquisa.value;
+
+    fetch('dashboard.php?pesquisa=' + encodeURIComponent(pesquisa))
+        .then(resposta => resposta.text())
+        .then(html => {
+
+            const documento = new DOMParser().parseFromString(html, 'text/html');
+
+            const novosProdutos = documento.querySelector('.cardsProdutos');
+
+            vitrine.innerHTML = novosProdutos.innerHTML;
+
+        })
+        .catch(erro => {
+            console.error('Erro ao pesquisar produtos:', erro);
+        });
+
+});
+
+document.querySelector('.containerInputLupa').addEventListener('submit', function(event) {
+    event.preventDefault();
+});
+
 
         </script>
     </main>
