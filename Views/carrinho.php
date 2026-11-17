@@ -40,13 +40,19 @@ $carrinho_vazio = empty($carrinho);
     <nav>
         <ul class="icones">
             <li><a href="carrinho.php" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><?= ((int) $quant_carrinho > 0) ? "<span class='contadorCarrinho'>" . ($quant_carrinho > 99 ? '+99' : (int) $quant_carrinho) . "</span>" : "" ?></li>
-            <li><a href="" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
+             <?php
+            if($_SESSION['tipo'] != 'admin'){
+                echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+            }else{
+                echo '<li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
+            }
+            ?>
         </ul>
     </nav>
 </header>
 
 <section class="container">
-    <div>
+    <div class="carrinho">
         <div class="notificacao" id="notificacao"></div>
 
         <h1 class="gerenciamento">Carrinho</h1>
@@ -58,14 +64,16 @@ $carrinho_vazio = empty($carrinho);
                 foreach($carrinho as $produto):
             ?>
                     <div class="carrinho-criado">
-                        <div class="divCarrinho">
-                            <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Foto produto" class="usuario">
-                        </div>
 
-                        <div class="divProduto">
-                            <h1><?= htmlspecialchars($produto['nome']) ?></h1>
-                            <p><?= htmlspecialchars($produto['descricao']) ?></p>
-                            <p class="Estoque">Estoque: <?= htmlspecialchars($produto['estoque']) ?></p>
+                        <div class="divesquerda">
+                            <div class="divCarrinho">
+                                <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Foto produto" class="usuario">
+                            </div>
+                            <div class="divProduto">
+                                <h1><?= htmlspecialchars($produto['nome']) ?></h1>
+                                <p><?= htmlspecialchars($produto['descricao']) ?></p>
+                                <p class="Estoque">Estoque: <?= htmlspecialchars($produto['estoque']) ?></p>
+                            </div>
                         </div>
 
                         <div class="InformacoesCompra">

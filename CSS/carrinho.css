@@ -11,9 +11,9 @@
 
 .container {
     padding-top: 20px;
-    padding-left: 30px;
     gap: 10%;
-    width: auto;
+    width: 100%;
+    justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
 }
@@ -45,9 +45,10 @@
     border-radius: 15px;
     background: white;
     min-height: 160px;
+    max-height: auto;
     width: 100%;
-    display: grid;
-    grid-template-columns: 180px 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 15px;
     gap: 25px;
@@ -110,14 +111,7 @@
     padding: 4px;
     gap: 6px;
     transform: scale(1.2);
-}
-
-.controleQuantidade button {
-    background: white;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 3px 8px;
+    margin-right: 25px;
 }
 
 .quantidade {
@@ -155,7 +149,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 5vw;
     width: auto;
 }
 .Resumo-Pedido {
@@ -249,9 +243,18 @@
 .carrinhos-criados {
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 10px;
 }
 
 .controleQuantidade input:hover{
     cursor: pointer;
+}
+.divesquerda{
+    display: flex;
+    align-items: center;
+}
+
+.carrinho {
+    width: 60%;
 }
