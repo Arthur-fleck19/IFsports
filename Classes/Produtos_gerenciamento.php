@@ -36,8 +36,14 @@ class Produtos_gerenciamento
             die('Tipo de arquivo não permitido.');
         }
 
+        $diretorio = __DIR__ . '/../uploads/';
+
+        if(!is_dir($diretorio)) {
+            mkdir($diretorio, 0777, true);
+        }
+
         $nome = bin2hex(random_bytes(16)) . '.' . $permitidos[$mime];
-        $destino = '../uploads/'.$nome;
+        $destino = $diretorio.$nome;
 
         if (!move_uploaded_file($arquivo['tmp_name'], $destino)) {
             die ('Erro ao enviar imagem');
@@ -123,6 +129,33 @@ class Produtos_gerenciamento
                 . ($removido ? "sucesso" : "erro")
             );
             exit;
+        }
+    }
+
+    public static function atualizar_estoque($id_produto, $quantidade){
+        global $conexao;
+
+        $sql = "SELECT estoque FROM Produtos WHERE id_produtos = ?";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bind_param("i", $id_produto);
+        if (!$stmt->execute()) {
+            throw new Exception('Erro ao consultar estoque');
+        }
+
+        $estoque_antigo = $stmt->get_result()->fetch_assoc();
+        $estoque_antigo  = $estoque_antigo['estoque'];
+
+        $sql = "UPDATE Produtos SET estoque = ? WHERE id_produtos = ?";
+
+        $stmt = $conexao->prepare($sql);
+
+        $estoque = (($estoque_antigo - $quantidade) < 0) ? 0 : ($estoque_antigo - $quantidade);
+
+        $stmt->bind_param("ii", $estoque, $id_produto);
+
+        if(!$stmt->execute()){
+            throw new Exception("Erro ao atualizar estoque");
         }
     }
 }

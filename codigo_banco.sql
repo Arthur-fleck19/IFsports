@@ -16,7 +16,7 @@ CREATE TABLE Produtos(
 
 CREATE TABLE Usuarios(
     id_usuarios INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    email VARCHAR(320) NOT NULL,
+    email VARCHAR(320) NOT NULL UNIQUE,
     nome VARCHAR(75) NOT NULL UNIQUE,
     tipo VARCHAR(6) NOT NULL,
     senha VARCHAR(300) NOT NULL
@@ -47,7 +47,7 @@ CREATE TABLE Item_pedidos(
 
 CREATE TABLE Carrinho(
     id_carrinho INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_usuarios INT NOT NULL,
+    id_usuarios INT NOT NULL UNIQUE,
     data_criacao DATE NOT NULL,
     FOREIGN KEY(id_usuarios) REFERENCES Usuarios(id_usuarios)
 );
@@ -61,6 +61,8 @@ CREATE TABLE item_carrinho(
     FOREIGN KEY(id_carrinho) REFERENCES Carrinho(id_carrinho),
     FOREIGN KEY(id_produtos) REFERENCES Produtos(id_produtos)
 );
+
+ALTER TABLE item_carrinho ADD UNIQUE (id_carrinho, id_produtos);
 
 INSERT INTO Usuarios (email, nome, tipo, senha) VALUES
 ('admin@ifsports.com',  'admin', 'admin', '$2y$10$IP2az.9evcpM3vBTs2KBjuEthL5jVot0/xCceQuqOHWH5QYk0VsKK'),

@@ -1,14 +1,16 @@
 <?php
-session_start();
+    session_start();
 
-if(!isset($_SESSION["tipo"])){
-    header("Location: login.html");
-    exit;
-}
+    if(!isset($_SESSION["tipo"])){
+        header("Location: login.php");
+        exit();
+    }
 
-require_once("../Classes/Produtos_gerenciamento.php");
+    require_once "../Classes/Produtos_gerenciamento.php";
+    require_once "../Classes/Carrinho_gerenciamento.php";
 
-$produtos = Produtos_gerenciamento::get_produtos();
+    $produtos = Produtos_gerenciamento::get_produtos();
+    $quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -32,7 +34,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
         </form>
         <nav>
             <ul class="icones">
-                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
+                <li><a href="carrinho.php" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><?= ((int) $quant_carrinho > 0) ? "<span class='contadorCarrinho'>" . ($quant_carrinho > 99 ? '+99' : (int) $quant_carrinho) . "</span>" : "" ?></li>
                 <?php
                     if($_SESSION['tipo'] != 'admin'){
                         echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
@@ -46,7 +48,6 @@ $produtos = Produtos_gerenciamento::get_produtos();
 
 
     </header>
-    <!-- Cards testes para ver como fica -->
     <main class="vitrineProdutos">
         <div class="botoesNav">
             <button class="botaoNav corFundoBotaoSelecionado" data-categoria="Todos"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
@@ -66,6 +67,8 @@ $produtos = Produtos_gerenciamento::get_produtos();
             }
             ?>
         </div>
+        <div id="notificacao" class="notificacao"></div>
+        <script src="../JS/notificacao_carrinho.js"></script>
         <section class="cardsProdutos">
             <?php
             while ($produto = $produtos->fetch_assoc()):
@@ -76,7 +79,12 @@ $produtos = Produtos_gerenciamento::get_produtos();
                     <h3><?= $produto['nome'] ?></h3>
                     <span><span class="corRS">R$</span> <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span></span>
                     <input type="hidden" name="categoria" class="produto-categoria" value="<?= htmlspecialchars($produto['tipo']) ?>">
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
+                    <form action="../Rotas/add_carrinho.php" method="post">
+                        <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
+                        <input type="hidden" name="quantidade" value="1">
+                        <button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button>
+                    </form>
+
                 </article>
             </a>
             <?php

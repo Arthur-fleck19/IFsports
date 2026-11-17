@@ -6,31 +6,36 @@ class Usuario_gerenciamento
     public static function cadastrar($nome, $email, $senha)
     {
         global $conexao;
-        $sql = "INSERT INTO Usuarios (nome, email, tipo, senha) VALUES (?, ?, 'comum', ?)";
-        $stmt = $conexao->prepare($sql);
-        $senha = password_hash($senha, PASSWORD_DEFAULT);
-
-        $stmt->bind_param("sss", $nome, $email, $senha);
-
-        if ($stmt->execute()) {
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-
-            session_regenerate_id(true);
-
-            $sql = "SELECT id_usuarios FROM Usuarios WHERE nome = ? LIMIT 1";
+        try {
+            $sql = "INSERT INTO Usuarios (nome, email, tipo, senha) VALUES (?, ?, 'comum', ?)";
             $stmt = $conexao->prepare($sql);
+            $senha = password_hash($senha, PASSWORD_DEFAULT);
 
-            $stmt->bind_param("s", $nome);
-            $stmt->execute();
+            $stmt->bind_param("sss", $nome, $email, $senha);
 
-            $result = $stmt->get_result();
-            $_SESSION['id'] = $result->fetch_assoc()["id_usuarios"];
-            $_SESSION['nome'] = $nome;
-            $_SESSION['tipo'] = 'comum';
-        } else {
-            throw new Exception("Erro ao cadastrar informações");
+            if ($stmt->execute()) {
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                session_regenerate_id(true);
+
+                $sql = "SELECT id_usuarios FROM Usuarios WHERE nome = ? LIMIT 1";
+                $stmt = $conexao->prepare($sql);
+
+                $stmt->bind_param("s", $nome);
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+                $_SESSION['id'] = $result->fetch_assoc()["id_usuarios"];
+                $_SESSION['nome'] = $nome;
+                $_SESSION['tipo'] = 'comum';
+            } else {
+                throw new Exception("Erro ao cadastrar informações");
+            }
+        }catch (Exception $e){
+            header("Location: ../Views/cadastro.php?erro=existente");
+            exit();
         }
     }
 
@@ -114,11 +119,11 @@ class Usuario_gerenciamento
 
                 exit;
             } else {
-                header("Location: ../Views/login.html?erro=senha");
+                header("Location: ../Views/login.php?erro=senha");
                 exit;
             }
         } else {
-            header("Location: ../Views/login.html?erro=usuario");
+            header("Location: ../Views/login.php?erro=usuario");
             exit;
         }
 
@@ -132,7 +137,7 @@ class Usuario_gerenciamento
     {
         session_unset();
         session_destroy();
-        header("Location: ../Views/login.html");
+        header("Location: ../Views/login.php");
         exit;
     }
 

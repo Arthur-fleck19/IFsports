@@ -2,9 +2,11 @@
 session_start();
 
 require_once "../Classes/Usuario_gerenciamento.php";
+require_once "../Classes/Carrinho_gerenciamento.php";
+require_once "../Classes/Pedidos_gerenciamento.php";
 
 if(!isset($_SESSION["id"])){
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -12,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     Usuario_gerenciamento::logout();
 }
 
-
-
+$quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
 $usuario = Usuario_gerenciamento::perfil();
+$pedidos = Pedidos_gerenciamento::get_pedidos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -41,8 +43,7 @@ $usuario = Usuario_gerenciamento::perfil();
     </form>
     <nav>
         <ul class="icones">
-            <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
-                        class="contadorCarrinho">1</span></li>
+            <li><a href="carrinho.php" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><?= ((int) $quant_carrinho > 0) ? "<span class='contadorCarrinho'>" . ($quant_carrinho > 99 ? '+99' : (int) $quant_carrinho) . "</span>" : "" ?></li>
             <?php
             if($_SESSION['tipo'] != 'admin'){
                 echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
@@ -57,7 +58,7 @@ $usuario = Usuario_gerenciamento::perfil();
     <div class="container">
         <div class="perfil">
                     <div class="divUsuario"><img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63lctB9SWfz7PyfuaXZW4aGwfOlZNC5_72EK_BoRBKA&s=10"
+                                src="Imagens/perfil.jpg"
                                 alt="Foto Usuário" class="usuario"></div>
 
                     <div class="infosUsuario">
@@ -150,24 +151,21 @@ $usuario = Usuario_gerenciamento::perfil();
         </script>
         <div class="pedidos">
             <h1 class="pedidos-titulo">Seus pedidos</h1>
-            <div class="pedido">
-                <p>Pedido #1</p>
-                <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt="">
-                    <div class="pedidos-valores">
-                        <h1>R$79,99</h1>
-                        <p>2 artigo</p>
+            <?php
+                while($pedido = $pedidos->fetch_assoc()):
+            ?>
+                    <div class="pedido">
+                        <p>Pedido <?= htmlspecialchars($pedido['id']) ?></p>
+                        <div class="infos-pedidos"><img src="../uploads/<?= htmlspecialchars($pedido['imagem']) ?>" alt="">
+                            <div class="pedidos-valores">
+                                <h1>R$<?= htmlspecialchars($pedido['subtotal']) ?></h1>
+                                <p><?= htmlspecialchars($pedido['quantidade']) ?> artigo(s)</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="pedido">
-                <p>Pedido #1</p>
-                <div class="infos-pedidos"><img src="https://images3.memedroid.com/images/UPLOADED920/677b3a23528b4.jpeg" alt="">
-                    <div class="pedidos-valores">
-                        <h1>R$79,99</h1>
-                        <p>2 artigo</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+                endwhile;
+            ?>
         </div>
     </div>
 </body>

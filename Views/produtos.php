@@ -1,25 +1,22 @@
 <?php
     session_start();
-    require_once "../Classes/Produtos_gerenciamento.php";
+    require_once("../Classes/Produtos_gerenciamento.php");
+    require_once "../Classes/Carrinho_gerenciamento.php";
 
-    if(!isset($_SESSION["tipo"])){
-        header("Location: login.html");
-        exit;
-    }
-    
-    if($_SESSION['tipo'] != 'admin') {
+    if($_SESSION['tipo'] != 'admin'){
         header('Location: dashboard.php');
         exit();
     }
-    
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(isset($_POST['id'])) {
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_POST['id'])){
             $id = $_POST['id'];
             Produtos_gerenciamento::excluir($id);
         }
     }
-    
-    $produtos = Produtos_gerenciamento::get_produtos();
+
+$quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
+$produtos = Produtos_gerenciamento::get_produtos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -41,7 +38,7 @@
         </form>
         <nav>
             <ul class="icones">
-                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
+                <li><a href="carrinho.php" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><?= ((int) $quant_carrinho > 0) ? "<span class='contadorCarrinho'>" . ($quant_carrinho > 99 ? '+99' : (int) $quant_carrinho) . "</span>" : "" ?></li>
                 <li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
             </ul>
         </nav>
@@ -113,7 +110,6 @@
             <p>Gerenciamento dos produtos do IFsports</p>
             <button id="add_produto" class="botaoEditar">Adicionar produto</button>
         </div>
-        <!--Alguém vai ter que ajeitar os nomes dessas classes-->
         <div class="produtos">
             <?php while($produto = $produtos->fetch_assoc()): ?>
                 <div class="produto">

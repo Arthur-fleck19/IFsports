@@ -12,7 +12,9 @@ if($_SESSION['tipo'] == 'comum'){
 }
 
 require_once "../Classes/Usuario_gerenciamento.php";
+require_once "../Classes/Carrinho_gerenciamento.php";
 
+$quant_carrinho = Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION["id"]);
 $usuarios = Usuario_gerenciamento::get_usuarios();
 ?>
 <!DOCTYPE html>
@@ -40,8 +42,7 @@ $usuarios = Usuario_gerenciamento::get_usuarios();
     </form>
     <nav>
         <ul class="icones">
-            <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span
-                        class="contadorCarrinho">1</span></li>
+            <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><?= ((int) $quant_carrinho > 0) ? "<span class='contadorCarrinho'>" . ($quant_carrinho > 99 ? '+99' : (int) $quant_carrinho) . "</span>" : "" ?></li>
             <li><a href="perfil.php" class="iconeSite Usuario"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>
         </ul>
     </nav>
@@ -69,7 +70,7 @@ $usuarios = Usuario_gerenciamento::get_usuarios();
                 ?>
                 <div class="perfil">
                     <div class="divUsuario"><img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ63lctB9SWfz7PyfuaXZW4aGwfOlZNC5_72EK_BoRBKA&s=10"
+                                src="Imagens/perfil.jpg"
                                 alt="Foto Usuário" class="usuario"></div>
 
                     <div class="infosUsuario">

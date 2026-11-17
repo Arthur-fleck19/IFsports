@@ -15,6 +15,43 @@ html, body {
     background-color: #2F9E40;
 }
 
+.notificacao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 15px 25px;
+    border-radius: 8px;
+
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.4s ease, top 0.4s ease;
+
+    z-index: 9999;
+}
+
+.notificacao.mostrar {
+    opacity: 1;
+    visibility: visible;
+    top: 30px;
+}
+
+.notificacao.erro {
+    background-color: #e74c3c;
+}
+
+.notificacao.sucesso {
+    background-color: #2ecc71;
+}
 
 .cabecalho {
     height: 100px;

@@ -187,6 +187,7 @@ html, body {
 }
 
 .labelInputUni {
+    grid-area: input;
     height: 90px;
     border-radius: 10px;
     padding: 0.5rem;
@@ -226,15 +227,17 @@ html, body {
 }
 
 .inputBotao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+            'input comprar'
+            'adicionar adicionar';
     gap: 20px;
 }
 
 .botaoComprar {
+    grid-area: comprar;
     height: 75px;
-    width: 225px;
     border: none;
     border-radius: 50px;
     padding: 0.75rem;
@@ -263,10 +266,11 @@ html, body {
 }
 
 .botaoAdCarrinho {
+    grid-area: adicionar;
     border: 2px solid #CD181D;
     border-radius: 30px;
     height: 50px;
-    width: 200px;
+    width: 100%;
     margin-top: 1rem;
     margin-bottom: 4rem;
     font-size: clamp(0.8rem, 0.9vw, 1rem);
@@ -288,7 +292,7 @@ html, body {
 }
 
 .formBotaoAdCarrinho button {
-    width: 490px;
+    width: 100%;
 }
 
 @media(max-width: 1130px) {

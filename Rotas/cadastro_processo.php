@@ -1,11 +1,17 @@
 <?php
 require_once "../Classes/Usuario_gerenciamento.php";
 
-$nome = $_POST['nome'];
-$email = $_POST['email'];
-$senha = $_POST['senha'];
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-Usuario_gerenciamento::cadastrar($nome, $email, $senha);
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-header("Location: ../Views/dashboard.php");
-exit;
+    Usuario_gerenciamento::cadastrar($nome, $email, $senha);
+
+    header("Location: ../Views/dashboard.php");
+    exit();
+}
+
+header("Location: ../Views/cadastro.php");
+exit();
