@@ -41,7 +41,7 @@ if ($pesquisa != '') {
              class="inputPesquisa" 
              placeholder="Digite sua pesquisa..."
               value="<?= htmlspecialchars($pesquisa, ENT_QUOTES, 'UTF-8') ?>">
-              
+
             <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
         </form>
         <nav>
@@ -80,24 +80,58 @@ if ($pesquisa != '') {
             }
             ?>
         </div>
+        
         <section class="cardsProdutos">
-            <?php
-            while ($produto = $produtos->fetch_assoc()):
-            ?>
+
+    <?php if ($produtos && $produtos->num_rows > 0): ?>
+
+        <?php while ($produto = $produtos->fetch_assoc()): ?>
+
             <a class="a-cardProduto" href="detalhesItem.php?id=<?= htmlspecialchars($produto['id_produtos']); ?>">
                 <article class="cardProduto">
-                    <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>" alt="Imagem do produto" height="200px" width="80%" class="imagemProduto">
-                    <h3><?= $produto['nome'] ?></h3>
-                    <span><span class="corRS">R$</span> <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span></span>
-                    <input type="hidden" name="categoria" class="produto-categoria" value="<?= htmlspecialchars($produto['tipo']) ?>">
-                    <form action=""><button type="submit" class="botaoAdCarrinho"><i class="fa-solid fa-cart-shopping fa-xl"></i>Adicionar</button></form>
+
+                    <img src="../uploads/<?= htmlspecialchars($produto['imagem']) ?>"
+                         alt="Imagem do produto"
+                         height="200px"
+                         width="80%"
+                         class="imagemProduto">
+
+                    <h3><?= htmlspecialchars($produto['nome']) ?></h3>
+
+                    <span>
+                        <span class="corRS">R$</span>
+                        <span class="corPreco"><?= htmlspecialchars($produto['preco']) ?></span>
+                    </span>
+
+                    <input type="hidden"
+                           name="categoria"
+                           class="produto-categoria"
+                           value="<?= htmlspecialchars($produto['tipo']) ?>">
+
+                    <form action="">
+                        <button type="submit" class="botaoAdCarrinho">
+                            <i class="fa-solid fa-cart-shopping fa-xl"></i>
+                            Adicionar
+                        </button>
+                    </form>
+
                 </article>
             </a>
-            <?php
-            endwhile;
-            ?>
 
-        </section>
+        <?php endwhile; ?>
+
+    <?php else: ?>
+
+        <p class="mensagemSemProdutos">
+            Nenhum produto encontrado.
+        </p>
+
+    <?php endif; ?>
+
+</section>
+
+
+        
         <script>
             const botoesFiltro = document.querySelectorAll('.botaoNav[data-categoria]');
 const cardsProdutos = document.querySelectorAll('.a-cardProduto');
@@ -157,8 +191,65 @@ botoesFiltro.forEach(botao => {
                 card.style.display = 'none';
             }
         });
+
+        const inputPesquisa = document.querySelector('#inputPesquisa');
+const vitrine = document.querySelector('.cardsProdutos');
+
+// Impede que o formulário recarregue a página ao apertar Enter
+document.querySelector('.containerInputLupa').addEventListener('submit', function(event) {
+    event.preventDefault();
+});
+
+// Pesquisa enquanto o usuário digita
+inputPesquisa.addEventListener('input', function() {
+    const pesquisa = inputPesquisa.value;
+
+    fetch('dashboard.php?pesquisa=' + encodeURIComponent(pesquisa))
+        .then(resposta => resposta.text())
+        .then(html => {
+            const documento = new DOMParser().parseFromString(html, 'text/html');
+
+            const novosProdutos = documento.querySelector('.cardsProdutos');
+
+            vitrine.innerHTML = novosProdutos.innerHTML;
+        })
+        .catch(erro => {
+            console.error('Erro ao pesquisar produtos:', erro);
+        });
+});
     });
 });
+
+
+const inputPesquisa = document.querySelector('#inputPesquisa');
+const vitrine = document.querySelector('.cardsProdutos');
+
+// Pesquisa enquanto o usuário digita
+inputPesquisa.addEventListener('input', function() {
+
+    const pesquisa = inputPesquisa.value;
+
+    fetch('dashboard.php?pesquisa=' + encodeURIComponent(pesquisa))
+        .then(resposta => resposta.text())
+        .then(html => {
+
+            const documento = new DOMParser().parseFromString(html, 'text/html');
+
+            const novosProdutos = documento.querySelector('.cardsProdutos');
+
+            vitrine.innerHTML = novosProdutos.innerHTML;
+
+        })
+        .catch(erro => {
+            console.error('Erro ao pesquisar produtos:', erro);
+        });
+
+});
+
+document.querySelector('.containerInputLupa').addEventListener('submit', function(event) {
+    event.preventDefault();
+});
+
 
         </script>
     </main>
