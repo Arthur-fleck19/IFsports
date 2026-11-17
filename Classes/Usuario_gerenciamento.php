@@ -172,4 +172,18 @@ class Usuario_gerenciamento
             return "-1";
         }
     }
+
+    public static function editar_senha($idUsuario, $novaSenha) {
+        global $conexao;
+        $novaSenha = password_hash($novaSenha, PASSWORD_DEFAULT);
+        $sql = "UPDATE Usuarios SET senha = ? WHERE id_usuarios = ?";
+        $stmt = $conexao->prepare($sql);
+
+        $stmt->bind_param("si", $novaSenha, $idUsuario);
+        $stmt->execute();
+
+        session_unset();
+        header("Location: ../Views/login.html");
+        exit();
+    }
 }

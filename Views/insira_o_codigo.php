@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['recuperacao_codigo_enviado'], $_SESSION['recuperacao_codigo_hash'], $_SESSION['recuperacao_expira_em']) && time() > $_SESSION['recuperacao_expira_em']) {
+    if(!isset($_SESSION['recuperacao_codigo_enviado'], $_SESSION['recuperacao_codigo_hash'], $_SESSION['recuperacao_expira_em']) || time() > $_SESSION['recuperacao_expira_em']) {
         header("Location: ../Views/redefinir_senha.html?erro=acessoInvalido");
         exit();
     }
@@ -24,7 +24,7 @@
     <div class="container">
         <form class="caixa" action="../Rotas/verificar_codigo_deixar_trocar_senha.php" method="post">
             <i class="fa-solid fa-lock icone-cadeado"></i>
-            <h1>Insira o código</h1>
+            <h1>Abra o seu email digitado e insira o código</h1>
             <div class="codigo">
                 <input name="caracter1" type="text" maxlength="1">
                 <input name="caracter2" type="text" maxlength="1">
@@ -34,5 +34,6 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
+    <script src="../JS/insira_o_codigo.js"></script>
 </body>
 </html>

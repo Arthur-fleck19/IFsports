@@ -78,7 +78,7 @@ html, body {
 }
 
 
-.nova-senha {
+/*.nova-senha {
     position: relative;
     width: 100%;
     max-width: 450px;
@@ -110,7 +110,7 @@ html, body {
     padding: 12px 45px 12px 45px; 
     box-sizing: border-box;
  
-}
+}*/
 
 .container button{
   font-size: 20px;
@@ -118,7 +118,7 @@ html, body {
   border-radius: 30px;
   background-color: rgb(199, 0, 0);
   color: #FFFFFF;
-  width: 350px;
+  width: 90%;
   height: 52px;
   border: none;
   font-size: 20px;
@@ -126,27 +126,35 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; 
-
+  gap: 10px;
+  cursor: pointer;
 }
 
 .icone-esquerda{
   position: absolute;
     left: 15px;
-    top: 50%;
+    top: 23px;
     transform: translateY(-50%);
     color: #0abd37;
     font-size: 16px;
 }
 
-    .icone-cadeado {
+.icone-cadeado {
     font-size: 70px;
     color: #007512;
-
     display: block;
     margin: 0 auto 10px auto;
 }
 
+.icone-direita {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0abd37;
+    font-size: 16px;
+    cursor: pointer;
+}
 
 .formulario form {
     width: 100%;
@@ -159,4 +167,47 @@ html, body {
 a{
 color: #329140;
 text-decoration: none;
+}
+
+.caixa-formulario {
+    position: relative;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+.caixa-formulario input {
+    width: 100%;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 12px 45px 12px 45px;
+    box-sizing: border-box;
+}
+
+.notificacao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, top 0.4s ease;
+    z-index: 9999;
+}
+
+.notificacao.mostrar {
+    opacity: 1;
+    visibility: visible;
+    top: 30px;
+}
+
+.notificacao.erro {
+    background-color: #e74c3c;
 }
