@@ -109,7 +109,7 @@ $carrinho_vazio = empty($carrinho);
             <h1>Resumo do pedido</h1>
             <hr>
 
-            <div><p>Subtotal (3 itens)</p> <p class="Final">R$ <?= htmlspecialchars($subtotal) ?></p>  </div>
+            <div><p>Subtotal (<?= htmlspecialchars(Carrinho_gerenciamento::get_quant_prod_carrinho_usuario($_SESSION['id'])) ?> iten(s))</p> <p class="Final">R$ <?= htmlspecialchars($subtotal) ?></p>  </div>
             <div><p>Frete</p> <p class="Frete">a calcular</p></div>
             <hr>
 

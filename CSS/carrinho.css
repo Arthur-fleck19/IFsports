@@ -59,7 +59,6 @@
 }
 
 .divCarrinho img{
-    width: 180px;
     height: 125px;
     object-fit: cover;
     display: block;
@@ -169,6 +168,7 @@
     display: flex;
 
 }
+
 .DivInformacao{
     border-radius: 15px;
     background: white;
