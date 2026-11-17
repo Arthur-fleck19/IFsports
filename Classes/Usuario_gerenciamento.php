@@ -191,7 +191,7 @@ class Usuario_gerenciamento
         $stmt->execute();
 
         session_unset();
-        header("Location: ../Views/login.html");
+        header("Location: ../Views/login.php");
         exit();
     }
 }
