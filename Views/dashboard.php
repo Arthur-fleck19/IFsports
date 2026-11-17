@@ -8,7 +8,15 @@ if(!isset($_SESSION["tipo"])){
 
 require_once("../Classes/Produtos_gerenciamento.php");
 
-$produtos = Produtos_gerenciamento::get_produtos();
+
+$pesquisa = trim($_GET['pesquisa'] ?? '');
+
+if ($pesquisa != '') {
+    $produtos = Produtos_gerenciamento::pesquisar_produtos($pesquisa);
+} else {
+    $produtos = Produtos_gerenciamento::get_produtos();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -26,8 +34,14 @@ $produtos = Produtos_gerenciamento::get_produtos();
 <body>
     <header class="cabecalho">
         <a href="dashboard.php"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
-        <form class="containerInputLupa">
-            <input type="text" name="pesquisa" id="inputPesquisa" class="inputPesquisa" placeholder="Digite sua pesquisa...">
+        <form class="containerInputLupa" method="GET" action="dashboard.php">
+            <input type="text"
+             name="pesquisa" 
+             id="inputPesquisa" 
+             class="inputPesquisa" 
+             placeholder="Digite sua pesquisa..."
+              value="<?= htmlspecialchars($pesquisa, ENT_QUOTES, 'UTF-8') ?>">
+              
             <button type="submit" class="lupaInput"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
         </form>
         <nav>
