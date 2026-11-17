@@ -1,6 +1,8 @@
 <?php
 require_once("../Classes/Usuario_gerenciamento.php");
 
+$caminho = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $id = $_POST['id'];
     $nome = $_POST['nome'];
@@ -9,5 +11,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     Usuario_gerenciamento::editar_usuario($id, $nome, $email, $senha);
 }
-header("Location: ../Views/gerenciamento_usuarios.php");
+header("Location: $caminho");
 exit();

@@ -70,3 +70,9 @@ INSERT INTO Usuarios (email, nome, tipo, senha) VALUES
 ('joao@ifsports.com',   'João Santos',   'comum',  '$2y$10$FFkrOcPrT4kv3kBqmWfRtuWEcGa3e7ddF7kTTAL4nqrl/6hc1a3jO'),
 ('ana@ifsports.com',    'Ana Oliveira',  'comum',  '$2y$10$vYBCW8OTgdKLPF71fkDuH.T1a1D9qng3TvJ1YuzBVGkIItqSAKV6G'),
 ('carlos@ifsports.com', 'Carlos Souza',  'comum',  '$2y$10$G2xdx6vglZ94jy5iFjq.tOIaSV3fPNkkQciYN0qr7Z250ykHqgYba');
+
+INSERT INTO Produtos (nome, descricao, imagem, estoque, preco, tipo) VALUES
+('Bola de vôlei', 'Tamanho Oficial 22cm', '51viv27iwWL._AC_UF1000,1000_QL80_.jpg', 28, 149.90, 'Bolas'),
+('Camisa do Barcelona', 'Camisa oficial do time Barcelona', 'auijnwafalwdfadvae24s.jpeg', 5, 427.90, 'Camisas'),
+('Raquete tênis de mesa', 'Raquete de tênis de mesa profissional', 'llasdjsfnhwauyfbhaaawf.jpeg', 12, 59.90, 'Equipamentos'),
+('Tênis Nike Run Defy', 'Tênis esportivo masculino Nike Run Defy preto', '99599502A2.avif', 28, 229.90, 'Tênis');

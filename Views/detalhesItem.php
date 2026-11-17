@@ -2,9 +2,12 @@
     require_once "../Classes/Produtos_gerenciamento.php";
     require_once "../Classes/Carrinho_gerenciamento.php";
 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-    if (!isset($_SESSION["tipo"])) {
+
+if (!isset($_SESSION["tipo"])) {
         header("Location: login.php");
         exit();
     }
@@ -35,7 +38,7 @@
         </form>
         <nav>
             <ul class="icones">
-                <li><a href="" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><span class="contadorCarrinho">1</span></li>
+                <li><a href="carrinho.php" class="iconeSite"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a><?= ((int) $quant_carrinho > 0) ? "<span class='contadorCarrinho'>" . ($quant_carrinho > 99 ? '+99' : (int) $quant_carrinho) . "</span>" : "" ?></li>
                 <?php
                 if($_SESSION['tipo'] != 'admin'){
                     echo '<li><a href="perfil.php" class="iconeSite"><i class="fa-solid fa-circle-user fa-2xl"></i></a></li>';
@@ -65,10 +68,9 @@
                             <input type="hidden" name="id_produto" value="<?= htmlspecialchars($produto['id_produtos']); ?>">
                         </div>
                     </div>
-                    <button class="botaoComprar" formaction="comprar.php" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> <span>Comprar</span></button>
+                    <button class="botaoComprar" formaction="../Rotas/comprar.php" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> <span>Comprar</span></button>
                     <button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> Adicionar ao carrinho</button>
                 </form>
-                <form action="" method="post" class="formBotaoAdCarrinho"><button class="botaoAdCarrinho" type="submit"><i class="fa-solid fa-cart-shopping fa-xl"></i> Adicionar ao carrinho</button></form>
             </div>
         </div>
     </main>
