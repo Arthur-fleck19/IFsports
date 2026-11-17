@@ -64,22 +64,43 @@ if ($pesquisa != '') {
     </header>
     <main class="vitrineProdutos">
         <div class="botoesNav">
-            <button class="botaoNav corFundoBotaoSelecionado" data-categoria="Todos"><i class="fa-solid fa-globe fa-xl"></i>Todos</button>
-            <button class="botaoNav" data-categoria="Camisas"><i class="fa-solid fa-shirt fa-xl"></i>Camisas</button>
-            <button class="botaoNav" data-categoria="Tênis"><i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis</button>
-            <button class="botaoNav" data-categoria="Bolas"><i class="fa-regular fa-futbol fa-xl"></i>Bolas</button>
-            <button class="botaoNav" data-categoria="Equipamentos"><i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos</button>
-            <?php
+            <div class="grupoFiltros">
+                <button class="botaoNav corFundoBotaoSelecionado" data-categoria="Todos">
+                    <i class="fa-solid fa-globe fa-xl"></i>Todos
+                </button>
 
+                <button class="botaoNav" data-categoria="Camisas">
+                    <i class="fa-solid fa-shirt fa-xl"></i>Camisas
+                </button>
 
-            if($_SESSION['tipo'] == 'admin'){
-                echo '
-                    <h1 class="admin"> - ADM - </h1>
-                    <button onclick="window.location.href=\'gerenciamento_usuarios.php\'" class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
-                    <button onclick="window.location.href=\'produtos.php\'" class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>  
-                ';
-            }
-            ?>
+                <button class="botaoNav" data-categoria="Tênis">
+                    <i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis
+                </button>
+
+                <button class="botaoNav" data-categoria="Bolas">
+                    <i class="fa-regular fa-futbol fa-xl"></i>Bolas
+                </button>
+
+                <button class="botaoNav" data-categoria="Equipamentos">
+                    <i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos
+                </button>
+            </div>
+
+            <?php if ($_SESSION['tipo'] == 'admin'): ?>
+                <div class="grupoAdmin">
+                    <h1 class="admin">- ADM -</h1>
+
+                    <button onclick="window.location.href='gerenciamento_usuarios.php'"
+                            class="botaoNav botaoAdmin">
+                        <i class="fa-solid fa-user fa-xl"></i>Usuários
+                    </button>
+
+                    <button onclick="window.location.href='produtos.php'"
+                            class="botaoNav botaoAdmin">
+                        <i class="fa-solid fa-box fa-xl"></i>Produtos
+                    </button>
+                </div>
+            <?php endif; ?>
         </div>
         <div id="notificacao" class="notificacao"></div>
         <script src="../JS/notificacao_carrinho.js"></script>

@@ -135,14 +135,22 @@ html, body {
     top: 150px;
 }
 
+.grupoFiltros, .grupoAdmin {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .botaoNav {
+    width: 100%;
+    min-height: 45px;
     border: none;
     border-radius: 30px;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
     position: relative;
     display: flex;
-    align-items: center;     
-    justify-content: center;  
+    align-items: center;
+    justify-content: center;
     gap: 12px;
     cursor: pointer;
     color: white;
@@ -151,7 +159,7 @@ html, body {
     font-weight: bold;
 }
 
-.botaoNav i, .botaoAdicionarCarrinho i {
+.botaoNav i {
     font-size: clamp(1rem, 1.3vw, 1.25rem);
 }
 
@@ -162,6 +170,18 @@ html, body {
 
 .corFundoBotaoSelecionado {
     background-color: #0BA84A;
+}
+
+.admin {
+    color: var(--vermelho);
+    text-align: center;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.botaoAdmin {
+    color: white;
+    background-color: var(--vermelho);
 }
 
 .botaoNav i, .botaoAdicionarCarrinho i {
@@ -261,62 +281,94 @@ html, body {
     font-weight: bold;
 }
 
-@media(max-width: 925px) {
+@media (max-width: 925px) {
     .vitrineProdutos {
         flex-direction: column;
     }
 
     .botoesNav {
         width: 100%;
+        position: static;
+        min-width: 0;
+        gap: 25px;
+    }
+
+    .grupoFiltros, .grupoAdmin {
+        width: 100%;
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
-        position: static;
-        inset: 0;
+        gap: 12px;
+    }
+
+    .grupoAdmin {
+        padding-top: 15px;
+        border-top: 2px solid #CCCCCC;
     }
 
     .botaoNav {
-        width: 200px;
+        width: 180px;
     }
 }
 
-@media(max-width: 570px) {
+
+@media (max-width: 570px) {
     .cabecalho {
-        height: auto; /* Permite que a altura aumente para caber as duas linhas */
+        height: auto;
         display: grid;
-        /* Define 2 linhas automáticas e 2 colunas principais nas pontas */
-        grid-template-columns: 1fr 1fr; 
-        row-gap: 15px; /* Espaço entre a linha de cima e a de baixo */
-        padding: 15px 10px 20px 10px;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 15px;
+        padding: 15px 10px 20px;
     }
 
-    /* O link da logo vai para o topo esquerdo */
     .cabecalho > a {
         grid-column: 1;
         grid-row: 1;
         justify-self: start;
-        align-self: center; /* Alinha a logo bem à esquerda */
     }
 
-    /* O menu de ícones (<nav>) vai para o topo direito */
     .cabecalho > nav {
         grid-column: 2;
         grid-row: 1;
-        justify-self: end; /* Alinha os ícones bem à direita */
+        justify-self: end;
     }
 
-    /* O formulário de pesquisa vai para a linha de baixo e expande totalmente */
     .containerInputLupa {
-        grid-column: 1 / span 2; /* Ocupa as duas colunas */
+        grid-column: 1 / span 2;
         grid-row: 2;
-        width: 100%; /* Força o formulário a ocupar toda a largura */
+        width: 100%;
     }
-}
 
-.botaoAdmin{
-    color: white;
-    background-color: var(--vermelho);
+    .vitrineProdutos {
+        padding: 1.5rem 1rem;
+        gap: 2rem;
+    }
 
+    .grupoFiltros, .grupoAdmin {
+        gap: 10px;
+    }
+
+    .botaoNav {
+        width: calc(50% - 5px);
+        min-height: 45px;
+        padding: 0.6rem 0.4rem;
+        gap: 7px;
+        font-size: 0.8rem;
+    }
+
+    .botaoNav i {
+        position: static;
+        font-size: 1rem;
+    }
+
+    .admin {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    .cardProduto {
+        max-width: 100%;
+    }
 }
 
 .notificacao {
@@ -359,16 +411,6 @@ html, body {
 
 .Usuario {
     color:  rgb(226, 29, 29);
-}
-.admin{
-    color: var(--vermelho);
-    text-align: center;
-}
-
-.botaoAdmin{
-    color: white;
-    background-color: var(--vermelho);
-
 }
 
 .aAdmin{
