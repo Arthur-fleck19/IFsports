@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['recuperacao_codigo_enviado'], $_SESSION['recuperacao_codigo_hash'], $_SESSION['recuperacao_expira_em']) && time() > $_SESSION['recuperacao_expira_em']) {
-        header("Location: ../Views/redefinir_senha.html");
+        header("Location: ../Views/redefinir_senha.html?erro=acessoInvalido");
         exit();
     }
 ?>
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../CSS/insira_o_codigo.css">
     <link rel="icon" href="Imagens/logoIF.png">
 </head>
+<div id="notificacao" class="notificacao"></div>
 <body>
     <header class="cabecalho">
         <a href="#"><img src="Imagens/logoIFsports.png" alt="Logo IFsports" height="70px" width="170px" class="logoIFsportsImg"></a>
