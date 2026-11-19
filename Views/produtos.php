@@ -68,7 +68,7 @@ $produtos = Produtos_gerenciamento::get_produtos();
             </div>
             <h1 class="admin"> - ADM - </h1>
             <button onclick="window.location.href='gerenciamento_usuarios.php'" class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
-            <button onclick="window.location.href='produtos.php'" class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
+            <button onclick="window.location.href='produtos.php'" class="botaoNav botaoAdmin botaoproduto"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
         </div>
     <div class="container">
         <!-- Tela de adicionar produto -->
