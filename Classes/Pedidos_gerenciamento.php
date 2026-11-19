@@ -187,7 +187,7 @@ class Pedidos_gerenciamento
     public static function get_pedidos(){
         global $conexao;
 
-        $sql = "SELECT p.id_pedidos as id, pr.imagem, it.subtotal, it.quantidade FROM Item_pedidos as it JOIN Pedidos as p ON it.id_pedidos = p.id_pedidos JOIN Produtos as pr ON it.id_produtos = pr.id_produtos WHERE id_usuarios = ?";
+        $sql = "SELECT p.id_pedidos as id, pr.imagem, it.subtotal, it.quantidade, DENSE_RANK() OVER (ORDER BY p.id_pedidos ASC) AS contagem FROM Item_pedidos as it JOIN Pedidos as p ON it.id_pedidos = p.id_pedidos JOIN Produtos as pr ON it.id_produtos = pr.id_produtos WHERE id_usuarios = ?";
 
         $stmt = $conexao->prepare($sql);
         $stmt->bind_param("i", $_SESSION['id']);

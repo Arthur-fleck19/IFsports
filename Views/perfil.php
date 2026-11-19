@@ -155,7 +155,7 @@ $pedidos = Pedidos_gerenciamento::get_pedidos();
                 while($pedido = $pedidos->fetch_assoc()):
             ?>
                     <div class="pedido">
-                        <p>Pedido <?= htmlspecialchars($pedido['id']) ?></p>
+                        <p>Pedido <?= htmlspecialchars($pedido['contagem']) ?></p>
                         <div class="infos-pedidos"><img src="../uploads/<?= htmlspecialchars($pedido['imagem']) ?>" alt="">
                             <div class="pedidos-valores">
                                 <h1>R$<?= htmlspecialchars($pedido['subtotal']) ?></h1>
