@@ -368,3 +368,9 @@ span {
     outline: none;
     background: transparent;
 }
+.botaocategoria{
+    background-color: #ABAAAB;
+}
+.botaousuario{
+    background-color: #0BA84A;
+}

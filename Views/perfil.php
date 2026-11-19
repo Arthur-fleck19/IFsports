@@ -71,7 +71,7 @@ $pedidos = Pedidos_gerenciamento::get_pedidos();
                         </h3>
 
                         <p>
-                            Email: <?= htmlspecialchars($usuario['email']) ?>
+                           <i class="fa-solid fa-envelope"></i> Email: <?= htmlspecialchars($usuario['email']) ?>
                         </p>
 
                     </div>
@@ -155,7 +155,7 @@ $pedidos = Pedidos_gerenciamento::get_pedidos();
                 while($pedido = $pedidos->fetch_assoc()):
             ?>
                     <div class="pedido">
-                        <p>Pedido <?= htmlspecialchars($pedido['contagem']) ?></p>
+                        <p>Pedido <?= htmlspecialchars($pedido['id']) ?></p>
                         <div class="infos-pedidos"><img src="../uploads/<?= htmlspecialchars($pedido['imagem']) ?>" alt="">
                             <div class="pedidos-valores">
                                 <h1>R$<?= htmlspecialchars($pedido['subtotal']) ?></h1>

@@ -50,8 +50,29 @@ $usuarios = Usuario_gerenciamento::get_usuarios();
 <!-- Cards testes para ver como fica -->
 <main class="vitrineProdutos">
     <div class="botoesNav">
+        <div class="grupoFiltros">
+                <button class="botaoNav botaocategoria corFundoBotaoSelecionado" data-categoria="Todos" onclick="window.location.href='dashboard.php'">
+                    <i class="fa-solid fa-globe fa-xl"></i>Todos
+                </button>
+
+                <button class="botaoNav botaocategoria" data-categoria="Camisas" onclick="window.location.href='dashboard.php'">
+                    <i class="fa-solid fa-shirt fa-xl"></i>Camisas
+                </button>
+
+                <button class="botaoNav botaocategoria" data-categoria="Tênis" onclick="window.location.href='dashboard.php'">
+                    <i class="fa-solid fa-shoe-prints fa-xl"></i>Tênis
+                </button>
+
+                <button class="botaoNav botaocategoria" data-categoria="Bolas" onclick="window.location.href='dashboard.php'">
+                    <i class="fa-regular fa-futbol fa-xl"></i>Bolas
+                </button>
+
+                <button class="botaoNav botaocategoria" data-categoria="Equipamentos"  onclick="window.location.href='dashboard.php'">
+                    <i class="fa-solid fa-table-tennis-paddle-ball fa-xl"></i>Equipamentos
+                </button>
+            </div>
         <h1 class="admin"> - ADM - </h1>
-        <button onclick="window.location.href='gerenciamento_usuarios.php'" class="botaoNav botaoAdmin "><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
+        <button onclick="window.location.href='gerenciamento_usuarios.php'" class="botaoNav botaoAdmin botaousuario"><i class="fa-solid fa-user fa-xl"></i>Usuários</button>
         <button onclick="window.location.href='produtos.php'" class="botaoNav botaoAdmin"><i class="fa-solid fa-box fa-xl"></i>Produtos</button>
     </div>
 
@@ -83,7 +104,7 @@ $usuarios = Usuario_gerenciamento::get_usuarios();
                         </h3>
 
                         <p>
-                            Email: <?= htmlspecialchars($usuario['email']) ?>
+                           <i class="fa-solid fa-envelope"></i> Email: <?= htmlspecialchars($usuario['email']) ?>
                         </p>
 
                     </div>
