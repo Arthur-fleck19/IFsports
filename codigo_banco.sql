@@ -30,6 +30,7 @@ CREATE TABLE Pedidos(
     valor DECIMAL(10, 2) NOT NULL,
     data_pedido DATE NOT NULL,
     FOREIGN KEY (id_usuarios) REFERENCES Usuarios(id_usuarios)
+    ON DELETE CASCADE
 );
 
 
@@ -41,7 +42,9 @@ CREATE TABLE Item_pedidos(
     subtotal DECIMAL(30, 2) NOT NULL,
     preco_unitario DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (id_produtos) REFERENCES Produtos(id_produtos),
+    ON DELETE CASCADE
     FOREIGN KEY (id_pedidos) REFERENCES Pedidos(id_pedidos)
+    ON DELETE CASCADE
 );
 
 
